@@ -41,31 +41,11 @@ void display() {
      * Draw tile
      */
 
-
-
-
-
     Piece piece(1,1,0);
-    piece.create_l5(12,-40);
-
-    Piece piece1(1,1,0);
-    piece1.create_l5(5,-30);
-
-
-    Piece piece2(1,1,0);
-    piece2.create_l5(5,-35);
-
-    Piece piece3(1,1,0);
-    piece3.create_l5(12,-45);
-
-
-
+    piece.create_1(1.0,1.0);
 
     Board board;
     board.drawBoard();
-
-
-
 
     glFlush();
 
