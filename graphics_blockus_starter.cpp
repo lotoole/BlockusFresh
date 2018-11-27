@@ -7,6 +7,7 @@
 GLdouble width, height;
 int wd;
 float tileSize = 0.03;
+int mouse_x, mouse_y;
 
 void init() {
     width = 1024;
@@ -18,9 +19,6 @@ void initGL() {
     // Set "clearing" or background color
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Black and opaque
 }
-
-
-
 
 /* Handler for window-repaint event. Call back when the window first appears and
  whenever the window needs to be re-painted. */
