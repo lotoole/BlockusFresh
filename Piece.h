@@ -40,7 +40,7 @@ public:
     void create_F(float x, float y);
 
 private:
-    float tileSize = 0.03;
+    float tileSize = 2;
     std::vector<float> color;
 
 };

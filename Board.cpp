@@ -14,7 +14,7 @@ Board::~Board(){
 }
 
 void Board::drawBoard() {
-    glClear(GL_COLOR_BUFFER_BIT);
+
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glColor3f(1.0, 0.0, 0.0);
     int xsize=0,ysize=15;
@@ -31,6 +31,5 @@ void Board::drawBoard() {
         }
         ysize += 2.0;
     }
-    glFlush();
 
 }

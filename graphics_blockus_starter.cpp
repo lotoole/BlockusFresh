@@ -34,18 +34,40 @@ void display() {
     glLoadIdentity();
     glOrtho(-50.0, 50.0, -50.0, 50.0, -1.0, 1);
 
-    glClear(GL_COLOR_BUFFER_BIT);   // Clear the color buffer with current clearing color
+       // Clear the color buffer with current clearing color
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     /*
      * Draw tile
      */
 
+
+
+
+
+    Piece piece(1,1,0);
+    piece.create_l5(12,-40);
+
+    Piece piece1(1,1,0);
+    piece1.create_l5(5,-30);
+
+
+    Piece piece2(1,1,0);
+    piece2.create_l5(5,-35);
+
+    Piece piece3(1,1,0);
+    piece3.create_l5(12,-45);
+
+
+
+
     Board board;
     board.drawBoard();
 
-    Piece piece(1,0,0);
-    piece.create_l5(0,0);
+
+
+
+    glFlush();
 
 }
 
