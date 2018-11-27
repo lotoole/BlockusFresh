@@ -6,7 +6,6 @@
 
 GLdouble width, height;
 int wd;
-float tileSize = 0.03;
 int mouse_x, mouse_y;
 
 void init() {
