@@ -40,7 +40,7 @@ void display() {
      */
 
     Piece piece(1,1,0);
-    piece.create_1(1.0,1.0);
+    piece.create_1(0.0,0.0);
 
     Board board;
     board.drawBoard();
@@ -85,7 +85,8 @@ void kbdS(int key, int x, int y) {
 }
 
 void cursor(int x, int y) {
-    
+    mouse_x = x;
+    mouse_y = y;
     
     glutPostRedisplay();
 }
