@@ -1,6 +1,6 @@
-//
-// Created by Nick Hallowell on 11/17/18.
-//
+//------------------------------------------------**
+//Created by Nick on 11/17/18
+//------------------------------------------------**
 
 #include "Board.h"
 #include "graphics.h"

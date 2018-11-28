@@ -2,15 +2,77 @@
 #include "Piece.h"
 #include "Board.h"
 #include "Player.h"
-#include <string>
 
 GLdouble width, height;
 int wd;
 int mouse_x, mouse_y;
-
+//enums for tracking the current state of the game
+//------------------------------------------------**
+//Created by Liam OToole on 11/27/18
+//------------------------------------------------**
+enum screen_state {menu, game_play, game_over};
+// set the screen state
+screen_state screen;
+//------------------------------------------------**
+//Modified by Liam OToole on 11/27/18
+//------------------------------------------------**
 void init() {
+    //setting the screens width and height
     width = 1024;
     height = 980;
+    //set screen to menu when we start
+    screen = game_play;
+}
+
+//------------------------------------------------**
+//Created by Liam OToole on 11/7/18
+// Display start game menu
+//------------------------------------------------**
+void display_menu() {
+    // draw a string message
+    string message = "Click anywhere to begin playing set!";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(0, 100);
+    for (int i = 0; i < message.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+    }
+    string message2 = "Press 'e' to end the game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(50, 200);
+    for (int i = 0; i < message2.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
+    }
+}
+//------------------------------------------------**
+//Created by Liam OToole on 11/7/18
+// Moved gameplay code to new screen
+//------------------------------------------------**
+void display_game() {
+    Piece piece(1,1,0);
+    piece.create_1(0.0,0.0);
+    //After drawing pieces, draw the board
+    Board board;
+    board.drawBoard();
+}
+
+//------------------------------------------------**
+//Created by Liam OToole on 11/7/18
+// Display start game menu
+//------------------------------------------------**
+void display_game_over () {
+    string message = "The game is Over!";
+    glColor3f(1, 1, 0);
+    glRasterPos2i(100, 250);
+    for (int i = 0; i < message.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+    }
+    //replay message
+    string message2 = "Press 'r' to restart!";
+    glColor3f(1, 1, 0);
+    glRasterPos2i(100, 550);
+    for (int i = 0; i < message2.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
+    }
 }
 
 /* Initialize OpenGL Graphics */
@@ -34,15 +96,21 @@ void display() {
        // Clear the color buffer with current clearing color
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    /*
-     * Draw tile
-     */
-
-    Piece piece(1,1,0);
-    piece.create_1(0.0,0.0);
-
-    Board board;
-    board.drawBoard();
+    //------------------------------------------------**
+    //Created by Liam OToole on 11/7/18
+    // Switch that changes depending on game state the user wants
+    //------------------------------------------------**
+    switch(screen) {
+        case menu:
+            display_menu();
+            break;
+        case game_play:
+            display_game();
+            break;
+        case game_over:
+            display_game_over();
+            break;
+    }
 
     glFlush();
 
@@ -56,7 +124,14 @@ void kbd(unsigned char key, int x, int y)
         glutDestroyWindow(wd);
         exit(0);
     }
-    
+    //end the game if they hit e
+    if(key == 'e' && screen == game_play) {
+        screen = game_over;
+    }
+    //restart game
+    if(key == 'r' && screen == game_over) {
+        screen = menu;
+    }
     glutPostRedisplay();
     
     return;
@@ -84,6 +159,10 @@ void kbdS(int key, int x, int y) {
 }
 
 void cursor(int x, int y) {
+    //Ensure variables are tracking the current mouse position
+    //------------------------------------------------**
+    //Created by Liam OToole on 11/7/18
+    //------------------------------------------------**
     mouse_x = x;
     mouse_y = y;
     
@@ -94,8 +173,7 @@ void cursor(int x, int y) {
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
     
-    
-    
+
     glutPostRedisplay();
 }
 

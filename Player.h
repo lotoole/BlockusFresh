@@ -1,6 +1,6 @@
-//
-// Created by moniq on 11/16/2018.
-//
+//------------------------------------------------**
+//Created by Moniq on 11/16/18
+//------------------------------------------------**
 
 #ifndef GRAPHICS_STARTER_PLAYER_H
 #define GRAPHICS_STARTER_PLAYER_H

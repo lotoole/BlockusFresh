@@ -1,6 +1,6 @@
-//
-// Created by Will McAllister on 11/13/18.
-//
+//------------------------------------------------**
+//Created by Will on 11/13/18
+//------------------------------------------------**
 
 #ifndef BLOCKUS_PIECE_H
 #define BLOCKUS_PIECE_H

@@ -1,6 +1,6 @@
-//
-// Created by Will McAllister on 11/13/18.
-//
+//------------------------------------------------**
+//Created by Will on 11/13/18
+//------------------------------------------------**
 
 #include "graphics.h"
 #include "Piece.h"
