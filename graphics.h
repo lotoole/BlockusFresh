@@ -43,8 +43,6 @@ void display_game();
 
 void display_game_over();
 
-void drawText(const char *text, int length, int x, int y);
-
 // Callback functions for GLUT
 
 // Draw the window - this is where all the GL actions are

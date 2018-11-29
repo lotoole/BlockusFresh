@@ -62,8 +62,8 @@ void display_game() {
 //------------------------------------------------**
 void display_game_over () {
     string message = "The game is Over!";
-    glColor3f(1, 1, 0);
-    glRasterPos2i(100, 250);
+    glColor3f(1, 1, 1);
+    glRasterPos2i(-10, 25);
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
@@ -220,7 +220,7 @@ int main(int argc, char** argv) {
     cout << "Player Score: " << human.getScore() << endl;
 
     init();
-    
+
     glutInit(&argc, argv);          // Initialize GLUT
     
     glutInitDisplayMode(GLUT_RGBA);
