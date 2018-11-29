@@ -3,6 +3,10 @@
 #include "Board.h"
 #include "Player.h"
 
+#include <vector>
+
+using namespace std;
+
 GLdouble width, height;
 int wd;
 int mouse_x, mouse_y;
@@ -61,7 +65,7 @@ void display_game() {
     piece3.create_2(-40.0,10.0);
     //After drawing pieces, draw the board
     Board board;
-    board.drawBoard();
+    vector<Coordinate> boardVector = board.drawBoard();
 }
 
 //------------------------------------------------**
