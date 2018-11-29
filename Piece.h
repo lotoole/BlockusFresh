@@ -16,6 +16,7 @@ public:
 
     void setColor(float r, float g, float b);
 
+
     //Piece creation methods
     void create_O(float x, float y);
     void create_1(float x, float y);
@@ -42,6 +43,7 @@ public:
 private:
     float tileSize = 2;
     std::vector<float> color;
+    std::vector<float> vertexs;
 
 };
 
