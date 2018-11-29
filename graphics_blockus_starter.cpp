@@ -76,8 +76,8 @@ void display_game_over () {
     }
     //replay message
     string message2 = "Press 'r' to restart!";
-    glColor3f(1, 1, 0);
-    glRasterPos2i(100, 550);
+    glColor3f(1, 1, 1);
+    glRasterPos2i(-10, 20);
     for (int i = 0; i < message2.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
     }
