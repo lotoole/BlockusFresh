@@ -29,18 +29,19 @@ void init() {
 //------------------------------------------------**
 //Created by Liam OToole on 11/7/18
 // Display start game menu
+// Modified by Monique Demers
 //------------------------------------------------**
 void display_menu() {
     string message = "The game is Over!";
-    glColor3f(1, 1, 0);
-    glRasterPos2i(100, 250);
+    glColor3f(1, 1, 1);
+    glRasterPos2i(-10, 25);
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
     //replay message
     string message2 = "Press 'r' to restart!";
-    glColor3f(1, 1, 0);
-    glRasterPos2i(100, 550);
+    glColor3f(1, 1, 1);
+    glRasterPos2i(-10, 20);
     for (int i = 0; i < message2.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
     }
