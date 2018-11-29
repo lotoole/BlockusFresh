@@ -118,8 +118,7 @@ void display() {
 }
 
 // http://www.theasciicode.com.ar/ascii-control-characters/escape-ascii-code-27.html
-void kbd(unsigned char key, int x, int y)
-{
+void kbd(unsigned char key, int x, int y) {
     // escape
     if (key == 27) {
         glutDestroyWindow(wd);
