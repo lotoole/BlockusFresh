@@ -13,6 +13,8 @@ int mouse_x, mouse_y;
 enum screen_state {menu, game_play, game_over};
 // set the screen state
 screen_state screen;
+//create board
+Board board;
 //------------------------------------------------**
 //Modified by Liam OToole on 11/27/18
 //------------------------------------------------**
@@ -50,7 +52,11 @@ void display_menu() {
 //------------------------------------------------**
 void display_game() {
     Piece piece(1,1,0);
-    piece.create_1(0.0,0.0);
+    piece.create_Y(-40.0,0.0);
+    Piece piece2(1,1,0);
+    piece2.create_Y(-40.0,5.0);
+    Piece piece3(1,1,0);
+    piece3.create_2(-40.0,10.0);
     //After drawing pieces, draw the board
     Board board;
     board.drawBoard();
@@ -184,6 +190,12 @@ void mouse(int button, int state, int x, int y) {
     // Set game screen to game play if the user clicks on the screen
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP &&screen == menu) {
         screen = game_play;
+    }
+    //if the user clicks a location
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN  && state != GLUT_UP && screen == game_play) {
+//        if () {
+//
+//        }
     }
     glutPostRedisplay();
 }
