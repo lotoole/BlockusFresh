@@ -59,6 +59,7 @@ void display_game() {
 //------------------------------------------------**
 //Created by Liam OToole on 11/7/18
 // Display start game menu
+// Modified by Monique Demers
 //------------------------------------------------**
 void display_game_over () {
     string message = "The game is Over!";
