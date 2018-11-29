@@ -23,7 +23,7 @@ void init() {
     width = 1024;
     height = 980;
     //set screen to menu when we start
-    screen = game_play;
+    screen = menu;
 }
 
 //------------------------------------------------**
@@ -32,14 +32,14 @@ void init() {
 // Modified by Monique Demers
 //------------------------------------------------**
 void display_menu() {
-    string message = "The game is Over!";
+    string message = "Welcome to blokus!";
     glColor3f(1, 1, 1);
     glRasterPos2i(-10, 25);
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
     //replay message
-    string message2 = "Press 'r' to restart!";
+    string message2 = "Click anywhere to start";
     glColor3f(1, 1, 1);
     glRasterPos2i(-10, 20);
     for (int i = 0; i < message2.length(); ++i) {
@@ -52,8 +52,9 @@ void display_menu() {
 // Moved gameplay code to new screen
 //------------------------------------------------**
 void display_game() {
+    glClear(GL_COLOR_BUFFER_BIT);
     Piece piece(1,1,0);
-    piece.create_Y(-40.0,0.0);
+    piece.create_Y(13.0,3.0);
     Piece piece2(1,1,0);
     piece2.create_Y(-40.0,5.0);
     Piece piece3(1,1,0);
@@ -69,18 +70,12 @@ void display_game() {
 // Modified by Monique Demers
 //------------------------------------------------**
 void display_game_over () {
+    glClear(GL_COLOR_BUFFER_BIT);
     string message = "The game is Over!";
     glColor3f(1, 1, 1);
     glRasterPos2i(-10, 25);
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
-    }
-    //replay message
-    string message2 = "Press 'r' to restart!";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(-10, 20);
-    for (int i = 0; i < message2.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
     }
 }
 
@@ -144,10 +139,6 @@ void kbd(unsigned char key, int x, int y) {
     if(key == 'e' && screen == game_play) {
         screen = game_over;
     }
-    //restart game
-    if(key == 'r' && screen == game_over) {
-        screen = menu;
-    }
     glutPostRedisplay();
     
     return;
@@ -190,7 +181,7 @@ void cursor(int x, int y) {
 void mouse(int button, int state, int x, int y) {
 
     // Set game screen to game play if the user clicks on the screen
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_UP &&screen == menu) {
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_UP &&screen == menu && screen!= game_over) {
         screen = game_play;
     }
     //if the user clicks a location
