@@ -21,7 +21,7 @@ void init() {
     width = 1024;
     height = 980;
     //set screen to menu when we start
-    screen = menu;
+    screen = game_play;
 }
 
 //------------------------------------------------**
@@ -29,20 +29,21 @@ void init() {
 // Display start game menu
 //------------------------------------------------**
 void display_menu() {
-    // draw a string message
-    string message = "Click anywhere to begin playing set!";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(0, 100);
+    string message = "The game is Over!";
+    glColor3f(1, 1, 0);
+    glRasterPos2i(100, 250);
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
-    string message2 = "Press 'e' to end the game";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(50, 200);
+    //replay message
+    string message2 = "Press 'r' to restart!";
+    glColor3f(1, 1, 0);
+    glRasterPos2i(100, 550);
     for (int i = 0; i < message2.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
     }
 }
+
 //------------------------------------------------**
 //Created by Liam OToole on 11/7/18
 // Moved gameplay code to new screen
