@@ -21,7 +21,7 @@ void init() {
     width = 1024;
     height = 980;
     //set screen to menu when we start
-    screen = game_play;
+    screen = menu;
 }
 
 //------------------------------------------------**
@@ -124,6 +124,14 @@ void kbd(unsigned char key, int x, int y)
         glutDestroyWindow(wd);
         exit(0);
     }
+    //------------------------------------------------**
+    //Created by Liam OToole on 11/7/18
+    // Change screen state on certain button clicks
+    //------------------------------------------------**
+    //end the game if they hit e
+    if(key == 'e' && screen == game_play) {
+        screen = game_over;
+    }
     //end the game if they hit e
     if(key == 'e' && screen == game_play) {
         screen = game_over;
@@ -172,8 +180,11 @@ void cursor(int x, int y) {
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
-    
 
+    // Set game screen to game play if the user clicks on the screen
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_UP &&screen == menu) {
+        screen = game_play;
+    }
     glutPostRedisplay();
 }
 
