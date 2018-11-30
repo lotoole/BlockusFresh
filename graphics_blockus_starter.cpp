@@ -38,14 +38,14 @@ void init() {
 void display_menu() {
     string message = "Welcome to blokus!";
     glColor3f(1, 1, 1);
-    glRasterPos2i(-10, 25);
+    glRasterPos2i(300, 450);
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
     //replay message
     string message2 = "Click anywhere to start";
     glColor3f(1, 1, 1);
-    glRasterPos2i(-10, 20);
+    glRasterPos2i(300, 550);
     for (int i = 0; i < message2.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
     }
@@ -58,7 +58,7 @@ void display_menu() {
 void display_game() {
     glClear(GL_COLOR_BUFFER_BIT);
     Piece piece(1,1,0);
-    piece.create_1(13.0,3.0);
+    piece.create_1(0.0,0.0);
     //After drawing pieces, draw the board
     Board board;
     vector<Coordinate> boardVector = board.drawBoard();
@@ -77,7 +77,7 @@ void display_game_over () {
     glClear(GL_COLOR_BUFFER_BIT);
     string message = "The game is Over!";
     glColor3f(1, 1, 1);
-    glRasterPos2i(-10, 25);
+    glRasterPos2i(400, 550);
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
@@ -100,8 +100,8 @@ void display() {
     // system set to first quadrant, limited by screen/window size
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-50.0, 50.0, -50.0, 50.0, -1.0, 1);
-
+//    glOrtho(-50.0, 50.0, -50.0, 50.0, -1.0, 1);
+    glOrtho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
        // Clear the color buffer with current clearing color
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 

@@ -25,16 +25,26 @@ vector<Coordinate> Board::drawBoard() {
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glColor3f(1.0, 0.0, 0.0);
-    int xsize = 0, ysize = 15;
+    int xsize = 0, ysize = 35;
     for (int j = 0; j < 20; j++) {
-        xsize = 25;
+        xsize = 45;
         for (int i = 0; i < 20; i++) {
             glBegin(GL_POLYGON);
-            glVertex3f(-50.0 + xsize, -50.0 + ysize, 0.0);
-            glVertex3f(-40.0 + xsize, -50.0 + ysize, 0.0);
-            glVertex3f(-40.0 + xsize, -40.0 + ysize, 0.0);
-            glVertex3f(-50.0 + xsize, -40.0 + ysize, 0.0);
+            glRasterPos2i(xsize + 100, 100 + ysize);
+            glRasterPos2i(xsize + 100, 100 + ysize);
+            glRasterPos2i(xsize + 100, 100 + ysize);
+            glRasterPos2i(xsize + 100, 100 + ysize);
+
+//            glRasterPos2i(xsize + 50, 50 + ysize);
+//            glRasterPos2i(xsize + 50, 50 + ysize);
+//            glRasterPos2i(xsize + 40, ysize + 40);
+//            glRasterPos2i(xsize + 40, ysize + 40);
+//            glVertex3f(xsize + 40, 40 + ysize, 0.0);
+//            glVertex3f(xsize + 50, 50 + ysize, 0.0);
+//            glVertex3f(xsize + 50, 50 + ysize, 0.0);
+//            glVertex3f(xsize + 40, ysize + 40, 0.0);
             glEnd();
+
 
 
             coords.push_back(Coordinate(-50.0 + xsize, -50.0 + ysize));
@@ -55,14 +65,14 @@ void Board::drawScore() {
     //Draw Player label
     string playerLabel = "Your Score:";
     glColor3f(1, 1, 1);
-    glRasterPos2i(30, 0);
+    glRasterPos2i(700, 400);
     for (int i = 0; i < playerLabel.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, playerLabel[i]);
     }
     //Draw Player Score
     string playerScore = to_string(userScore);
     glColor3f(1, 1, 1);
-    glRasterPos2i(30, -5);
+    glRasterPos2i(700, 450);
     for (int i = 0; i < playerScore.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, playerScore[i]);
     }
@@ -71,14 +81,14 @@ void Board::drawScore() {
     //Draw Computer label
     string computerLabel = "Computer Score: ";
     glColor3f(1, 1, 1);
-    glRasterPos2i(30, -10);
+    glRasterPos2i(700, 500);
     for (int i = 0; i < computerLabel.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, computerLabel[i]);
     }
     //Draw Computer Score
     string compScore = to_string(computerScore);
     glColor3f(1, 1, 1);
-    glRasterPos2i(30, -15);
+    glRasterPos2i(700, 550);
     for (int i = 0; i < compScore.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, compScore[i]);
     }
@@ -133,14 +143,14 @@ void Board::gameOverScore() {
     //Draw Player label
     string playerLabel = "Your Score:";
     glColor3f(1, 1, 1);
-    glRasterPos2i(-20, 0);
+    glRasterPos2i(400, 300);
     for (int i = 0; i < playerLabel.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, playerLabel[i]);
     }
     //Draw Player Score
     string playerScore = to_string(userScore);
     glColor3f(1, 1, 1);
-    glRasterPos2i(-20, -5);
+    glRasterPos2i(400, 350);
     for (int i = 0; i < playerScore.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, playerScore[i]);
     }
@@ -149,14 +159,14 @@ void Board::gameOverScore() {
     //Draw Computer label
     string computerLabel = "Computer Score: ";
     glColor3f(1, 1, 1);
-    glRasterPos2i(-20, -15);
+    glRasterPos2i(400, 400);
     for (int i = 0; i < computerLabel.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, computerLabel[i]);
     }
     //Draw Computer Score
     string compScore = to_string(computerScore);
     glColor3f(1, 1, 1);
-    glRasterPos2i(-20, -20);
+    glRasterPos2i(400, 450);
     for (int i = 0; i < compScore.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, compScore[i]);
     }
