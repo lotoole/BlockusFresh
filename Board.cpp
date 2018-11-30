@@ -37,8 +37,9 @@ vector<Coordinate> Board::drawBoard() {
             glVertex3f(xsize + 100, 80 + ysize, 0.0);
             glEnd();
 
-            xsize += 20.0;
 
+            xsize += 20.0;
+            coords.push_back(Coordinate(100.0 + xsize, 100 + ysize));
         }
         ysize += 20.0;
     }
