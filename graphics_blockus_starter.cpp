@@ -58,14 +58,14 @@ void display_menu() {
 void display_game() {
     glClear(GL_COLOR_BUFFER_BIT);
     Piece piece(1,1,0);
-    piece.create_Y(13.0,3.0);
-    Piece piece2(1,1,0);
-    piece2.create_Y(-40.0,5.0);
-    Piece piece3(1,1,0);
-    piece3.create_2(-40.0,10.0);
+    piece.create_1(13.0,3.0);
     //After drawing pieces, draw the board
     Board board;
     vector<Coordinate> boardVector = board.drawBoard();
+    //now draw score
+    board.drawScore();
+    //now draw end game button
+    board.drawEndGameButton();
 }
 
 //------------------------------------------------**
@@ -81,6 +81,7 @@ void display_game_over () {
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
+    board.gameOverScore();
 }
 
 /* Initialize OpenGL Graphics */
@@ -176,7 +177,10 @@ void cursor(int x, int y) {
     //------------------------------------------------**
     mouse_x = x;
     mouse_y = y;
-    
+
+    cout << x << endl;
+    cout << y << endl;
+
     glutPostRedisplay();
 }
 

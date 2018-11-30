@@ -1,5 +1,6 @@
 //------------------------------------------------**
 //Created by Nick on 11/17/18
+//modified by Liam OToole on 11/29/18
 //------------------------------------------------**
 
 #include <vector>
@@ -24,6 +25,17 @@ public:
 
     //Creates Board
     vector<Coordinate> drawBoard();
+    //create score variables and methods
+    void updateUserScore();
+    void updateComputerScore();
+    void drawScore();
+    void gameOverScore();
+    void drawEndGameButton();
+
+private:
+    int userScore = 0;
+    int computerScore = 0;
+
 
 
 };
