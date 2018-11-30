@@ -88,7 +88,6 @@ void Board::drawScore() {
 // Display a button for the user to end the game
 //------------------------------------------------**
 void Board::drawEndGameButton() {
-    int tileSize = 6;
 
     glBegin(GL_QUADS);
     int x = 1;
@@ -96,16 +95,16 @@ void Board::drawEndGameButton() {
     glColor3f(1,1,1);
 
     //Draw outline
-   glVertex2f(26,-20);
-   glVertex2f(50,-20);
-   glVertex2f(50,-30);
-   glVertex2f(26,-30);
+   glVertex2f(27,-22);
+   glVertex2f(45,-22);
+   glVertex2f(45,-27);
+   glVertex2f(27,-27);
 
     glEnd();
 
     glColor3f(1, 1, 1);
     //Draw Computer Score
-    string endGameText = "End Game Text";
+    string endGameText = "End Game";
     glColor3f(1, 1, 1);
     glRasterPos2i(30, -25);
     for (int i = 0; i < endGameText.length(); ++i) {
