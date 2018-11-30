@@ -25,33 +25,22 @@ vector<Coordinate> Board::drawBoard() {
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glColor3f(1.0, 0.0, 0.0);
-    int xsize = 0, ysize = 35;
+    int xsize = 0, ysize = 300;
     for (int j = 0; j < 20; j++) {
-        xsize = 45;
+        xsize = 200;
         for (int i = 0; i < 20; i++) {
             glBegin(GL_POLYGON);
-            glRasterPos2i(xsize + 100, 100 + ysize);
-            glRasterPos2i(xsize + 100, 100 + ysize);
-            glRasterPos2i(xsize + 100, 100 + ysize);
-            glRasterPos2i(xsize + 100, 100 + ysize);
 
-//            glRasterPos2i(xsize + 50, 50 + ysize);
-//            glRasterPos2i(xsize + 50, 50 + ysize);
-//            glRasterPos2i(xsize + 40, ysize + 40);
-//            glRasterPos2i(xsize + 40, ysize + 40);
-//            glVertex3f(xsize + 40, 40 + ysize, 0.0);
-//            glVertex3f(xsize + 50, 50 + ysize, 0.0);
-//            glVertex3f(xsize + 50, 50 + ysize, 0.0);
-//            glVertex3f(xsize + 40, ysize + 40, 0.0);
+            glVertex3f(xsize + 100, 100 + ysize, 0.0);
+            glVertex3f(xsize + 80, 100 + ysize, 0.0);
+            glVertex3f(xsize + 80, 80 + ysize, 0.0);
+            glVertex3f(xsize + 100, 80 + ysize, 0.0);
             glEnd();
 
-
-
-            coords.push_back(Coordinate(-50.0 + xsize, -50.0 + ysize));
-            xsize += 2.0;
+            xsize += 20.0;
 
         }
-        ysize += 2.0;
+        ysize += 20.0;
     }
 
     return coords;
