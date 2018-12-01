@@ -6,6 +6,13 @@
 #define BLOCKUS_PIECE_H
 
 #include <vector>
+using namespace std;
+struct PieceCoordinate
+{
+    double x, y;
+
+    PieceCoordinate(double x, double y) : x(x), y(y) {}
+};
 
 class Piece {
 
@@ -39,11 +46,13 @@ public:
     void create_X(float x, float y);
     void create_U(float x, float y);
     void create_F(float x, float y);
+    void setCordinates(double x, double y);
+    void getCordinates();
 
 private:
     float tileSize = 20;
     std::vector<float> color;
-    std::vector<float> vertexs;
+    std::vector<PieceCoordinate> cordinates;
 
 };
 

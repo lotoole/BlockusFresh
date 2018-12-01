@@ -60,7 +60,13 @@ void display_game() {
     Piece piece(1,1,0);
     //After drawing pieces, draw the board
     Board board;
-    piece.create_Y(mouse_x, mouse_y+200);
+    piece.create_O(mouse_x, mouse_y + 100);
+
+    cout << "Mouse position: " << mouse_x << ", " << mouse_y << endl;
+    cout << endl;
+    cout << "start of cordinates in beg: " << endl;
+    piece.getCordinates();
+    cout << "end of cordinates: " << endl;
     vector<Coordinate> boardVector = board.drawBoard();
     //now draw score
     board.drawScore();
@@ -177,9 +183,6 @@ void cursor(int x, int y) {
     //------------------------------------------------**
     mouse_x = x;
     mouse_y = y;
-
-    cout << x << endl;
-    cout << y << endl;
 
     glutPostRedisplay();
 }
