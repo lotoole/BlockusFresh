@@ -41,7 +41,7 @@ public:
     void create_F(float x, float y);
 
 private:
-    float tileSize = 2;
+    float tileSize = 20;
     std::vector<float> color;
     std::vector<float> vertexs;
 

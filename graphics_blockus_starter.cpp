@@ -58,9 +58,9 @@ void display_menu() {
 void display_game() {
     glClear(GL_COLOR_BUFFER_BIT);
     Piece piece(1,1,0);
-    piece.create_1(0.0,0.0);
     //After drawing pieces, draw the board
     Board board;
+    piece.create_Y(mouse_x, mouse_y+200);
     vector<Coordinate> boardVector = board.drawBoard();
     //now draw score
     board.drawScore();
