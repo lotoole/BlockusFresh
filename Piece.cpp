@@ -650,26 +650,26 @@ void Piece:: create_Z4(float x, float y){
     glBegin(GL_LINES);
     glColor3f(0.0,0.0,0.0);
 
-    glVertex2f(x, tileSize + y);
-    glVertex2f(tileSize + x, tileSize + y);
-
-    glVertex2f(tileSize + x, -2*tileSize + y);
-    glVertex2f(2*tileSize + x, -2*tileSize + y);
-
     glVertex2f(x, y);
-    glVertex2f(2*tileSize + x, y);
+    glVertex2f(tileSize + x, y);
 
-    glVertex2f(2*tileSize + x, y);
-    glVertex2f(2*tileSize + x, -2*tileSize + y);
+    glVertex2f(tileSize + x, -3*tileSize + y);
+    glVertex2f(2*tileSize + x, -3*tileSize + y);
+
+    glVertex2f(x, -tileSize + y);
+    glVertex2f(2*tileSize + x, -tileSize + y);
 
     glVertex2f(2*tileSize + x, -tileSize + y);
-    glVertex2f(x, -tileSize + y);
+    glVertex2f(2*tileSize + x, -3*tileSize + y);
 
-    glVertex2f(x, tileSize + y);
-    glVertex2f(x, -tileSize + y);
+    glVertex2f(2*tileSize + x, -2*tileSize + y);
+    glVertex2f(x, -2*tileSize + y);
 
-    glVertex2f(tileSize + x, tileSize + y);
-    glVertex2f(tileSize + x, -2*tileSize + y);
+    glVertex2f(x, y);
+    glVertex2f(x, -2*tileSize + y);
+
+    glVertex2f(tileSize + x, y);
+    glVertex2f(tileSize + x, -3*tileSize + y);
 
     glEnd();
 
@@ -1480,7 +1480,6 @@ void Piece:: create_X(float x, float y){
     glVertex2f(2*tileSize + x, -2*tileSize + y);
     glVertex2f(tileSize + x, -2*tileSize + y);
 
-
     setCordinates(x, y);
     setCordinates(tileSize + x, y);
     setCordinates(tileSize + x, -tileSize + y);
@@ -1506,7 +1505,6 @@ void Piece:: create_X(float x, float y){
     setCordinates(2*tileSize + x, -2*tileSize + y);
     setCordinates(tileSize + x, -2*tileSize + y);
 
-
     glEnd();
 
     //LINES
@@ -1528,8 +1526,8 @@ void Piece:: create_X(float x, float y){
     glVertex2f(2*tileSize + x, tileSize + y);
     glVertex2f(2*tileSize + x, -2*tileSize + y);
 
-    glVertex2f(3*x, y);
-    glVertex2f(3*x, -tileSize + y);
+    glVertex2f(3*tileSize + x, y);
+    glVertex2f(3*tileSize + x, -tileSize + y);
 
     glVertex2f(tileSize + x, tileSize + y);
     glVertex2f(2*tileSize + x, tileSize + y);
