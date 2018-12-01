@@ -57,16 +57,58 @@ void display_menu() {
 //------------------------------------------------**
 void display_game() {
     glClear(GL_COLOR_BUFFER_BIT);
-    Piece piece(1,1,0);
-    //After drawing pieces, draw the board
-    Board board;
-    piece.create_O(mouse_x, mouse_y + 100);
+    //draw the users first set of pieces
+    Piece pieceO(1,1,0);
+    pieceO.create_O(50, 200);
+    Piece piece1(1,1,0);
+    piece1.create_1(25, 250);
+    Piece piece2(1,1,0);
+    piece2.create_2(25, 300);
+    Piece piecel3(1,1,0);
+    piecel3.create_l3(25, 350);
+    Piece piecel4(1,1,0);
+    piecel4.create_l4(25, 400);
+    Piece piecel5(1,1,0);
+    piecel5.create_l5(25, 450);
+    Piece pieceY(1,1,0);
+    pieceY.create_Y(25, 500);
+    Piece pieceN(1,1,0);
+    pieceN.create_N(25, 525);
+    Piece pieceZ4(1,1,0);
+    pieceZ4.create_Z4(25, 650);
+    Piece pieceZ5(1,1,0);
+    pieceZ5.create_Z5(25, 725);
+    Piece pieceL4(1,1,0);
+    pieceL4.create_L4(25, 800);
+    Piece pieceL5(1,1,0);
+    pieceL5.create_L5(25, 850);
 
-    cout << "Mouse position: " << mouse_x << ", " << mouse_y << endl;
-    cout << endl;
-    cout << "start of cordinates in beg: " << endl;
-    piece.getCordinates();
-    cout << "end of cordinates: " << endl;
+    Piece pieceV3(1,1,0);
+    pieceV3.create_V3(125, 250);
+    Piece pieceV5(1,1,0);
+    pieceV5.create_V5(125, 325);
+    Piece pieceW(1,1,0);
+    pieceW.create_W(125, 400);
+    Piece pieceT4(1,1,0);
+    pieceT4.create_T4(150, 425);
+    Piece pieceT5(1,1,0);
+    pieceT5.create_T5(125, 500);
+    Piece pieceP(1,1,0);
+    pieceP.create_P(125, 650);
+    Piece pieceX(1,1,0);
+    pieceX.create_X(125, 700);
+    Piece pieceU(1,1,0);
+    pieceU.create_U(125, 800);
+    Piece pieceF(1,1,0);
+    pieceF.create_F(125, 900);
+
+//    cout << "Mouse position: " << mouse_x << ", " << mouse_y << endl;
+//    cout << endl;
+//    cout << "start of cordinates in beg: " << endl;
+//    pieceO.getCordinates();
+//    cout << "end of cordinates: " << endl;
+    //draw the board
+    Board board;
     vector<Coordinate> boardVector = board.drawBoard();
     //now draw score
     board.drawScore();
