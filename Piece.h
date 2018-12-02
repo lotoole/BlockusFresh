@@ -49,12 +49,15 @@ public:
     void setCordinates(double x, double y);
     vector<PieceCoordinate> getCordinates();
     int getNumberOfTiles();
+    void setIsClicked(bool test);
+    bool getIsClicked();
 
 private:
     float tileSize = 20;
     std::vector<float> color;
     std::vector<PieceCoordinate> cordinates;
     int numberOfTiles;
+    bool isClicked;
 
 };
 

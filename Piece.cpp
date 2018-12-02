@@ -29,6 +29,14 @@ void Piece::setCordinates(double x, double y) {
     cordinates.push_back(PieceCoordinate(x,y));
 }
 
+void Piece::setIsClicked(bool test) {
+    isClicked = test;
+}
+
+bool Piece::getIsClicked() {
+    return isClicked;
+}
+
 int Piece::getNumberOfTiles() {
     vector<PieceCoordinate> cordinatesTwo = getCordinates();
     numberOfTiles = cordinatesTwo.size() / 4;
