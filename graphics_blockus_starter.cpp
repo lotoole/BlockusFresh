@@ -39,6 +39,34 @@ void addPiece(Piece piece) {
     pieces.push_back(piece);
 }
 //------------------------------------------------**
+//Created by Liam OToole on 12/2/18
+// find max value in vector
+//------------------------------------------------**
+double findMax(vector<double> testVector) {
+    double maxValue = 0;
+    for(int i =0; i < testVector.size(); ++i) {
+        if(testVector[i] > maxValue) {
+            maxValue = testVector[i];
+        }
+    }
+
+    return maxValue;
+}
+//------------------------------------------------**
+//Created by Liam OToole on 12/2/18
+// find min value in vector
+//------------------------------------------------**
+double findMin(vector<double> testVector) {
+    double minValue = 10000;
+    for(int i =0; i < testVector.size(); ++i) {
+        if(testVector[i] < minValue) {
+            minValue = testVector[i];
+        }
+    }
+
+    return minValue;
+}
+//------------------------------------------------**
 // Created by Liam OToole on 11/7/18
 // Display start game menu
 // Modified by Monique Demers
@@ -287,19 +315,27 @@ void mouse(int button, int state, int x, int y) {
         if(pieces.size() != 0) {
             for(int i=0; i < pieces.size(); ++i) {
                 vector<PieceCoordinate> temporary = pieces[i].getCordinates();
-                vector<double> xy;
+                vector<double> xVertexes;
+                vector<double> yVertexes;
                 int count = 0;
                 for(int i =0; i < temporary.size(); ++i) {
                     if(count == 4) {
+                        //need a check here for the largest and smallest x and y, set these values
+                        double xMax = findMax(xVertexes);
+                        double yMax = findMax(yVertexes);
+                        double xMin = findMin(xVertexes);
+                        double yMin = findMin(yVertexes);
                         //now check if the click was within the bounds of the specific tile
-                        if(mouse_x >= x && mouse_x <= x && mouse_y >= y - 125 && mouse_y <= y - 125) {
+                        if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin - 125 && mouse_y <= yMax - 125) {
                             cout << "clicked on a piece" << endl;
                         }
                         count = 0;
+                        xVertexes.clear();
+                        yVertexes.clear();
                     } else {
                         count++;
-                        xy.push_back(temporary[i].x);
-                        xy.push_back(temporary[i].y);
+                        xVertexes.push_back(temporary[i].x);
+                        yVertexes.push_back(temporary[i].y);
                     }
                 }
             }
