@@ -335,6 +335,7 @@ void mouse(int button, int state, int x, int y) {
                         yVertexes.clear();
                         xVertexes.push_back(temporary[i].x);
                         yVertexes.push_back(temporary[i].y);
+                        count++;
                     } else {
                         count++;
                         xVertexes.push_back(temporary[i].x);
