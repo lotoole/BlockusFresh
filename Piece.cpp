@@ -510,44 +510,28 @@ void Piece:: create_Y(float x, float y){
     glColor3f(0.0,0.0,0.0);
 
     glVertex2f(x, y);
-    setCordinates(x, y);
     glVertex2f(4*tileSize + x, y);
-    setCordinates(4*tileSize + x, y);
 
     glVertex2f(4*tileSize + x, y);
-    setCordinates(4*tileSize + x, y);
     glVertex2f(4*tileSize + x, -tileSize + y);
-    setCordinates(4*tileSize + x, -tileSize + y);
 
     glVertex2f(4*tileSize + x, -tileSize + y);
-    setCordinates(4*tileSize + x, -tileSize + y);
     glVertex2f(x, -tileSize + y);
-    setCordinates(x, -tileSize + y);
 
     glVertex2f(x, -tileSize + y);
-    setCordinates(x, -tileSize + y);
     glVertex2f(x, y);
-    setCordinates(x, y);
 
     glVertex2f(tileSize + x, y);
-    setCordinates(tileSize + x, y);
     glVertex2f(tileSize + x, -2*tileSize + y);
-    setCordinates(tileSize + x, -2*tileSize + y);
 
     glVertex2f(2*tileSize + x, y);
-    setCordinates(2*tileSize + x, y);
     glVertex2f(2*tileSize + x, -2*tileSize + y);
-    setCordinates(2*tileSize + x, -2*tileSize + y);
 
     glVertex2f(tileSize + x, -2*tileSize + y);
-    setCordinates(tileSize + x, -2*tileSize + y);
     glVertex2f(2*tileSize + x, -2*tileSize + y);
-    setCordinates(2*tileSize + x, -2*tileSize + y);
 
     glVertex2f(3*tileSize + x, y);
-    setCordinates(3*tileSize + x, y);
     glVertex2f(3*tileSize + x, -tileSize + y);
-    setCordinates(3*tileSize + x, -tileSize + y);
 
     glEnd();
 
