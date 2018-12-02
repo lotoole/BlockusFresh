@@ -57,7 +57,7 @@ private:
     std::vector<float> color;
     std::vector<PieceCoordinate> cordinates;
     int numberOfTiles;
-    bool isClicked;
+    bool isClicked = false;
 
 };
 

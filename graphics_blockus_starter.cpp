@@ -98,41 +98,63 @@ void display_game() {
     //draw the users first set of pieces, first row
     Piece pieceO(1,1,0);
     if(pieceO.getIsClicked()) {
+        cout << "entered here" << endl;
         pieceO.create_O(mouse_x, mouse_y);
     } else {
         pieceO.create_O(50, 200);
     }
     addPiece(pieceO);
+
     Piece piece1(1,1,0);
-    piece1.create_1(25, 250);
+    if(piece1.getIsClicked()) {
+        cout << "entered here" << endl;
+        piece1.create_1(mouse_x, mouse_y);
+    } else {
+        piece1.create_1(25, 250);
+    }
     addPiece(piece1);
+
     Piece piece2(1,1,0);
-    piece2.create_2(25, 300);
+    if(piece2.getIsClicked()) {
+        cout << "entered here" << endl;
+        piece2.create_2(mouse_x, mouse_y);
+    } else {
+        piece2.create_2(25, 300);
+    }
     addPiece(piece2);
+
     Piece piecel3(1,1,0);
     piecel3.create_l3(25, 350);
     addPiece(piecel3);
+
     Piece piecel4(1,1,0);
     piecel4.create_l4(25, 400);
     addPiece(piecel4);
+
     Piece piecel5(1,1,0);
     piecel5.create_l5(25, 450);
     addPiece(piecel5);
+
     Piece pieceY(1,1,0);
     pieceY.create_Y(25, 500);
     addPiece(pieceY);
+
     Piece pieceN(1,1,0);
     pieceN.create_N(25, 525);
     addPiece(pieceN);
+
     Piece pieceZ4(1,1,0);
     pieceZ4.create_Z4(25, 650);
     addPiece(pieceZ4);
+
     Piece pieceZ5(1,1,0);
     pieceZ5.create_Z5(25, 725);
     addPiece(pieceZ5);
+
     Piece pieceL4(1,1,0);
     pieceL4.create_L4(25, 800);
     addPiece(pieceL4);
+
     Piece pieceL5(1,1,0);
     pieceL5.create_L5(25, 850);
     addPiece(pieceL5);
