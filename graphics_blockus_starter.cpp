@@ -97,7 +97,11 @@ void display_game() {
     glClear(GL_COLOR_BUFFER_BIT);
     //draw the users first set of pieces, first row
     Piece pieceO(1,1,0);
-    pieceO.create_O(50, 200);
+    if(pieceO.getIsClicked()) {
+        pieceO.create_O(mouse_x, mouse_y);
+    } else {
+        pieceO.create_O(50, 200);
+    }
     addPiece(pieceO);
     Piece piece1(1,1,0);
     piece1.create_1(25, 250);
@@ -329,6 +333,7 @@ void mouse(int button, int state, int x, int y) {
                         if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin && mouse_y <= yMax) {
                             cout << "xmax: " << xMax << "ymax: " << yMax << "xmin: " << xMin << "ymin: " << yMin << endl;
                             cout << "clicked on a piece" << endl;
+                            pieces[i].setIsClicked(true);
                         }
                         xVertexes.clear();
                         yVertexes.clear();
