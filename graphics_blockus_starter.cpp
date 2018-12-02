@@ -124,11 +124,21 @@ void display_game() {
     addPiece(piece2);
 
     Piece piecel3(1,1,0);
-    piecel3.create_l3(25, 350);
+    if(piece2.getIsClicked()) {
+        cout << "entered here" << endl;
+        piecel3.create_l3(mouse_x, mouse_y);
+    } else {
+        piecel3.create_l3(25, 350);
+    }
     addPiece(piecel3);
 
     Piece piecel4(1,1,0);
-    piecel4.create_l4(25, 400);
+    if(piece2.getIsClicked()) {
+        cout << "entered here" << endl;
+        piecel4.create_l4(mouse_x, mouse_y);
+    } else {
+        piecel4.create_l4(25, 400);
+    }
     addPiece(piecel4);
 
     Piece piecel5(1,1,0);
