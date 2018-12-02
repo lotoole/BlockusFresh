@@ -285,7 +285,7 @@ void mouse(int button, int state, int x, int y) {
     }
     //if the user clicks on a shape, make it dragable
     for(int i=0; i < pieces.size(); ++i) {
-        double piece_x = pieces[i].getCordinates().x;
+//        double piece_x = pieces[i].getCordinates().x;
 //        double piece_y = pieces[i].getCordinates().y;
 //        if(mouse_x >= x && mouse_x <= x && mouse_y >= y - 125 && mouse_y <= y - 125) {
 //            cout << "clicked on a piece" << endl;
