@@ -283,25 +283,28 @@ void mouse(int button, int state, int x, int y) {
         if (mouse_x >= 700 && mouse_x <= 850 && mouse_y >= 850 - 125 && mouse_y <= 900 - 125) {
             screen = game_over;
         }
-    }
-    //if the user clicks on a shape, make it dragable
-    if(pieces.size() != 0) {
-        for(int i=0; i < pieces.size(); ++i) {
-            vector<PieceCoordinate> temporary = pieces[i].getCordinates();
-            cout << pieces[i].getNumberOfTiles() << endl;
-            for(int i =1; i < temporary.size(); ++i) {
-                double x = temporary[i].x;
-                double y = temporary[i].y;
-                double x2 = temporary[i -1].x;
-                double y2 = temporary[i -1].y;
-                if(mouse_x >= x && mouse_x <= x && mouse_y >= y - 125 && mouse_y <= y - 125) {
-                    cout << "clicked on a piece" << endl;
+        //if the user clicks on a shape, make it dragable
+        if(pieces.size() != 0) {
+            for(int i=0; i < pieces.size(); ++i) {
+                vector<PieceCoordinate> temporary = pieces[i].getCordinates();
+                vector<double> xy;
+                int count = 0;
+                for(int i =0; i < temporary.size(); ++i) {
+                    if(count == 4) {
+                        //now check if the click was within the bounds of the specific tile
+                        if(mouse_x >= x && mouse_x <= x && mouse_y >= y - 125 && mouse_y <= y - 125) {
+                            cout << "clicked on a piece" << endl;
+                        }
+                        count = 0;
+                    } else {
+                        count++;
+                        xy.push_back(temporary[i].x);
+                        xy.push_back(temporary[i].y);
+                    }
                 }
             }
-//        cout << pieces[i].getNumberOfTiles() << endl;
         }
     }
-
     glutPostRedisplay();
 }
 
