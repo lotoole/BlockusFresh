@@ -18,10 +18,7 @@ Board::~Board(){
 
 vector<Coordinate> Board::drawBoard() {
 
-
     vector<Coordinate> coords;
-
-
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glColor3f(1.0, 0.0, 0.0);
@@ -35,11 +32,11 @@ vector<Coordinate> Board::drawBoard() {
             glVertex3f(xsize + 80, 100 + ysize, 0.0);
             glVertex3f(xsize + 80, 80 + ysize, 0.0);
             glVertex3f(xsize + 100, 80 + ysize, 0.0);
+            coords.push_back(Coordinate(100.0 + xsize, 100 + ysize, xsize + 80,100 + ysize,xsize + 80 ,80 + ysize,xsize + 100,80 + ysize));
+
             glEnd();
 
-
             xsize += 20.0;
-            coords.push_back(Coordinate(100.0 + xsize, 100 + ysize));
         }
         ysize += 20.0;
     }

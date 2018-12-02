@@ -7,6 +7,8 @@
 
 using namespace std;
 
+vector<Coordinate> boardVector;
+
 GLdouble width, height;
 int wd;
 int mouse_x, mouse_y;
@@ -124,21 +126,11 @@ void display_game() {
     addPiece(piece2);
 
     Piece piecel3(1,1,0);
-    if(piece2.getIsClicked()) {
-        cout << "entered here" << endl;
-        piecel3.create_l3(mouse_x, mouse_y);
-    } else {
-        piecel3.create_l3(25, 350);
-    }
+    piecel3.create_l3(25, 350);
     addPiece(piecel3);
 
     Piece piecel4(1,1,0);
-    if(piece2.getIsClicked()) {
-        cout << "entered here" << endl;
-        piecel4.create_l4(mouse_x, mouse_y);
-    } else {
-        piecel4.create_l4(25, 400);
-    }
+    piecel4.create_l4(25, 400);
     addPiece(piecel4);
 
     Piece piecel5(1,1,0);
@@ -206,7 +198,7 @@ void display_game() {
 
     //draw the board
     Board board;
-    vector<Coordinate> boardVector = board.drawBoard();
+    boardVector = board.drawBoard();
     //now draw score
     board.drawScore();
     //now draw end game button
@@ -324,7 +316,7 @@ void cursor(int x, int y) {
 //    cout << x << endl;
 //    cout << y << endl;
     mouse_x = x;
-    mouse_y = y + 125;
+    mouse_y = y + 185;
 
     glutPostRedisplay();
 }
@@ -380,6 +372,40 @@ void mouse(int button, int state, int x, int y) {
             }
         }
     }
+    int i;
+    double x1, x2, x3, x4, y1, y2, y3, y4;
+
+
+    if (boardVector.size() != 0) {
+        for (i = 0; i <= boardVector.size(); i++){
+
+            x1 = boardVector[i].x1;
+            x2 = boardVector[i].x2;
+            x3 = boardVector[i].x3;
+            x4 = boardVector[i].x4;
+            y1 = boardVector[i].y1;
+            y2 = boardVector[i].y2;
+            y3 = boardVector[i].y3;
+            y4 = boardVector[i].y4;
+
+
+            if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
+
+                glBegin(GL_QUADS);
+                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+                glColor3f(1.0, 1.0, 1.0);
+
+                glVertex3f(x1, y1, 0.0);
+                glVertex3f(x2, y2, 0.0);
+                glVertex3f(x3, y3, 0.0);
+                glVertex3f(x4, y4, 0.0);
+                glEnd();
+
+            }
+        }
+        glFlush();
+    }
+
     glutPostRedisplay();
 }
 

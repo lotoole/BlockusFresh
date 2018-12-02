@@ -12,9 +12,9 @@ using namespace std;
 
 struct Coordinate
 {
-    double x, y;
+    double x1, y1, x2, y2, x3, y3, x4, y4;
 
-    Coordinate(double x, double y) : x(x), y(y) {}
+    Coordinate(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) : x1(x1), y1(y1), x2(x2), y2(y2), x3(x3), y3(y3), x4(x4), y4(y4) {}
 };
 
 class Board {
