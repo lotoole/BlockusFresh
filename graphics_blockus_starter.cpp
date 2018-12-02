@@ -23,6 +23,9 @@ enum screen_state {menu, game_play, game_over};
 screen_state screen;
 //create board
 Board board;
+//create pieces
+Piece pieceO(1,1,0);
+bool pieceOClicked = false;
 //------------------------------------------------**
 //Modified by Liam OToole on 11/27/18
 //------------------------------------------------**
@@ -44,13 +47,13 @@ void addPiece(Piece piece) {
 //Created by Liam OToole on 12/2/18
 // find max value in vector
 //------------------------------------------------**
-double findMax(vector<double> testVector) {
-    double maxValue = 0;
-    for(int i =0; i < testVector.size(); ++i) {
-        if(testVector[i] > maxValue) {
-            maxValue = testVector[i];
-        }
-    }
+double findMax(double one, double two, double three, double four) {
+    double maxValue = max(one, max(two, max(three, four)));
+//    for(int i =0; i < testVector.size(); ++i) {
+//        if(testVector[i] > maxValue) {
+//            maxValue = testVector[i];
+//        }
+//    }
 
     return maxValue;
 }
@@ -58,13 +61,8 @@ double findMax(vector<double> testVector) {
 //Created by Liam OToole on 12/2/18
 // find min value in vector
 //------------------------------------------------**
-double findMin(vector<double> testVector) {
-    double minValue = 10000;
-    for(int i =0; i < testVector.size(); ++i) {
-        if(testVector[i] < minValue) {
-            minValue = testVector[i];
-        }
-    }
+double findMin(double one, double two, double three, double four) {
+    double minValue = min(one, min(two, min(three,four)));
 
     return minValue;
 }
@@ -98,97 +96,131 @@ void display_game() {
     pieces.clear();
     glClear(GL_COLOR_BUFFER_BIT);
     //draw the users first set of pieces, first row
-    Piece pieceO(1,1,0);
-    if(pieceO.getIsClicked()) {
+    addPiece(pieceO);
+    if(pieceOClicked) {
         cout << "entered here" << endl;
         pieceO.create_O(mouse_x, mouse_y);
     } else {
         pieceO.create_O(50, 200);
     }
-    addPiece(pieceO);
 
-    Piece piece1(1,1,0);
-    if(piece1.getIsClicked()) {
-        cout << "entered here" << endl;
-        piece1.create_1(mouse_x, mouse_y);
-    } else {
-        piece1.create_1(25, 250);
-    }
-    addPiece(piece1);
-
-    Piece piece2(1,1,0);
-    if(piece2.getIsClicked()) {
-        cout << "entered here" << endl;
-        piece2.create_2(mouse_x, mouse_y);
-    } else {
-        piece2.create_2(25, 300);
-    }
-    addPiece(piece2);
-
-    Piece piecel3(1,1,0);
-    piecel3.create_l3(25, 350);
-    addPiece(piecel3);
-
-    Piece piecel4(1,1,0);
-    piecel4.create_l4(25, 400);
-    addPiece(piecel4);
-
-    Piece piecel5(1,1,0);
-    piecel5.create_l5(25, 450);
-    addPiece(piecel5);
-
-    Piece pieceY(1,1,0);
-    pieceY.create_Y(25, 500);
-    addPiece(pieceY);
-
-    Piece pieceN(1,1,0);
-    pieceN.create_N(25, 525);
-    addPiece(pieceN);
-
-    Piece pieceZ4(1,1,0);
-    pieceZ4.create_Z4(25, 650);
-    addPiece(pieceZ4);
-
-    Piece pieceZ5(1,1,0);
-    pieceZ5.create_Z5(25, 725);
-    addPiece(pieceZ5);
-
-    Piece pieceL4(1,1,0);
-    pieceL4.create_L4(25, 800);
-    addPiece(pieceL4);
-
-    Piece pieceL5(1,1,0);
-    pieceL5.create_L5(25, 850);
-    addPiece(pieceL5);
-
-    //second row of pieces
-    Piece pieceV3(1,1,0);
-    pieceV3.create_V3(125, 250);
-    addPiece(pieceV3);
-    Piece pieceV5(1,1,0);
-    pieceV5.create_V5(125, 325);
-    addPiece(pieceV5);
-    Piece pieceW(1,1,0);
-    pieceW.create_W(125, 400);
-    addPiece(pieceW);
-    Piece pieceT4(1,1,0);
-    pieceT4.create_T4(150, 425);
-    addPiece(pieceT4);
-    Piece pieceT5(1,1,0);
-    pieceT5.create_T5(125, 500);
-    addPiece(pieceT5);
-    Piece pieceP(1,1,0);
-    pieceP.create_P(125, 650);
-    addPiece(pieceP);
-    Piece pieceX(1,1,0);
-    pieceX.create_X(125, 700);
-    addPiece(pieceX);
-    Piece pieceU(1,1,0);
-    pieceU.create_U(125, 800);
-    addPiece(pieceU);
-    Piece pieceF(1,1,0);
-    pieceF.create_F(125, 900);
-    addPiece(pieceF);
+//    Piece piece1(1,1,0);
+//    if(piece1.getIsClicked()) {
+//        cout << "entered here" << endl;
+//        piece1.create_1(mouse_x, mouse_y);
+//    } else {
+//        piece1.create_1(25, 250);
+//    }
+//    addPiece(piece1);
+//
+//    Piece piece2(1,1,0);
+//    if(piece2.getIsClicked()) {
+//        cout << "entered here" << endl;
+//        piece2.create_2(mouse_x, mouse_y);
+//    } else {
+//        piece2.create_2(25, 300);
+//    }
+//    addPiece(piece2);
+//
+//    Piece piecel3(1,1,0);
+//    if(piecel3.getIsClicked()) {
+//        cout << "entered here" << endl;
+//        piecel3.create_l3(mouse_x, mouse_y);
+//    } else {
+//        piecel3.create_l3(25, 350);
+//    }
+//    addPiece(piecel3);
+//
+//    Piece piecel4(1,1,0);
+//    if(piecel4.getIsClicked()) {
+//        cout << "entered here" << endl;
+//        piecel4.create_l4(mouse_x, mouse_y);
+//    } else {
+//        piecel4.create_l4(25, 400);
+//    }
+//    addPiece(piecel4);
+//
+//    Piece piecel5(1,1,0);
+//    if(piecel5.getIsClicked()) {
+//        cout << "entered here" << endl;
+//        piecel5.create_l5(mouse_x, mouse_y);
+//    } else {
+//        piecel5.create_l5(25, 450);
+//    }
+//    addPiece(piecel5);
+//
+//    Piece pieceY(1,1,0);
+//    if(pieceY.getIsClicked()) {
+//        cout << "entered here" << endl;
+//        pieceY.create_Y(mouse_x, mouse_y);
+//    } else {
+//        pieceY.create_Y(25, 500);
+//    }
+//    addPiece(pieceY);
+//
+//    Piece pieceN(1,1,0);
+//    if(pieceN.getIsClicked()) {
+//        cout << "entered here" << endl;
+//        pieceN.create_N(mouse_x, mouse_y);
+//    } else {
+//        pieceN.create_N(25, 525);
+//    }
+//    addPiece(pieceN);
+//
+//    Piece pieceZ4(1,1,0);
+//    if(pieceZ4.getIsClicked()) {
+//        cout << "entered here" << endl;
+//        pieceZ4.create_Z4(mouse_x, mouse_y);
+//    } else {
+//        pieceZ4.create_Z4(25, 650);
+//    }
+//    addPiece(pieceZ4);
+//
+//    Piece pieceZ5(1,1,0);
+//    if(pieceZ5.getIsClicked()) {
+//        cout << "entered here" << endl;
+//        pieceZ5.create_Z5(mouse_x, mouse_y);
+//    } else {
+//        pieceZ5.create_Z5(25, 725);
+//    }
+//    addPiece(pieceZ5);
+//
+//    Piece pieceL4(1,1,0);
+//    pieceL4.create_L4(25, 800);
+//    addPiece(pieceL4);
+//
+//    Piece pieceL5(1,1,0);
+//    pieceL5.create_L5(25, 850);
+//    addPiece(pieceL5);
+//
+//    //second row of pieces
+//    Piece pieceV3(1,1,0);
+//    pieceV3.create_V3(125, 250);
+//    addPiece(pieceV3);
+//    Piece pieceV5(1,1,0);
+//    pieceV5.create_V5(125, 325);
+//    addPiece(pieceV5);
+//    Piece pieceW(1,1,0);
+//    pieceW.create_W(125, 400);
+//    addPiece(pieceW);
+//    Piece pieceT4(1,1,0);
+//    pieceT4.create_T4(150, 425);
+//    addPiece(pieceT4);
+//    Piece pieceT5(1,1,0);
+//    pieceT5.create_T5(125, 500);
+//    addPiece(pieceT5);
+//    Piece pieceP(1,1,0);
+//    pieceP.create_P(125, 650);
+//    addPiece(pieceP);
+//    Piece pieceX(1,1,0);
+//    pieceX.create_X(125, 700);
+//    addPiece(pieceX);
+//    Piece pieceU(1,1,0);
+//    pieceU.create_U(125, 800);
+//    addPiece(pieceU);
+//    Piece pieceF(1,1,0);
+//    pieceF.create_F(125, 900);
+//    addPiece(pieceF);
 
 //    cout << "Mouse position: " << mouse_x << ", " << mouse_y << endl;
 //    cout << endl;
@@ -316,7 +348,7 @@ void cursor(int x, int y) {
 //    cout << x << endl;
 //    cout << y << endl;
     mouse_x = x;
-    mouse_y = y + 185;
+    mouse_y = y + 125;
 
     glutPostRedisplay();
 }
@@ -343,29 +375,30 @@ void mouse(int button, int state, int x, int y) {
         if(pieces.size() != 0) {
             for(int i=0; i < pieces.size(); ++i) {
                 vector<PieceCoordinate> temporary = pieces[i].getCordinates();
-                vector<double> xVertexes;
-                vector<double> yVertexes;
-                int count = 0;
-                for(int i =0; i < temporary.size(); ++i) {
-                    if(xVertexes.size() == 4) {
-                        //need a check here for the largest and smallest x and y, set these values
-                        double xMax = findMax(xVertexes);
-                        double yMax = findMax(yVertexes);
-                        double xMin = findMin(xVertexes);
-                        double yMin = findMin(yVertexes);
-                        //now check if the click was within the bounds of the specific tile
-                        if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin && mouse_y <= yMax) {
-                            cout << "xmax: " << xMax << "ymax: " << yMax << "xmin: " << xMin << "ymin: " << yMin << endl;
-                            cout << "clicked on a piece" << endl;
-                            pieces[i].setIsClicked(true);
-                        }
-                        xVertexes.clear();
-                        yVertexes.clear();
-                        xVertexes.push_back(temporary[i].x);
-                        yVertexes.push_back(temporary[i].y);
-                    } else {
-                        xVertexes.push_back(temporary[i].x);
-                        yVertexes.push_back(temporary[i].y);
+//                vector<double> xVertexes;
+//                vector<double> yVertexes;
+//                int count = 0;
+                double x1, x2, x3, x4, y1, y2, y3, y4;
+                for(int j =0; j < temporary.size(); ++j) {
+                    x1 = temporary[j].x1;
+                    x2 = temporary[j].x2;
+                    x3 = temporary[j].x3;
+                    x4 = temporary[j].x4;
+                    y1 = temporary[j].y1;
+                    y2 = temporary[j].y2;
+                    y3 = temporary[j].y3;
+                    y4 = temporary[j].y4;
+
+                    double xMax = findMax(x1, x2, x3, x4);
+                    double yMax = findMax(y1, y2, y3, y4);
+                    double xMin = findMin(x1, x2, x3, x4);
+                    double yMin = findMin(y1, y2, y3, y4);
+
+                    if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin && mouse_y <= yMax) {
+                        cout << "clicked" << endl;
+                        pieces[i].setIsClicked(true);
+                        pieceOClicked = true;
+                        cout << pieces[i].getIsClicked() << endl;
                     }
 
                 }

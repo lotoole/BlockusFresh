@@ -9,9 +9,9 @@
 using namespace std;
 struct PieceCoordinate
 {
-    double x, y;
+    double x1, y1, x2, y2, x3, y3, x4, y4;
 
-    PieceCoordinate(double x, double y) : x(x), y(y) {}
+    PieceCoordinate(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) : x1(x1), y1(y1), x2(x2), y2(y2), x3(x3), y3(y3), x4(x4), y4(y4) {}
 };
 
 class Piece {
@@ -46,7 +46,7 @@ public:
     void create_X(float x, float y);
     void create_U(float x, float y);
     void create_F(float x, float y);
-    void setCordinates(double x, double y);
+    void setCordinates(double x1, double y1, double x2, double y2, double x3, double y3,double x4,double y4);
     vector<PieceCoordinate> getCordinates();
     int getNumberOfTiles();
     void setIsClicked(bool test);
