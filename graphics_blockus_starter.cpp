@@ -10,6 +10,8 @@ using namespace std;
 GLdouble width, height;
 int wd;
 int mouse_x, mouse_y;
+//create a vector of pieces to keep track of
+vector<Piece> pieces;
 //enums for tracking the current state of the game
 //------------------------------------------------**
 //Created by Liam OToole on 11/27/18
@@ -29,11 +31,18 @@ void init() {
     //set screen to menu when we start
     screen = menu;
 }
-
 //------------------------------------------------**
-//Created by Liam OToole on 11/7/18
+//Created by Liam OToole on 12/1/18
+// create methods to update pieces vector
+//------------------------------------------------**
+void addPiece(Piece piece) {
+    pieces.push_back(piece);
+}
+//------------------------------------------------**
+// Created by Liam OToole on 11/7/18
 // Display start game menu
 // Modified by Monique Demers
+// Modified by Liam OToole
 //------------------------------------------------**
 void display_menu() {
     string message = "Welcome to blokus!";
@@ -57,56 +66,79 @@ void display_menu() {
 //------------------------------------------------**
 void display_game() {
     glClear(GL_COLOR_BUFFER_BIT);
-    //draw the users first set of pieces
+    //draw the users first set of pieces, first row
     Piece pieceO(1,1,0);
     pieceO.create_O(50, 200);
+    addPiece(pieceO);
     Piece piece1(1,1,0);
     piece1.create_1(25, 250);
+    addPiece(piece1);
     Piece piece2(1,1,0);
     piece2.create_2(25, 300);
+    addPiece(piece2);
     Piece piecel3(1,1,0);
     piecel3.create_l3(25, 350);
+    addPiece(piecel3);
     Piece piecel4(1,1,0);
     piecel4.create_l4(25, 400);
+    addPiece(piecel4);
     Piece piecel5(1,1,0);
     piecel5.create_l5(25, 450);
+    addPiece(piecel5);
     Piece pieceY(1,1,0);
     pieceY.create_Y(25, 500);
+    addPiece(pieceY);
     Piece pieceN(1,1,0);
     pieceN.create_N(25, 525);
+    addPiece(pieceN);
     Piece pieceZ4(1,1,0);
     pieceZ4.create_Z4(25, 650);
+    addPiece(pieceZ4);
     Piece pieceZ5(1,1,0);
     pieceZ5.create_Z5(25, 725);
+    addPiece(pieceZ5);
     Piece pieceL4(1,1,0);
     pieceL4.create_L4(25, 800);
+    addPiece(pieceL4);
     Piece pieceL5(1,1,0);
     pieceL5.create_L5(25, 850);
+    addPiece(pieceL5);
 
+    //second row of pieces
     Piece pieceV3(1,1,0);
     pieceV3.create_V3(125, 250);
+    addPiece(pieceV3);
     Piece pieceV5(1,1,0);
     pieceV5.create_V5(125, 325);
+    addPiece(pieceV5);
     Piece pieceW(1,1,0);
     pieceW.create_W(125, 400);
+    addPiece(pieceW);
     Piece pieceT4(1,1,0);
     pieceT4.create_T4(150, 425);
+    addPiece(pieceT4);
     Piece pieceT5(1,1,0);
     pieceT5.create_T5(125, 500);
+    addPiece(pieceT5);
     Piece pieceP(1,1,0);
     pieceP.create_P(125, 650);
+    addPiece(pieceP);
     Piece pieceX(1,1,0);
     pieceX.create_X(125, 700);
+    addPiece(pieceX);
     Piece pieceU(1,1,0);
     pieceU.create_U(125, 800);
+    addPiece(pieceU);
     Piece pieceF(1,1,0);
     pieceF.create_F(125, 900);
+    addPiece(pieceF);
 
 //    cout << "Mouse position: " << mouse_x << ", " << mouse_y << endl;
 //    cout << endl;
 //    cout << "start of cordinates in beg: " << endl;
 //    pieceO.getCordinates();
 //    cout << "end of cordinates: " << endl;
+
     //draw the board
     Board board;
     vector<Coordinate> boardVector = board.drawBoard();
@@ -223,6 +255,9 @@ void cursor(int x, int y) {
     //------------------------------------------------**
     //Created by Liam OToole on 11/7/18
     //------------------------------------------------**
+
+    cout << x << endl;
+    cout << y << endl;
     mouse_x = x;
     mouse_y = y;
 
@@ -237,12 +272,24 @@ void mouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP &&screen == menu && screen!= game_over) {
         screen = game_play;
     }
+    //------------------------------------------------**
+    //Created by Liam OToole on 12/1/18
+    // all checks for when the user clicks in the menu
+    //------------------------------------------------**
     //if the user clicks a location
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN  && state != GLUT_UP && screen == game_play) {
-//        if () {
-//
-//        }
+        //if the user clicks over the button, change the screen state
+        if (mouse_x >= 700 && mouse_x <= 850 && mouse_y >= 850 - 125 && mouse_y <= 900 - 125) {
+            screen = game_over;
+        }
     }
+    //if the user clicks on a shape, make it dragable
+    for(int i=0; i<pieces.size(); i++) {
+        double x = pieces[i].getCordinates().x;
+        double y = pieces[i].getCordinates().y;
+        
+    }
+
     glutPostRedisplay();
 }
 

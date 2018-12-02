@@ -47,7 +47,7 @@ public:
     void create_U(float x, float y);
     void create_F(float x, float y);
     void setCordinates(double x, double y);
-    void getCordinates();
+    PieceCoordinate getCordinates();
 
 private:
     float tileSize = 20;

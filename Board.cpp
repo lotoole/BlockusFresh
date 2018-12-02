@@ -55,14 +55,14 @@ void Board::drawScore() {
     //Draw Player label
     string playerLabel = "Your Score:";
     glColor3f(1, 1, 1);
-    glRasterPos2i(700, 400);
+    glRasterPos2i(300, 850);
     for (int i = 0; i < playerLabel.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, playerLabel[i]);
     }
     //Draw Player Score
     string playerScore = to_string(userScore);
     glColor3f(1, 1, 1);
-    glRasterPos2i(700, 450);
+    glRasterPos2i(300, 900);
     for (int i = 0; i < playerScore.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, playerScore[i]);
     }
@@ -71,14 +71,14 @@ void Board::drawScore() {
     //Draw Computer label
     string computerLabel = "Computer Score: ";
     glColor3f(1, 1, 1);
-    glRasterPos2i(700, 500);
+    glRasterPos2i(450, 850);
     for (int i = 0; i < computerLabel.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, computerLabel[i]);
     }
     //Draw Computer Score
     string compScore = to_string(computerScore);
     glColor3f(1, 1, 1);
-    glRasterPos2i(700, 550);
+    glRasterPos2i(450, 900);
     for (int i = 0; i < compScore.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, compScore[i]);
     }
@@ -95,10 +95,10 @@ void Board::drawEndGameButton() {
     glColor3f(1,1,1);
 
     //Draw outline
-   glVertex2f(27,-22);
-   glVertex2f(45,-22);
-   glVertex2f(45,-27);
-   glVertex2f(27,-27);
+   glVertex2f(700,850);
+   glVertex2f(850,850);
+   glVertex2f(850,900);
+   glVertex2f(700,900);
 
     glEnd();
 
@@ -106,7 +106,7 @@ void Board::drawEndGameButton() {
     //Draw Computer Score
     string endGameText = "End Game";
     glColor3f(1, 1, 1);
-    glRasterPos2i(30, -25);
+    glRasterPos2i(720, 880);
     for (int i = 0; i < endGameText.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, endGameText[i]);
     }

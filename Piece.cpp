@@ -29,10 +29,12 @@ void Piece::setCordinates(double x, double y) {
     cordinates.push_back(PieceCoordinate(x,y));
 }
 
-void Piece::getCordinates() {
-    for(int i=0; i< cordinates.size(); ++i) {
-        cout << cordinates[i].x << ", " << cordinates[i].y << endl;
-    }
+PieceCoordinate Piece::getCordinates() {
+//    for(int i=0; i< cordinates.size(); ++i) {
+//        cout << cordinates[i].x << ", " << cordinates[i].y << endl;
+//    }
+
+    return cordinates[0];
 }
 
 void Piece::create_O(float x, float y){
