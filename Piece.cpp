@@ -73,6 +73,7 @@ void Piece::create_O(float x, float y){
     glVertex2f(-tileSize + x, y);
 
 
+    cordinates.clear();
     //top left
     setCordinates(-tileSize + x, y);
     setCordinates(-tileSize + x, tileSize + y);
@@ -129,6 +130,7 @@ void Piece::create_O(float x, float y){
 }
 
 void Piece::create_1(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -168,6 +170,7 @@ void Piece::create_1(float x, float y){
 }
 
 void Piece::create_2(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -219,6 +222,7 @@ void Piece::create_2(float x, float y){
 }
 
 void Piece::create_l3(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -282,6 +286,7 @@ void Piece::create_l3(float x, float y){
 }
 
 void Piece::create_l4(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -357,6 +362,7 @@ void Piece::create_l4(float x, float y){
 }
 
 void Piece::create_l5(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -444,6 +450,7 @@ void Piece::create_l5(float x, float y){
 }
 
 void Piece:: create_Y(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -547,6 +554,7 @@ void Piece:: create_Y(float x, float y){
 }
 
 void Piece:: create_N(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -634,6 +642,7 @@ void Piece:: create_N(float x, float y){
 }
 
 void Piece:: create_Z4(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -709,6 +718,7 @@ void Piece:: create_Z4(float x, float y){
 }
 
 void Piece:: create_Z5(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -796,6 +806,7 @@ void Piece:: create_Z5(float x, float y){
 }
 
 void Piece:: create_L4(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -875,6 +886,7 @@ void Piece:: create_L4(float x, float y){
 }
 
 void Piece:: create_L5(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -967,6 +979,7 @@ void Piece:: create_L5(float x, float y){
 }
 
 void Piece:: create_V3(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -1033,6 +1046,7 @@ void Piece:: create_V3(float x, float y){
 }
 
 void Piece:: create_V5(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -1125,6 +1139,7 @@ void Piece:: create_V5(float x, float y){
 }
 
 void Piece:: create_W(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -1217,6 +1232,7 @@ void Piece:: create_W(float x, float y){
 }
 
 void Piece:: create_T4(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -1300,6 +1316,7 @@ void Piece:: create_T4(float x, float y){
 }
 
 void Piece:: create_T5(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -1395,6 +1412,7 @@ void Piece:: create_T5(float x, float y){
 }
 
 void Piece:: create_P(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -1484,6 +1502,7 @@ void Piece:: create_P(float x, float y){
 }
 
 void Piece:: create_X(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -1579,6 +1598,7 @@ void Piece:: create_X(float x, float y){
 }
 
 void Piece:: create_U(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -1672,6 +1692,7 @@ void Piece:: create_U(float x, float y){
 }
 
 void Piece:: create_F(float x, float y){
+    cordinates.clear();
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
