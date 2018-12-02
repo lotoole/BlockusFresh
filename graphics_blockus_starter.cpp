@@ -284,19 +284,21 @@ void mouse(int button, int state, int x, int y) {
         }
     }
     //if the user clicks on a shape, make it dragable
-    cout << pieces[0].getNumberOfTiles() << endl;
-    for(int i=0; i < pieces.size(); ++i) {
-        vector<PieceCoordinate> temporary = pieces[i].getCordinates();
-        for(int i =1; i < temporary.size(); ++i) {
-            double x = temporary[i].x;
-            double y = temporary[i].y;
-            double x2 = temporary[i -1].x;
-            double y2 = temporary[i -1].y;
-            if(mouse_x >= x && mouse_x <= x && mouse_y >= y - 125 && mouse_y <= y - 125) {
-                cout << "clicked on a piece" << endl;
+    if(pieces.size() != 0) {
+        cout << pieces[0].getNumberOfTiles() << endl;
+        for(int i=0; i < pieces.size(); ++i) {
+            vector<PieceCoordinate> temporary = pieces[i].getCordinates();
+            for(int i =1; i < temporary.size(); ++i) {
+                double x = temporary[i].x;
+                double y = temporary[i].y;
+                double x2 = temporary[i -1].x;
+                double y2 = temporary[i -1].y;
+                if(mouse_x >= x && mouse_x <= x && mouse_y >= y - 125 && mouse_y <= y - 125) {
+                    cout << "clicked on a piece" << endl;
+                }
             }
-        }
 //        cout << pieces[i].getNumberOfTiles() << endl;
+        }
     }
 
     glutPostRedisplay();

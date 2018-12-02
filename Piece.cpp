@@ -72,6 +72,31 @@ void Piece::create_O(float x, float y){
     glVertex2f(x, y);
     glVertex2f(-tileSize + x, y);
 
+
+    //top left
+    setCordinates(-tileSize + x, y);
+    setCordinates(-tileSize + x, tileSize + y);
+    setCordinates(x, tileSize + y);
+    setCordinates(x, y);
+
+    //top right
+    setCordinates(x, y);
+    setCordinates(tileSize + x, y);
+    setCordinates(tileSize + x, tileSize + y);
+    setCordinates(x, tileSize + y);
+
+    //bottom right
+    setCordinates(x, -tileSize + y);
+    setCordinates(tileSize + x, -tileSize + y);
+    setCordinates(tileSize + x, y);
+    setCordinates(x, y);
+
+    //bottom left
+    setCordinates(-tileSize + x, -tileSize + y);
+    setCordinates(x, -tileSize + y);
+    setCordinates(x, y);
+    setCordinates(-tileSize + x, y);
+
     glEnd();
 
     //LINES (includes border and grid lines)
