@@ -65,6 +65,7 @@ void display_menu() {
 // Moved gameplay code to new screen
 //------------------------------------------------**
 void display_game() {
+    pieces.clear();
     glClear(GL_COLOR_BUFFER_BIT);
     //draw the users first set of pieces, first row
     Piece pieceO(1,1,0);
