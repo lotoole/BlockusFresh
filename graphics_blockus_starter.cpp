@@ -319,7 +319,7 @@ void mouse(int button, int state, int x, int y) {
                 vector<double> yVertexes;
                 int count = 0;
                 for(int i =0; i < temporary.size(); ++i) {
-                    if(count == 4) {
+                    if(xVertexes.size() == 4) {
                         //need a check here for the largest and smallest x and y, set these values
                         double xMax = findMax(xVertexes);
                         double yMax = findMax(yVertexes);
@@ -330,14 +330,11 @@ void mouse(int button, int state, int x, int y) {
                             cout << "xmax: " << xMax << "ymax: " << yMax << "xmin: " << xMin << "ymin: " << yMin << endl;
                             cout << "clicked on a piece" << endl;
                         }
-                        count = 0;
                         xVertexes.clear();
                         yVertexes.clear();
                         xVertexes.push_back(temporary[i].x);
                         yVertexes.push_back(temporary[i].y);
-                        count++;
                     } else {
-                        count++;
                         xVertexes.push_back(temporary[i].x);
                         yVertexes.push_back(temporary[i].y);
                     }
