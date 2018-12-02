@@ -47,12 +47,14 @@ public:
     void create_U(float x, float y);
     void create_F(float x, float y);
     void setCordinates(double x, double y);
-    PieceCoordinate getCordinates();
+    vector<PieceCoordinate> getCordinates();
+    int getNumberOfTiles();
 
 private:
     float tileSize = 20;
     std::vector<float> color;
     std::vector<PieceCoordinate> cordinates;
+    int numberOfTiles;
 
 };
 

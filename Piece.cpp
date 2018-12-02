@@ -29,12 +29,18 @@ void Piece::setCordinates(double x, double y) {
     cordinates.push_back(PieceCoordinate(x,y));
 }
 
-PieceCoordinate Piece::getCordinates() {
+int Piece::getNumberOfTiles() {
+    vector<PieceCoordinate> cordinatesTwo = getCordinates();
+    numberOfTiles = cordinatesTwo.size() / 4;
+   return numberOfTiles;
+}
+
+vector<PieceCoordinate> Piece::getCordinates() {
 //    for(int i=0; i< cordinates.size(); ++i) {
 //        cout << cordinates[i].x << ", " << cordinates[i].y << endl;
 //    }
 
-    return cordinates[0];
+    return cordinates;
 }
 
 void Piece::create_O(float x, float y){
