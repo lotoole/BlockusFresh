@@ -288,7 +288,7 @@ void cursor(int x, int y) {
 //    cout << x << endl;
 //    cout << y << endl;
     mouse_x = x;
-    mouse_y = y;
+    mouse_y = y + 125;
 
     glutPostRedisplay();
 }
@@ -308,7 +308,7 @@ void mouse(int button, int state, int x, int y) {
     //if the user clicks a location
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN  && state != GLUT_UP && screen == game_play) {
         //if the user clicks over the button, change the screen state
-        if (mouse_x >= 700 && mouse_x <= 850 && mouse_y >= 850 - 125 && mouse_y <= 900 - 125) {
+        if (mouse_x >= 700 && mouse_x <= 850 && mouse_y >= 850 && mouse_y <= 900) {
             screen = game_over;
         }
         //if the user clicks on a shape, make it dragable
@@ -326,18 +326,21 @@ void mouse(int button, int state, int x, int y) {
                         double xMin = findMin(xVertexes);
                         double yMin = findMin(yVertexes);
                         //now check if the click was within the bounds of the specific tile
-                        if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin - 125 && mouse_y <= yMax - 125) {
+                        if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin && mouse_y <= yMax) {
                             cout << "xmax: " << xMax << "ymax: " << yMax << "xmin: " << xMin << "ymin: " << yMin << endl;
                             cout << "clicked on a piece" << endl;
                         }
                         count = 0;
                         xVertexes.clear();
                         yVertexes.clear();
+                        xVertexes.push_back(temporary[i].x);
+                        yVertexes.push_back(temporary[i].y);
                     } else {
                         count++;
                         xVertexes.push_back(temporary[i].x);
                         yVertexes.push_back(temporary[i].y);
                     }
+
                 }
             }
         }
