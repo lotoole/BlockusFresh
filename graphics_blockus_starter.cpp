@@ -325,6 +325,7 @@ void mouse(int button, int state, int x, int y) {
                         double yMax = findMax(yVertexes);
                         double xMin = findMin(xVertexes);
                         double yMin = findMin(yVertexes);
+                        cout << "xmax: " << xMax << "ymax: " << yMax << "xmin: " << xMin << "ymin: " << yMin << endl;
                         //now check if the click was within the bounds of the specific tile
                         if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin - 125 && mouse_y <= yMax - 125) {
                             cout << "clicked on a piece" << endl;
