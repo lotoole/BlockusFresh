@@ -256,8 +256,8 @@ void cursor(int x, int y) {
     //Created by Liam OToole on 11/7/18
     //------------------------------------------------**
 
-    cout << x << endl;
-    cout << y << endl;
+//    cout << x << endl;
+//    cout << y << endl;
     mouse_x = x;
     mouse_y = y;
 
@@ -284,10 +284,13 @@ void mouse(int button, int state, int x, int y) {
         }
     }
     //if the user clicks on a shape, make it dragable
-    for(int i=0; i<pieces.size(); i++) {
-        double x = pieces[i].getCordinates().x;
-        double y = pieces[i].getCordinates().y;
-        
+    for(int i=0; i < pieces.size(); ++i) {
+        double piece_x = pieces[i].getCordinates().x;
+//        double piece_y = pieces[i].getCordinates().y;
+//        if(mouse_x >= x && mouse_x <= x && mouse_y >= y - 125 && mouse_y <= y - 125) {
+//            cout << "clicked on a piece" << endl;
+//        }
+
     }
 
     glutPostRedisplay();
