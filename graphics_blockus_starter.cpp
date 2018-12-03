@@ -264,7 +264,7 @@ void display_game() {
     addPiece(pieceF);
 
     //draw the board
-//    Board board;
+    Board board;
     boardVector = board.drawBoard();
     //now draw score
     board.drawScore();
@@ -506,6 +506,7 @@ void mouse(int button, int state, int x, int y) {
                         } else {
                          //if click not within board, simply make the clicked piece dragable
                             pieces[i].setIsClicked(true);
+                            cout << pieces[i].getIsClicked() << endl;
                             pieceOClicked = true;
                         }
                     }
