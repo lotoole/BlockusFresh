@@ -5,6 +5,7 @@
 #include "graphics.h"
 #include "Piece.h"
 
+
 Piece::Piece(){
 
 }
@@ -29,12 +30,11 @@ void Piece::setCordinates(double x1, double y1, double x2, double y2, double x3,
     cordinates.push_back(PieceCoordinate(x1,y1, x2, y2, x3, y3, x4, y4));
 }
 
-void Piece::setIsClicked(bool test) {
-    cout << "set is clicked called" << endl;
+void Piece::setIsClicked(int test) {
     isClicked = test;
 }
 
-bool Piece::getIsClicked() {
+int Piece::getIsClicked() {
     return isClicked;
 }
 
@@ -109,6 +109,8 @@ void Piece::create_O(float x, float y){
 
     glEnd();
 
+    isClicked = 0;
+
 }
 
 void Piece::create_1(float x, float y){
@@ -147,6 +149,8 @@ void Piece::create_1(float x, float y){
     glVertex2f(x, -tileSize + y);
 
     glEnd();
+
+    isClicked = 1;
 
 }
 

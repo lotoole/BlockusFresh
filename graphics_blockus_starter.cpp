@@ -7,9 +7,14 @@
 
 using namespace std;
 
+
+vector<int> isClicked(10,-1);
+
+
 vector<Coordinate> boardVector;
 
 GLdouble width, height;
+
 int wd;
 int mouse_x, mouse_y;
 //create a vector of pieces to keep track of
@@ -65,6 +70,7 @@ void init() {
 //------------------------------------------------**
 void addPiece(Piece piece) {
     pieces.push_back(piece);
+
 }
 //------------------------------------------------**
 //Created by Liam OToole on 12/2/18
@@ -114,14 +120,20 @@ void display_game() {
     pieces.clear();
     glClear(GL_COLOR_BUFFER_BIT);
     //draw the users first set of pieces, first row
+
     addPiece(pieceO);
-    if(pieceO.getIsClicked()) {
+
+
+
+    if(isClicked[0] == 0) {
         pieceO.create_O(mouse_x, mouse_y);
     } else {
         pieceO.create_O(50, 200);
     }
 
-    if(piece1.getIsClicked()) {
+
+
+    if(isClicked[1] == 1) {
         piece1.create_1(mouse_x, mouse_y);
     } else {
         piece1.create_1(25, 250);
@@ -380,7 +392,7 @@ void cursor(int x, int y) {
     //------------------------------------------------**
 
     mouse_x = x;
-    mouse_y = y + 125;
+    mouse_y = y + 185;
 
     glutPostRedisplay();
 }
@@ -480,6 +492,7 @@ void mouse(int button, int state, int x, int y) {
                 vector<PieceCoordinate> temporary = pieces[i].getCordinates();
                 double x1, x2, x3, x4, y1, y2, y3, y4;
                 for(int j =0; j < temporary.size(); ++j) {
+
                     x1 = temporary[j].x1;
                     x2 = temporary[j].x2;
                     x3 = temporary[j].x3;
@@ -499,12 +512,13 @@ void mouse(int button, int state, int x, int y) {
                         //check if clicking within bounds of the board,
                         if(inboard) {
                             //if can be added, remove from display, color in board tiles
-
                             //if can not be added, unbound from mouse location and print at original location
 
                         } else {
+
                          //if click not within board, simply make the clicked piece dragable
-                            pieces[i].setIsClicked(true);
+                            isClicked[pieces[i].getIsClicked()] = pieces[i].getIsClicked();
+
                         }
                     }
                 }

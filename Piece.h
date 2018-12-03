@@ -48,13 +48,14 @@ public:
     void create_F(float x, float y);
     void setCordinates(double x1, double y1, double x2, double y2, double x3, double y3,double x4,double y4);
     vector<PieceCoordinate> getCordinates();
-    void setIsClicked(bool test);
-    bool getIsClicked();
+    void setIsClicked(int test);
+    int getIsClicked();
 private:
     float tileSize = 20;
     std::vector<float> color;
     std::vector<PieceCoordinate> cordinates;
-    bool isClicked = false;
+    int isClicked;
+
 };
 
 #endif //BLOCKUS_PIECE_H
