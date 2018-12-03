@@ -8,7 +8,7 @@
 using namespace std;
 
 
-vector<int> isClicked(10,-1);
+vector<int> isClicked(20,-1);
 
 
 vector<Coordinate> boardVector;
@@ -131,8 +131,6 @@ void display_game() {
         pieceO.create_O(50, 200);
     }
 
-
-
     if(isClicked[1] == 1) {
         piece1.create_1(mouse_x, mouse_y);
     } else {
@@ -140,70 +138,70 @@ void display_game() {
     }
     addPiece(piece1);
 
-    if(piece2.getIsClicked()) {
+    if(isClicked[2] == 2) {
         piece2.create_2(mouse_x, mouse_y);
     } else {
         piece2.create_2(25, 300);
     }
     addPiece(piece2);
 
-    if(piecel3.getIsClicked()) {
+    if(isClicked[3] == 3) {
         piecel3.create_l3(mouse_x, mouse_y);
     } else {
         piecel3.create_l3(25, 350);
     }
     addPiece(piecel3);
 
-    if(piecel4.getIsClicked()) {
+    if(isClicked[4] == 4) {
         piecel4.create_l4(mouse_x, mouse_y);
     } else {
         piecel4.create_l4(25, 400);
     }
     addPiece(piecel4);
 
-    if(piecel5.getIsClicked()) {
+    if(isClicked[5] == 5) {
         piecel5.create_l5(mouse_x, mouse_y);
     } else {
         piecel5.create_l5(25, 450);
     }
     addPiece(piecel5);
 
-    if(pieceY.getIsClicked()) {
+    if(isClicked[6] == 6) {
         pieceY.create_Y(mouse_x, mouse_y);
     } else {
         pieceY.create_Y(25, 500);
     }
     addPiece(pieceY);
 
-    if(pieceN.getIsClicked()) {
+    if(isClicked[7] == 7) {
         pieceN.create_N(mouse_x, mouse_y);
     } else {
         pieceN.create_N(25, 525);
     }
     addPiece(pieceN);
 
-    if(pieceZ4.getIsClicked()) {
+    if(isClicked[8] == 8) {
         pieceZ4.create_Z4(mouse_x, mouse_y);
     } else {
         pieceZ4.create_Z4(25, 650);
     }
     addPiece(pieceZ4);
 
-    if(pieceZ5.getIsClicked()) {
+    if(isClicked[9] == 9) {
         pieceZ5.create_Z5(mouse_x, mouse_y);
     } else {
         pieceZ5.create_Z5(25, 725);
     }
     addPiece(pieceZ5);
 
-    if(pieceL4.getIsClicked()) {
+    if(isClicked[10] == 10) {
         pieceL4.create_Z5(mouse_x, mouse_y);
     } else {
         pieceL4.create_L4(25, 800);
     }
     addPiece(pieceL4);
 
-    if(pieceL5.getIsClicked()) {
+    if(isClicked[11] == 11) {
         pieceL5.create_L5(mouse_x, mouse_y);
     } else {
         pieceL5.create_L5(25, 850);
@@ -211,63 +209,63 @@ void display_game() {
     addPiece(pieceL5);
 
     //second row of pieces
-    if(pieceV3.getIsClicked()) {
+    if(isClicked[12] == 12) {
         pieceV3.create_V3(mouse_x, mouse_y);
     } else {
         pieceV3.create_V3(125, 250);
     }
     addPiece(pieceV3);
 
-    if(pieceV5.getIsClicked()) {
+    if(isClicked[13] == 13) {
         pieceV5.create_V5(mouse_x, mouse_y);
     } else {
         pieceV5.create_V5(125, 325);
     }
     addPiece(pieceV5);
 
-    if(pieceW.getIsClicked()) {
+    if(isClicked[14] == 14) {
         pieceW.create_W(mouse_x, mouse_y);
     } else {
         pieceW.create_W(125, 400);
     }
     addPiece(pieceW);
 
-    if(pieceT4.getIsClicked()) {
+    if(isClicked[15] == 15) {
         pieceT4.create_T4(mouse_x, mouse_y);
     } else {
         pieceT4.create_T4(150, 425);
     }
     addPiece(pieceT4);
 
-    if(pieceT5.getIsClicked()) {
+    if(isClicked[16] == 16) {
         pieceT5.create_T5(mouse_x, mouse_y);
     } else {
         pieceT5.create_T5(125, 500);
     }
     addPiece(pieceT5);
 
-    if(pieceP.getIsClicked()) {
+    if(isClicked[17] == 17) {
         pieceP.create_P(mouse_x, mouse_y);
     } else {
         pieceP.create_P(125, 650);
     }
     addPiece(pieceP);
 
-    if(pieceX.getIsClicked()) {
+    if(isClicked[18] == 18) {
         pieceX.create_X(mouse_x, mouse_y);
     } else {
         pieceX.create_X(125, 700);
     }
     addPiece(pieceX);
 
-    if(pieceU.getIsClicked()) {
+    if(isClicked[19] == 19) {
         pieceU.create_U(mouse_x, mouse_y);
     } else {
         pieceU.create_U(125, 800);
     }
     addPiece(pieceU);
 
-    if(pieceF.getIsClicked()) {
+    if(isClicked[20] == 20) {
         pieceF.create_F(mouse_x, mouse_y);
     } else {
         pieceF.create_F(125, 900);

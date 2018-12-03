@@ -200,6 +200,8 @@ void Piece::create_2(float x, float y){
 
     glEnd();
 
+    isClicked = 2;
+
 }
 
 void Piece::create_l3(float x, float y){
@@ -257,6 +259,8 @@ void Piece::create_l3(float x, float y){
     glVertex2f(2*tileSize + x, -tileSize + y);
 
     glEnd();
+
+    isClicked = 3;
 
 }
 
@@ -323,6 +327,8 @@ void Piece::create_l4(float x, float y){
     glVertex2f(3*tileSize + x, -tileSize + y);
 
     glEnd();
+
+    isClicked = 4;
 
 }
 
@@ -399,6 +405,8 @@ void Piece::create_l5(float x, float y){
 
     glEnd();
 
+    isClicked = 5;
+
 }
 
 void Piece:: create_Y(float x, float y){
@@ -474,6 +482,8 @@ void Piece:: create_Y(float x, float y){
 
     glEnd();
 
+    isClicked = 6;
+
 }
 
 void Piece:: create_N(float x, float y){
@@ -548,6 +558,7 @@ void Piece:: create_N(float x, float y){
 
     glEnd();
 
+    isClicked = 7;
 }
 
 void Piece:: create_Z4(float x, float y){
@@ -613,6 +624,8 @@ void Piece:: create_Z4(float x, float y){
     glVertex2f(tileSize + x, -3*tileSize + y);
 
     glEnd();
+
+    isClicked = 8;
 
 }
 
@@ -689,6 +702,7 @@ void Piece:: create_Z5(float x, float y){
 
     glEnd();
 
+    isClicked = 9;
 }
 
 void Piece:: create_L4(float x, float y){
@@ -754,6 +768,8 @@ void Piece:: create_L4(float x, float y){
     glVertex2f(3*tileSize + x, -2*tileSize + y);
 
     glEnd();
+
+    isClicked = 10;
 
 }
 
@@ -830,6 +846,8 @@ void Piece:: create_L5(float x, float y){
 
     glEnd();
 
+    isClicked = 11;
+
 }
 
 void Piece:: create_V3(float x, float y){
@@ -887,6 +905,7 @@ void Piece:: create_V3(float x, float y){
 
     glEnd();
 
+    isClicked = 12;
 }
 
 void Piece:: create_V5(float x, float y){
@@ -963,6 +982,8 @@ void Piece:: create_V5(float x, float y){
 
     glEnd();
 
+    isClicked = 13;
+
 }
 
 void Piece:: create_W(float x, float y){
@@ -1037,6 +1058,8 @@ void Piece:: create_W(float x, float y){
 
     glEnd();
 
+    isClicked = 14;
+
 }
 
 void Piece:: create_T4(float x, float y){
@@ -1104,6 +1127,8 @@ void Piece:: create_T4(float x, float y){
     glVertex2f(2*tileSize + x, 2*tileSize + y);
 
     glEnd();
+
+    isClicked = 15;
 
 }
 
@@ -1182,6 +1207,8 @@ void Piece:: create_T5(float x, float y){
 
     glEnd();
 
+    isClicked = 16;
+
 }
 
 void Piece:: create_P(float x, float y){
@@ -1252,6 +1279,8 @@ void Piece:: create_P(float x, float y){
     glVertex2f(tileSize + x, -3*tileSize + y);
 
     glEnd();
+
+    isClicked = 17;
 
 }
 
@@ -1331,6 +1360,8 @@ void Piece:: create_X(float x, float y){
 
     glEnd();
 
+    isClicked = 18;
+
 }
 
 void Piece:: create_U(float x, float y){
@@ -1405,6 +1436,7 @@ void Piece:: create_U(float x, float y){
 
     glEnd();
 
+    isClicked = 19;
 }
 
 void Piece:: create_F(float x, float y){
@@ -1478,5 +1510,7 @@ void Piece:: create_F(float x, float y){
     glVertex2f(2*tileSize + x, -tileSize + y);
 
     glEnd();
+
+    isClicked = 20;
 
 }
