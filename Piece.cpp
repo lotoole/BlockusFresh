@@ -30,6 +30,7 @@ void Piece::setCordinates(double x1, double y1, double x2, double y2, double x3,
 }
 
 void Piece::setIsClicked(bool test) {
+    cout << "set is clicked called" << endl;
     isClicked = test;
 }
 
@@ -37,16 +38,7 @@ bool Piece::getIsClicked() {
     return isClicked;
 }
 
-int Piece::getNumberOfTiles() {
-    vector<PieceCoordinate> cordinatesTwo = getCordinates();
-    numberOfTiles = cordinatesTwo.size() / 4;
-   return numberOfTiles;
-}
-
 vector<PieceCoordinate> Piece::getCordinates() {
-//    for(int i=0; i< cordinates.size(); ++i) {
-//        cout << cordinates[i].x << ", " << cordinates[i].y << endl;
-//    }
 
     return cordinates;
 }

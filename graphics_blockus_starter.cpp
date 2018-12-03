@@ -25,6 +25,7 @@ screen_state screen;
 Board board;
 //create pieces
 Piece pieceO(1,1,0);
+//pieceO.setName("PieceO");
 Piece piece1(1,1,0);
 Piece piece2(1,1,0);
 Piece piecel3(1,1,0);
@@ -48,8 +49,6 @@ Piece pieceF(1,1,0);
 //bool to see if a click was within the bounds of the board
 bool inboard = true;
 
-bool pieceOClicked = false;
-bool piece1Clicked = false;
 //------------------------------------------------**
 //Modified by Liam OToole on 11/27/18
 //------------------------------------------------**
@@ -116,13 +115,13 @@ void display_game() {
     glClear(GL_COLOR_BUFFER_BIT);
     //draw the users first set of pieces, first row
     addPiece(pieceO);
-    if(piece1Clicked) {
+    if(pieceO.getIsClicked()) {
         pieceO.create_O(mouse_x, mouse_y);
     } else {
         pieceO.create_O(50, 200);
     }
 
-    if(pieceOClicked) {
+    if(piece1.getIsClicked()) {
         piece1.create_1(mouse_x, mouse_y);
     } else {
         piece1.create_1(25, 250);
@@ -502,12 +501,10 @@ void mouse(int button, int state, int x, int y) {
                             //if can be added, remove from display, color in board tiles
 
                             //if can not be added, unbound from mouse location and print at original location
-                            pieceOClicked = false;
+
                         } else {
                          //if click not within board, simply make the clicked piece dragable
                             pieces[i].setIsClicked(true);
-                            cout << pieces[i].getIsClicked() << endl;
-                            pieceOClicked = true;
                         }
                     }
                 }
