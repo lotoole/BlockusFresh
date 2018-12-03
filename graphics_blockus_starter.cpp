@@ -392,7 +392,7 @@ void cursor(int x, int y) {
     //------------------------------------------------**
 
     mouse_x = x;
-    mouse_y = y + 125;
+    mouse_y = y + 185;
 
     glutPostRedisplay();
 }
@@ -449,7 +449,12 @@ void mouse(int button, int state, int x, int y) {
 
     int i;
     double x1, x2, x3, x4, y1, y2, y3, y4;
-
+    double minX,minY,maxX,maxY;
+    minX=999;
+    minY=999;
+    maxX=0;
+    maxY=0;
+    bool inboard = true;
 
     if (boardVector.size() != 0) {
         for (i = 0; i <= boardVector.size(); i++){
@@ -462,6 +467,24 @@ void mouse(int button, int state, int x, int y) {
             y2 = boardVector[i].y2;
             y3 = boardVector[i].y3;
             y4 = boardVector[i].y4;
+
+            double xMax = findMax(x1, x2, x3, x4);
+            double yMax = findMax(y1, y2, y3, y4);
+            double xMin = findMin(x1, x2, x3, x4);
+            double yMin = findMin(y1, y2, y3, y4);
+
+            if(xMax > maxX){
+                maxX = xMax;
+            }
+            if(yMax > maxY){
+                maxY = yMax;
+            }
+            if(xMin < minX){
+                minX = xMin;
+            }
+            if(yMin < minY){
+                minY = yMin;
+            }
 
 
             if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
@@ -477,9 +500,22 @@ void mouse(int button, int state, int x, int y) {
                 glEnd();
 
             }
+
+
         }
         glFlush();
     }
+
+    if(mouse_x >= minX && mouse_x <= maxX && mouse_y >= minY && mouse_y <= maxY) {
+        inboard = true;
+    }
+    else{
+        inboard = false;
+    }
+
+    cout << inboard;
+
+
 
     glutPostRedisplay();
 }
