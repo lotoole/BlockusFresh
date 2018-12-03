@@ -45,7 +45,8 @@ Piece pieceP(1,1,0);
 Piece pieceX(1,1,0);
 Piece pieceU(1,1,0);
 Piece pieceF(1,1,0);
-
+//bool to see if a click was within the bounds of the board
+bool inboard = true;
 
 bool pieceOClicked = false;
 bool piece1Clicked = false;
@@ -72,11 +73,6 @@ void addPiece(Piece piece) {
 //------------------------------------------------**
 double findMax(double one, double two, double three, double four) {
     double maxValue = max(one, max(two, max(three, four)));
-//    for(int i =0; i < testVector.size(); ++i) {
-//        if(testVector[i] > maxValue) {
-//            maxValue = testVector[i];
-//        }
-//    }
 
     return maxValue;
 }
@@ -134,7 +130,6 @@ void display_game() {
     addPiece(piece1);
 
     if(piece2.getIsClicked()) {
-        cout << "entered here" << endl;
         piece2.create_2(mouse_x, mouse_y);
     } else {
         piece2.create_2(25, 300);
@@ -142,7 +137,6 @@ void display_game() {
     addPiece(piece2);
 
     if(piecel3.getIsClicked()) {
-        cout << "entered here" << endl;
         piecel3.create_l3(mouse_x, mouse_y);
     } else {
         piecel3.create_l3(25, 350);
@@ -150,7 +144,6 @@ void display_game() {
     addPiece(piecel3);
 
     if(piecel4.getIsClicked()) {
-        cout << "entered here" << endl;
         piecel4.create_l4(mouse_x, mouse_y);
     } else {
         piecel4.create_l4(25, 400);
@@ -158,7 +151,6 @@ void display_game() {
     addPiece(piecel4);
 
     if(piecel5.getIsClicked()) {
-        cout << "entered here" << endl;
         piecel5.create_l5(mouse_x, mouse_y);
     } else {
         piecel5.create_l5(25, 450);
@@ -166,7 +158,6 @@ void display_game() {
     addPiece(piecel5);
 
     if(pieceY.getIsClicked()) {
-        cout << "entered here" << endl;
         pieceY.create_Y(mouse_x, mouse_y);
     } else {
         pieceY.create_Y(25, 500);
@@ -174,7 +165,6 @@ void display_game() {
     addPiece(pieceY);
 
     if(pieceN.getIsClicked()) {
-        cout << "entered here" << endl;
         pieceN.create_N(mouse_x, mouse_y);
     } else {
         pieceN.create_N(25, 525);
@@ -182,7 +172,6 @@ void display_game() {
     addPiece(pieceN);
 
     if(pieceZ4.getIsClicked()) {
-        cout << "entered here" << endl;
         pieceZ4.create_Z4(mouse_x, mouse_y);
     } else {
         pieceZ4.create_Z4(25, 650);
@@ -275,7 +264,7 @@ void display_game() {
     addPiece(pieceF);
 
     //draw the board
-    Board board;
+//    Board board;
     boardVector = board.drawBoard();
     //now draw score
     board.drawScore();
@@ -392,7 +381,7 @@ void cursor(int x, int y) {
     //------------------------------------------------**
 
     mouse_x = x;
-    mouse_y = y + 185;
+    mouse_y = y + 125;
 
     glutPostRedisplay();
 }
@@ -405,48 +394,11 @@ void mouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP &&screen == menu && screen!= game_over) {
         screen = game_play;
     }
+
     //------------------------------------------------**
-    //Created by Liam OToole on 12/1/18
-    // all checks for when the user clicks in the menu
+    //Created by Nick on 12/1/18
+    // Checks for clicks within the bounds of the board
     //------------------------------------------------**
-    //if the user clicks a location
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN  && state != GLUT_UP && screen == game_play) {
-        //if the user clicks over the button, change the screen state
-        if (mouse_x >= 700 && mouse_x <= 850 && mouse_y >= 850 && mouse_y <= 900) {
-            screen = game_over;
-        }
-        //if the user clicks on a shape, make it dragable
-        if(pieces.size() != 0) {
-            for(int i=0; i < pieces.size(); ++i) {
-                vector<PieceCoordinate> temporary = pieces[i].getCordinates();
-                double x1, x2, x3, x4, y1, y2, y3, y4;
-                for(int j =0; j < temporary.size(); ++j) {
-                    x1 = temporary[j].x1;
-                    x2 = temporary[j].x2;
-                    x3 = temporary[j].x3;
-                    x4 = temporary[j].x4;
-                    y1 = temporary[j].y1;
-                    y2 = temporary[j].y2;
-                    y3 = temporary[j].y3;
-                    y4 = temporary[j].y4;
-
-                    double xMax = findMax(x1, x2, x3, x4);
-                    double yMax = findMax(y1, y2, y3, y4);
-                    double xMin = findMin(x1, x2, x3, x4);
-                    double yMin = findMin(y1, y2, y3, y4);
-
-                    if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin && mouse_y <= yMax) {
-                        cout << "clicked" << endl;
-                        pieces[i].setIsClicked(true);
-                        pieceOClicked = true;
-                        cout << pieces[i].getIsClicked() << endl;
-                    }
-                }
-            }
-        }
-    }
-
-
     int i;
     double x1, x2, x3, x4, y1, y2, y3, y4;
     double minX,minY,maxX,maxY;
@@ -454,7 +406,6 @@ void mouse(int button, int state, int x, int y) {
     minY=999;
     maxX=0;
     maxY=0;
-    bool inboard = true;
 
     if (boardVector.size() != 0) {
         for (i = 0; i <= boardVector.size(); i++){
@@ -513,9 +464,55 @@ void mouse(int button, int state, int x, int y) {
         inboard = false;
     }
 
-    cout << inboard;
+    //------------------------------------------------**
+    //Created by Liam OToole on 12/1/18
+    // all checks for when the user clicks in the menu
+    //------------------------------------------------**
+    //if the user clicks a location
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN  && state != GLUT_UP && screen == game_play) {
+        //if the user clicks over the button, change the screen state
+        if (mouse_x >= 700 && mouse_x <= 850 && mouse_y >= 850 && mouse_y <= 900) {
+            screen = game_over;
+        }
 
+        //if the user clicks on a shape, make it dragable
+        if(pieces.size() != 0) {
+            for(int i=0; i < pieces.size(); ++i) {
+                vector<PieceCoordinate> temporary = pieces[i].getCordinates();
+                double x1, x2, x3, x4, y1, y2, y3, y4;
+                for(int j =0; j < temporary.size(); ++j) {
+                    x1 = temporary[j].x1;
+                    x2 = temporary[j].x2;
+                    x3 = temporary[j].x3;
+                    x4 = temporary[j].x4;
+                    y1 = temporary[j].y1;
+                    y2 = temporary[j].y2;
+                    y3 = temporary[j].y3;
+                    y4 = temporary[j].y4;
 
+                    double xMax = findMax(x1, x2, x3, x4);
+                    double yMax = findMax(y1, y2, y3, y4);
+                    double xMin = findMin(x1, x2, x3, x4);
+                    double yMin = findMin(y1, y2, y3, y4);
+
+                    if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin && mouse_y <= yMax) {
+
+                        //check if clicking within bounds of the board,
+                        if(inboard) {
+                            //if can be added, remove from display, color in board tiles
+
+                            //if can not be added, unbound from mouse location and print at original location
+                            pieceOClicked = false;
+                        } else {
+                         //if click not within board, simply make the clicked piece dragable
+                            pieces[i].setIsClicked(true);
+                            pieceOClicked = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     glutPostRedisplay();
 }
