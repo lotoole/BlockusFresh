@@ -419,7 +419,7 @@ void cursor(int x, int y) {
     //------------------------------------------------**
 
     mouse_x = x;
-    mouse_y = y + 125;
+    mouse_y = y + 185;
 
     glutPostRedisplay();
 }
@@ -440,10 +440,11 @@ void mouse(int button, int state, int x, int y) {
     int i;
     double x1, x2, x3, x4, y1, y2, y3, y4;
     double minX,minY,maxX,maxY;
-    minX=999;
-    minY=999;
+    minX=9999;
+    minY=9999;
     maxX=0;
     maxY=0;
+    inboard = false;
 
     if (boardVector.size() != 0) {
         for (i = 0; i <= boardVector.size(); i++){
@@ -487,20 +488,20 @@ void mouse(int button, int state, int x, int y) {
                 glVertex3f(x3, y3, 0.0);
                 glVertex3f(x4, y4, 0.0);
                 glEnd();
+                inboard = true;
 
             }
 
 
         }
+
+
+       
+
         glFlush();
     }
 
-    if(mouse_x >= minX && mouse_x <= maxX && mouse_y >= minY && mouse_y <= maxY) {
-        inboard = true;
-    }
-    else{
-        inboard = false;
-    }
+
 
     //------------------------------------------------**
     //Created by Liam OToole on 12/1/18
