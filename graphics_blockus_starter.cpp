@@ -53,6 +53,7 @@ Piece pieceU(1,1,0);
 Piece pieceF(1,1,0);
 //bool to see if a click was within the bounds of the board
 bool inboard = true;
+bool collision = true;
 
 //------------------------------------------------**
 //Modified by Liam OToole on 11/27/18
@@ -397,7 +398,7 @@ void cursor(int x, int y) {
     //------------------------------------------------**
 
     mouse_x = x;
-    mouse_y = y + 185;
+    mouse_y = y + 125;
 
     glutPostRedisplay();
 }
@@ -516,12 +517,16 @@ void mouse(int button, int state, int x, int y) {
 
                         //check if clicking within bounds of the board,
                         if(inboard) {
-                            //if can be added, remove from display, color in board tiles
-                            //if can not be added, unbound from mouse location and print at original location
+                            if(collision) {
+                                //if can not be added, unbound from mouse location and print at original location
+                                isClicked[pieces[i].getIsClicked()] = pieces[i].getIsClicked();
+                            } else {
+                                //if can be added, remove from display, color in board tiles
+                            }
 
                         } else {
-
-                         //if click not within board, simply make the clicked piece dragable
+                            cout << "piece click" << endl;
+                            //if click not within board, simply make the clicked piece dragable
                             isClicked[pieces[i].getIsClicked()] = pieces[i].getIsClicked();
 
                         }
