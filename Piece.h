@@ -25,27 +25,27 @@ public:
 
 
     //Piece creation methods
-    void create_O(float x, float y);
-    void create_1(float x, float y);
-    void create_2(float x, float y);
-    void create_l3(float x, float y);
-    void create_l4(float x, float y);
-    void create_l5(float x, float y);
-    void create_Y(float x, float y);
-    void create_N(float x, float y);
-    void create_Z4(float x, float y);
-    void create_Z5(float x, float y);
-    void create_L4(float x, float y);
-    void create_L5(float x, float y);
-    void create_V3(float x, float y);
-    void create_V5(float x, float y);
-    void create_W(float x, float y);
-    void create_T4(float x, float y);
-    void create_T5(float x, float y);
-    void create_P(float x, float y);
-    void create_X(float x, float y);
-    void create_U(float x, float y);
-    void create_F(float x, float y);
+    void create_O(float x, float y, int orientation);
+    void create_1(float x, float y, int orientation);
+    void create_2(float x, float y, int orientation);
+    void create_l3(float x, float y, int orientation);
+    void create_l4(float x, float y, int orientation);
+    void create_l5(float x, float y, int orientation);
+    void create_Y(float x, float y, int orientation);
+    void create_N(float x, float y, int orientation);
+    void create_Z4(float x, float y, int orientation);
+    void create_Z5(float x, float y, int orientation);
+    void create_L4(float x, float y, int orientation);
+    void create_L5(float x, float y, int orientation);
+    void create_V3(float x, float y, int orientation);
+    void create_V5(float x, float y, int orientation);
+    void create_W(float x, float y, int orientation);
+    void create_T4(float x, float y, int orientation);
+    void create_T5(float x, float y, int orientation);
+    void create_P(float x, float y, int orientation);
+    void create_X(float x, float y, int orientation);
+    void create_U(float x, float y, int orientation);
+    void create_F(float x, float y, int orientation);
     void setCordinates(double x1, double y1, double x2, double y2, double x3, double y3,double x4,double y4);
     vector<PieceCoordinate> getCordinates();
     void setIsClicked(int test);
