@@ -5,9 +5,7 @@
 #include "graphics.h"
 #include "Piece.h"
 
-
 Piece::Piece(){
-
 }
 
 Piece::~Piece(){
@@ -43,7 +41,12 @@ vector<PieceCoordinate> Piece::getCordinates() {
     return cordinates;
 }
 
-void Piece::create_O(float x, float y){
+void Piece::create_O(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -109,11 +112,19 @@ void Piece::create_O(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 0;
 
 }
 
-void Piece::create_1(float x, float y){
+void Piece::create_1(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -150,11 +161,19 @@ void Piece::create_1(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 1;
 
 }
 
-void Piece::create_2(float x, float y){
+void Piece::create_2(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -200,11 +219,18 @@ void Piece::create_2(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 2;
 
 }
 
-void Piece::create_l3(float x, float y){
+void Piece::create_l3(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -260,11 +286,19 @@ void Piece::create_l3(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 3;
 
 }
 
-void Piece::create_l4(float x, float y){
+void Piece::create_l4(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -328,11 +362,18 @@ void Piece::create_l4(float x, float y){
 
     glEnd();
 
-    isClicked = 4;
+    glPopMatrix();
 
+    isClicked = 4;
 }
 
-void Piece::create_l5(float x, float y){
+void Piece::create_l5(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -405,11 +446,19 @@ void Piece::create_l5(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 5;
 
 }
 
-void Piece:: create_Y(float x, float y){
+void Piece:: create_Y(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -482,11 +531,19 @@ void Piece:: create_Y(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 6;
 
 }
 
-void Piece:: create_N(float x, float y){
+void Piece:: create_N(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -558,10 +615,18 @@ void Piece:: create_N(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 7;
 }
 
-void Piece:: create_Z4(float x, float y){
+void Piece:: create_Z4(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -625,11 +690,19 @@ void Piece:: create_Z4(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 8;
 
 }
 
-void Piece:: create_Z5(float x, float y){
+void Piece:: create_Z5(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -702,10 +775,18 @@ void Piece:: create_Z5(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 9;
 }
 
-void Piece:: create_L4(float x, float y){
+void Piece:: create_L4(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -769,11 +850,19 @@ void Piece:: create_L4(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 10;
 
 }
 
-void Piece:: create_L5(float x, float y){
+void Piece:: create_L5(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -846,11 +935,19 @@ void Piece:: create_L5(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 11;
 
 }
 
-void Piece:: create_V3(float x, float y){
+void Piece:: create_V3(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -905,11 +1002,17 @@ void Piece:: create_V3(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 12;
 }
 
-void Piece:: create_V5(float x, float y){
-    cordinates.clear();
+void Piece:: create_V5(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
 
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
@@ -982,11 +1085,19 @@ void Piece:: create_V5(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 13;
 
 }
 
-void Piece:: create_W(float x, float y){
+void Piece:: create_W(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -1058,11 +1169,19 @@ void Piece:: create_W(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 14;
 
 }
 
-void Piece:: create_T4(float x, float y){
+void Piece:: create_T4(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -1128,11 +1247,19 @@ void Piece:: create_T4(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 15;
 
 }
 
-void Piece:: create_T5(float x, float y){
+void Piece:: create_T5(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -1207,11 +1334,19 @@ void Piece:: create_T5(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 16;
 
 }
 
-void Piece:: create_P(float x, float y){
+void Piece:: create_P(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -1280,11 +1415,19 @@ void Piece:: create_P(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 17;
 
 }
 
-void Piece:: create_X(float x, float y){
+void Piece:: create_X(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -1360,11 +1503,19 @@ void Piece:: create_X(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 18;
 
 }
 
-void Piece:: create_U(float x, float y){
+void Piece:: create_U(float x, float y, int orientation){
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,0);
+    glRotatef(orientation, 0, 0, 1);
+    glTranslatef(-x,-y,0);
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -1436,10 +1587,13 @@ void Piece:: create_U(float x, float y){
 
     glEnd();
 
+    glPopMatrix();
+
     isClicked = 19;
 }
 
-void Piece:: create_F(float x, float y){
+void Piece:: create_F(float x, float y, int orientation){
+
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
