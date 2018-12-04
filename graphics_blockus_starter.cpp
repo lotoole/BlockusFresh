@@ -52,8 +52,8 @@ Piece pieceX(1,1,0);
 Piece pieceU(1,1,0);
 Piece pieceF(1,1,0);
 //bool to see if a click was within the bounds of the board
-bool inboard = true;
-bool collision = true;
+bool inboard = false;
+bool collision = false;
 
 //------------------------------------------------**
 //Modified by Liam OToole on 11/27/18
@@ -126,83 +126,95 @@ void display_game() {
 
     if(isClicked[0] == 0) {
         pieceO.create_O(mouse_x, mouse_y, angles[0]);
-    } else {
+    } else if(isClicked[0] == 777) {}
+    else {
         pieceO.create_O(50, 200, angles[0]);
     }
 
     if(isClicked[1] == 1) {
         piece1.create_1(mouse_x, mouse_y, angles[1]);
-    } else {
+    } else if(isClicked[1] == 777) {}
+    else {
         piece1.create_1(25, 250, angles[1]);
     }
     addPiece(piece1);
 
     if(isClicked[2] == 2) {
         piece2.create_2(mouse_x, mouse_y, angles[2]);
-    } else {
+    } else if(isClicked[2] == 777) {}
+    else {
         piece2.create_2(25, 300, angles[2]);
     }
     addPiece(piece2);
 
     if(isClicked[3] == 3) {
         piecel3.create_l3(mouse_x, mouse_y, angles[3]);
-    } else {
+    } else if(isClicked[3] == 777) {}
+    else {
         piecel3.create_l3(25, 350, angles[3]);
     }
     addPiece(piecel3);
 
     if(isClicked[4] == 4) {
         piecel4.create_l4(mouse_x, mouse_y, angles[4]);
-    } else {
+    } else if(isClicked[4] == 777) {}
+    else {
         piecel4.create_l4(25, 400, angles[4]);
     }
     addPiece(piecel4);
 
     if(isClicked[5] == 5) {
         piecel5.create_l5(mouse_x, mouse_y, angles[5]);
-    } else {
+    } else if(isClicked[5] == 777) {}
+    else {
         piecel5.create_l5(25, 450, angles[5]);
     }
     addPiece(piecel5);
 
     if(isClicked[6] == 6) {
         pieceY.create_Y(mouse_x, mouse_y, angles[6]);
-    } else {
+    } else if(isClicked[6] == 777) {}
+    else {
         pieceY.create_Y(25, 500, angles[6]);
     }
     addPiece(pieceY);
 
     if(isClicked[7] == 7) {
         pieceN.create_N(mouse_x, mouse_y, angles[7]);
-    } else {
+    } else if(isClicked[7] == 777) {}
+    else {
         pieceN.create_N(25, 525, angles[7]);
     }
     addPiece(pieceN);
 
     if(isClicked[8] == 8) {
         pieceZ4.create_Z4(mouse_x, mouse_y, angles[8]);
-    } else {
+    } else if(isClicked[8] == 777) {}
+    else {
         pieceZ4.create_Z4(25, 650, angles[8]);
     }
     addPiece(pieceZ4);
 
     if(isClicked[9] == 9) {
         pieceZ5.create_Z5(mouse_x, mouse_y, angles[9]);
-    } else {
+    } else if(isClicked[9] == 777) {}
+    else {
         pieceZ5.create_Z5(25, 725, angles[9]);
     }
     addPiece(pieceZ5);
 
     if(isClicked[10] == 10) {
         pieceL4.create_L4(mouse_x, mouse_y, angles[10]);
-    } else {
+    } else if(isClicked[10] == 777) {}
+    else {
         pieceL4.create_L4(25, 800, angles[10]);
     }
     addPiece(pieceL4);
 
     if(isClicked[11] == 11) {
         pieceL5.create_L5(mouse_x, mouse_y, angles[11]);
-    } else {
+    } else if(isClicked[11] == 777) {}
+    else {
         pieceL5.create_L5(25, 850, angles[11]);
     }
     addPiece(pieceL5);
@@ -210,63 +222,72 @@ void display_game() {
     //second row of pieces
     if(isClicked[12] == 12) {
         pieceV3.create_V3(mouse_x, mouse_y, angles[12]);
-    } else {
+    } else if(isClicked[12] == 777) {}
+    else {
         pieceV3.create_V3(125, 250, angles[12]);
     }
     addPiece(pieceV3);
 
     if(isClicked[13] == 13) {
         pieceV5.create_V5(mouse_x, mouse_y, angles[13]);
-    } else {
+    } else if(isClicked[13] == 777) {}
+    else {
         pieceV5.create_V5(125, 325, angles[13]);
     }
     addPiece(pieceV5);
 
     if(isClicked[14] == 14) {
         pieceW.create_W(mouse_x, mouse_y, angles[14]);
-    } else {
+    } else if(isClicked[14] == 777) {}
+    else {
         pieceW.create_W(125, 400, angles[14]);
     }
     addPiece(pieceW);
 
     if(isClicked[15] == 15) {
         pieceT4.create_T4(mouse_x, mouse_y, angles[15]);
-    } else {
+    } else if(isClicked[15] == 777) {}
+    else {
         pieceT4.create_T4(150, 425, angles[15]);
     }
     addPiece(pieceT4);
 
     if(isClicked[16] == 16) {
         pieceT5.create_T5(mouse_x, mouse_y, angles[16]);
-    } else {
+    } else if(isClicked[16] == 777) {}
+    else {
         pieceT5.create_T5(125, 500, angles[16]);
     }
     addPiece(pieceT5);
 
     if(isClicked[17] == 17) {
         pieceP.create_P(mouse_x, mouse_y, angles[17]);
-    } else {
+    } else if(isClicked[17] == 777) {}
+    else {
         pieceP.create_P(125, 650, angles[17]);
     }
     addPiece(pieceP);
 
     if(isClicked[18] == 18) {
         pieceX.create_X(mouse_x, mouse_y, angles[18]);
-    } else {
+    } else if(isClicked[18] == 777) {}
+    else {
         pieceX.create_X(125, 700, angles[18]);
     }
     addPiece(pieceX);
 
     if(isClicked[19] == 19) {
         pieceU.create_U(mouse_x, mouse_y, angles[19]);
-    } else {
+    } else if(isClicked[19] == 777) {}
+    else {
         pieceU.create_U(125, 800, angles[19]);
     }
     addPiece(pieceU);
 
     if(isClicked[20] == 20) {
         pieceF.create_F(mouse_x, mouse_y, angles[20]);
-    } else {
+    } else if(isClicked[20] == 777) {}
+    else {
         pieceF.create_F(125, 900, angles[20]);
     }
     addPiece(pieceF);
@@ -519,9 +540,10 @@ void mouse(int button, int state, int x, int y) {
                         if(inboard) {
                             if(collision) {
                                 //if can not be added, unbound from mouse location and print at original location
-                                isClicked[pieces[i].getIsClicked()] = pieces[i].getIsClicked();
+                                isClicked[pieces[i].getIsClicked()] = -1;
                             } else {
                                 //if can be added, remove from display, color in board tiles
+                                isClicked[pieces[i].getIsClicked()] = 777;
                             }
 
                         } else {
