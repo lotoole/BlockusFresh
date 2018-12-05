@@ -446,7 +446,9 @@ void cursor(int x, int y) {
     //------------------------------------------------**
 
     mouse_x = x;
-    mouse_y = y + 185;
+    int add;
+    add = 980 - glutGet(GLUT_WINDOW_HEIGHT);
+    mouse_y = y + add;
 
     glutPostRedisplay();
 }
