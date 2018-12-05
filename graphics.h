@@ -63,5 +63,10 @@ void timer(int dummy);
 // Handle mouse button pressed and released events
 void mouse(int button, int state, int x, int y);
 
+//Determines if a piece can fit in the board
+bool pieceFits();
+
+//Determines if the move is "legal"
+bool legalMove();
 
 #endif /* graphics_h */

@@ -126,7 +126,7 @@ void display_game() {
 
     if(isClicked[0] == 0) {
         pieceO.create_O(mouse_x, mouse_y, angles[0]);
-    } else if(isClicked[0] == 777) {}
+    } else if(isClicked[0] == 777) {} //do nothing
     else {
         pieceO.create_O(50, 200, angles[0]);
     }
@@ -419,7 +419,7 @@ void cursor(int x, int y) {
     //------------------------------------------------**
 
     mouse_x = x;
-    mouse_y = y + 185;
+    mouse_y = y + 2;
 
     glutPostRedisplay();
 }
@@ -515,12 +515,12 @@ void mouse(int button, int state, int x, int y) {
         }
 
         //if the user clicks on a shape, make it dragable
-        if(pieces.size() != 0) {
-            for(int i=0; i < pieces.size(); ++i) {
+        if(pieces.size() != 0) { //if there are pieces to click
+            for(int i=0; i < pieces.size(); ++i) { //for every piece on the board
                 vector<PieceCoordinate> temporary = pieces[i].getCordinates();
                 double x1, x2, x3, x4, y1, y2, y3, y4;
                 for(int j =0; j < temporary.size(); ++j) {
-
+                    //coordinates for a single tile
                     x1 = temporary[j].x1;
                     x2 = temporary[j].x2;
                     x3 = temporary[j].x3;
@@ -529,26 +529,33 @@ void mouse(int button, int state, int x, int y) {
                     y2 = temporary[j].y2;
                     y3 = temporary[j].y3;
                     y4 = temporary[j].y4;
-
+                    //find the x, y range of the tile
                     double xMax = findMax(x1, x2, x3, x4);
                     double yMax = findMax(y1, y2, y3, y4);
                     double xMin = findMin(x1, x2, x3, x4);
                     double yMin = findMin(y1, y2, y3, y4);
-
+                    //if the mouse clicked within that range
                     if(mouse_x >= xMin && mouse_x <= xMax && mouse_y >= yMin && mouse_y <= yMax) {
-
+                        //------------------------------------------------**
+                        // Modified by Monique Demers
+                        //------------------------------------------------**
                         //check if clicking within bounds of the board,
                         if(inboard) {
                             if(collision) {
-                                //if can not be added, unbound from mouse location and print at original location
+                                //if can not be added, unbound from mouse location and print at original location+
+                                Piece tempPiece = pieces[i];
                                 isClicked[pieces[i].getIsClicked()] = -1;
-                            } else {
+
+
+                                //now redraw at original location
+                            } else if(legalMove() && pieceFits()){ // if the move is legal and the piece fits in the location
                                 //if can be added, remove from display, color in board tiles
                                 isClicked[pieces[i].getIsClicked()] = 777;
+                                //Want to remove piece from vector
+                                cout << pieces.size() << endl; // Piece is there, but not visible
                             }
-
                         } else {
-                            cout << "piece click" << endl;
+                            cout << "piece click: " << pieces[i].getIsClicked() << endl;
                             //if click not within board, simply make the clicked piece dragable
                             isClicked[pieces[i].getIsClicked()] = pieces[i].getIsClicked();
 
@@ -562,6 +569,22 @@ void mouse(int button, int state, int x, int y) {
     glutPostRedisplay();
 }
 
+//------------------------------------------------**
+//Created by Monique Demers on 12/4/2018
+// determines if a piece fits within the clicked location
+//------------------------------------------------**
+bool pieceFits(){
+    return true;
+}
+
+//------------------------------------------------**
+//Created by Monique Demers
+// Determines if a move is legal
+//------------------------------------------------**
+bool legalMove(){
+    return true;
+}
+
 void timer(int extra) {
     
     glutPostRedisplay();
@@ -571,6 +594,7 @@ void timer(int extra) {
 /* Main function: GLUT runs as a console application starting at main()  */
 int main(int argc, char** argv) {
     //Player testing
+    /*
     Player human;
     cout << "Player Test - Human" << endl;
     cout << "Human (True/False): " << boolalpha << human.getHuman() << endl;
@@ -592,7 +616,7 @@ int main(int argc, char** argv) {
     cout << "Player Score: " << human.getScore() << endl;
     human.addToScore(5);
     cout << "Player Score: " << human.getScore() << endl;
-
+    */
     init();
 
     glutInit(&argc, argv);          // Initialize GLUT
