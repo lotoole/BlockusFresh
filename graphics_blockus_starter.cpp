@@ -500,6 +500,7 @@ void mouse(int button, int state, int x, int y) {
     int i;
     int j;
     int k;
+    int w;
     double x1, x2, x3, x4, y1, y2, y3, y4;
     vector<Coordinate> toAdd;
     //boolean to check if the click was within the bounds of the board
@@ -519,6 +520,7 @@ void mouse(int button, int state, int x, int y) {
     //integer to track adition to score
     //*****************************************this loop confuses me
     int addToScore;
+    bool check = true;
     if (boardVector.size() != 0 && inboard == true) {
         for(i=0; i < pieces.size(); ++i) { //loop through all the pieces on the board
             if (isClicked[i] == i) {
@@ -563,10 +565,30 @@ void mouse(int button, int state, int x, int y) {
                             toAdd.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
                             addToScore ++;
                         }
+
+                        for(w = 0; w < tiles.size();w++){
+                            x1 = tiles[w].x1;
+                            x2 = tiles[w].x2;
+                            x3 = tiles[w].x3;
+                            x4 = tiles[w].x4;
+                            y1 = tiles[w].y1;
+                            y2 = tiles[w].y2;
+                            y3 = tiles[w].y3;
+                            y4 = tiles[w].y4;
+                            double BoardXMax = findMax(x1, x2, x3, x4);
+                            double BoardYMax = findMax(y1, y2, y3, y4);
+                            double BoardXMin = findMin(x1, x2, x3, x4);
+                            double BoardYMin = findMin(y1, y2, y3, y4);
+
+                            if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
+                                centerX <= BoardXMax) {
+                                check = false;
+                            }
+                        }
                     }
                 }
 
-                if(addToScore == temporary.size()){
+                if(addToScore == temporary.size() && check){
                     playerScore += addToScore;
                     int x;
                     for(x = 0; x < toAdd.size(); x++){
