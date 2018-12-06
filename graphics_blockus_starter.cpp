@@ -8,6 +8,7 @@
 using namespace std;
 
 
+
 vector<int> isClicked(20,-1);
 vector<int> angles(20,0);
 int add = 1;
@@ -330,6 +331,8 @@ void display_game() {
     Board board;
     boardVector = board.drawBoard();
     //now draw score
+
+    board.updateUserScore(playerScore);
     board.drawScore();
     //now draw end game button
     board.drawEndGameButton();
@@ -559,6 +562,7 @@ void mouse(int button, int state, int x, int y) {
                 }
 
                 if(add == temporary.size()){
+                    playerScore += add;
                     int x;
                     for(x = 0; x < toAdd.size(); x++){
                         tiles.push_back(toAdd[x]);
@@ -569,7 +573,9 @@ void mouse(int button, int state, int x, int y) {
             }
         }
         glFlush();
+
     }
+    cout << playerScore;
     //------------------------------------------------**
     //Created by Liam OToole on 12/1/18
     // all checks for when the user clicks in the menu
