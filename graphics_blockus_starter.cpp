@@ -156,6 +156,7 @@ void display_game() {
             glVertex2f(x3, y3);
             glVertex2f(x4, y4);
             glEnd();
+
         }
     }
 
@@ -480,62 +481,93 @@ void mouse(int button, int state, int x, int y) {
         screen = game_play;
     }
 
-    //------------------------------------------------**
+//------------------------------------------------**
     //Created by Nick on 12/1/18
-    // Checks for clicks within the bounds of the board
+    // Checks for clicks within the bounds of the board and places pieces
     //------------------------------------------------**
+
+
+
     int i;
     int j;
     int k;
     double x1, x2, x3, x4, y1, y2, y3, y4;
-
+    vector<Coordinate> toAdd;
     inboard = false;
+    if(boardVector.size() != 0){
+        for (k = 0; k <= boardVector.size(); k++) {
 
-    if (boardVector.size() != 0) {
+            x1 = boardVector[k].x1;
+            x2 = boardVector[k].x2;
+            y1 = boardVector[k].y1;
+            y3 = boardVector[k].y3;
+
+            if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
+                inboard = true;
+            }
+        }}
+
+    int add;
+    if (boardVector.size() != 0 && inboard == true) {
         for(i=0; i < pieces.size(); ++i) {
-            vector<PieceCoordinate> temporary = pieces[i].getCordinates();
-            double x1, x2, x3, x4, y1, y2, y3, y4;
-            for (j = 0; j < temporary.size(); ++j) {
+            if (isClicked[i] == i) {
 
-                x1 = temporary[j].x1;
-                x2 = temporary[j].x2;
-                x3 = temporary[j].x3;
-                x4 = temporary[j].x4;
-                y1 = temporary[j].y1;
-                y2 = temporary[j].y2;
-                y3 = temporary[j].y3;
-                y4 = temporary[j].y4;
+                pieces[i].getCordinates();
+                add = 0;
+                vector<PieceCoordinate> temporary = pieces[i].getCordinates();
+                double x1, x2, x3, x4, y1, y2, y3, y4;
 
-                double centerX = (x1 + x2 + x4) / 3;
-                double centerY = (y1 + y2 + y4) / 3;
+                for (j = 0; j < temporary.size(); ++j) {
 
-                for (k = 0; k <= boardVector.size(); k++) {
+                    cout << temporary.size();
+                    x1 = temporary[j].x1;
+                    x2 = temporary[j].x2;
+                    x3 = temporary[j].x3;
+                    x4 = temporary[j].x4;
+                    y1 = temporary[j].y1;
+                    y2 = temporary[j].y2;
+                    y3 = temporary[j].y3;
+                    y4 = temporary[j].y4;
 
-                    x1 = boardVector[k].x1;
-                    x2 = boardVector[k].x2;
-                    x3 = boardVector[k].x3;
-                    x4 = boardVector[k].x4;
-                    y1 = boardVector[k].y1;
-                    y2 = boardVector[k].y2;
-                    y3 = boardVector[k].y3;
-                    y4 = boardVector[k].y4;
+                    double centerX = (x1 + x2 + x4) / 3;
+                    double centerY = (y1 + y2 + y4) / 3;
 
-                    double BoardXMax = findMax(x1, x2, x3, x4);
-                    double BoardYMax = findMax(y1, y2, y3, y4);
-                    double BoardXMin = findMin(x1, x2, x3, x4);
-                    double BoardYMin = findMin(y1, y2, y3, y4);
+                    for (k = 0; k <= boardVector.size(); k++) {
 
+                        x1 = boardVector[k].x1;
+                        x2 = boardVector[k].x2;
+                        x3 = boardVector[k].x3;
+                        x4 = boardVector[k].x4;
+                        y1 = boardVector[k].y1;
+                        y2 = boardVector[k].y2;
+                        y3 = boardVector[k].y3;
+                        y4 = boardVector[k].y4;
 
-                    if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
-                        inboard = true;
+                        double BoardXMax = findMax(x1, x2, x3, x4);
+                        double BoardYMax = findMax(y1, y2, y3, y4);
+                        double BoardXMin = findMin(x1, x2, x3, x4);
+                        double BoardYMin = findMin(y1, y2, y3, y4);
+
+                        if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
+                            centerX <= BoardXMax) {
+                            toAdd.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+                            add ++;
+                        }
+
                     }
-                    //Find the center for each tile in a piece and see if it's in the of a tile on the board
-                    if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin && centerX <= BoardXMax) {
-                            tiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+
+                }
+
+                if(add == temporary.size()){
+                    int x;
+                    for(x = 0; x < toAdd.size(); x++){
+                        tiles.push_back(toAdd[x]);
+
                     }
                 }
 
             }
+        }
 
         }
         glFlush();
