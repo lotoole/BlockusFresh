@@ -640,7 +640,7 @@ void mouse(int button, int state, int x, int y) {
                         //------------------------------------------------**
                         //check if clicking within bounds of the board,
                         if(inboard) {
-                            if(collision) {
+                            if(!check) {
                                 //if can not be added, unbound from mouse location and print at original location+
                                 Piece tempPiece = pieces[i];
                                 isClicked[pieces[i].getIsClicked()] = -1;
