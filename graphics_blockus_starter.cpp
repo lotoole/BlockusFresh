@@ -333,6 +333,7 @@ void display_game() {
     //now draw score
 
     board.updateUserScore(playerScore);
+    board.updateComputerScore(computerScore);
     board.drawScore();
     //now draw end game button
     board.drawEndGameButton();
@@ -351,7 +352,7 @@ void display_game_over () {
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
-    board.gameOverScore();
+    board.gameOverScore(playerScore, computerScore);
 }
 
 /* Initialize OpenGL Graphics */
@@ -370,7 +371,6 @@ void display() {
     // system set to first quadrant, limited by screen/window size
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-//    glOrtho(-50.0, 50.0, -50.0, 50.0, -1.0, 1);
     glOrtho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
        // Clear the color buffer with current clearing color
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -414,6 +414,10 @@ void kbd(unsigned char key, int x, int y) {
     if(key == 'e' && screen == game_play) {
         screen = game_over;
     }
+    //------------------------------------------------**
+    //Created by Will on 11/30/18
+    // Rotate the clicked piece if the user hits r
+    //------------------------------------------------**
     if(key == 'r' && screen == game_play) {
         for (int i = 0; i < isClicked.size(); ++i){
             if (isClicked[i] == i){
@@ -452,12 +456,12 @@ void cursor(int x, int y) {
     //Ensure variables are tracking the current mouse position
     //------------------------------------------------**
     //Created by Liam OToole on 11/7/18
+    // edited by Nick on 12/1/18
     //------------------------------------------------**
-
     mouse_x = x;
-    int add;
-    add = 980 - glutGet(GLUT_WINDOW_HEIGHT);
-    mouse_y = y + add;
+    int screenOffset;
+    screenOffset = 980 - glutGet(GLUT_WINDOW_HEIGHT);
+    mouse_y = y + screenOffset;
 
     glutPostRedisplay();
 }
@@ -466,7 +470,6 @@ void cursor(int x, int y) {
 //Created by Nick on 12/1/18
 // compare two struct's of coords
 //------------------------------------------------**
-
 bool compareCoordinate(Coordinate board, Coordinate piece){
     if(board.x1 == piece.x1 && board.x2 == piece.x2 && board.x3 == piece.x3 && board.x4 == piece.x4){
         return false;
@@ -479,7 +482,10 @@ bool compareCoordinate(Coordinate board, Coordinate piece){
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
 
-    // Set game screen to game play if the user clicks on the screen
+    //------------------------------------------------**
+    //Created by Liam on 11/15/18
+    // Change screen state to gameplay if the user clicks on the menu
+    //------------------------------------------------**
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP &&screen == menu && screen!= game_over) {
         screen = game_play;
     }
@@ -488,35 +494,34 @@ void mouse(int button, int state, int x, int y) {
     //Created by Nick on 12/1/18
     // Checks for clicks within the bounds of the board and places pieces
     //------------------------------------------------**
-
-
-
+    //integers for each for loop
     int i;
     int j;
     int k;
     double x1, x2, x3, x4, y1, y2, y3, y4;
     vector<Coordinate> toAdd;
+    //boolean to check if the click was within the bounds of the board
     inboard = false;
+    //do not run this loop until the board vector is populated
     if(boardVector.size() != 0){
-        for (k = 0; k <= boardVector.size(); k++) {
-
+        for (k = 0; k <= boardVector.size(); k++) { // loop through cordinates of each tile of entire board
             x1 = boardVector[k].x1;
             x2 = boardVector[k].x2;
             y1 = boardVector[k].y1;
             y3 = boardVector[k].y3;
-
+            // if the click is within the bounds of board, update boolean
             if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
                 inboard = true;
             }
         }}
-
-    int add;
+    //integer to track adition to score
+    //*****************************************this loop confuses me
+    int addToScore;
     if (boardVector.size() != 0 && inboard == true) {
-        for(i=0; i < pieces.size(); ++i) {
+        for(i=0; i < pieces.size(); ++i) { //loop through all the pieces on the board
             if (isClicked[i] == i) {
-
-                pieces[i].getCordinates();
-                add = 0;
+                pieces[i].getCordinates(); //get cordinates of each tile in the sepcific piece
+                addToScore = 0;
                 vector<PieceCoordinate> temporary = pieces[i].getCordinates();
                 double x1, x2, x3, x4, y1, y2, y3, y4;
 
@@ -532,10 +537,10 @@ void mouse(int button, int state, int x, int y) {
                     y3 = temporary[j].y3;
                     y4 = temporary[j].y4;
 
+                    //calcuate the center location of the tile
                     double centerX = (x1 + x2 + x4) / 3;
                     double centerY = (y1 + y2 + y4) / 3;
-
-                    for (k = 0; k <= boardVector.size(); k++) {
+                    for (k = 0; k <= boardVector.size(); k++) { //loop through vector of board tile locations
 
                         x1 = boardVector[k].x1;
                         x2 = boardVector[k].x2;
@@ -550,39 +555,36 @@ void mouse(int button, int state, int x, int y) {
                         double BoardYMax = findMax(y1, y2, y3, y4);
                         double BoardXMin = findMin(x1, x2, x3, x4);
                         double BoardYMin = findMin(y1, y2, y3, y4);
-
+                        //if the click is within the bounds of a board piece, update board
                         if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
                             centerX <= BoardXMax) {
                             toAdd.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
-                            add ++;
+                            addToScore ++;
                         }
-
                     }
-
                 }
 
-                if(add == temporary.size()){
-                    playerScore += add;
+                if(addToScore == temporary.size()){
+                    playerScore += addToScore;
                     int x;
                     for(x = 0; x < toAdd.size(); x++){
                         tiles.push_back(toAdd[x]);
-
                     }
                 }
-
             }
         }
         glFlush();
 
     }
-    cout << playerScore;
+//------------------------------------------------**
     //------------------------------------------------**
     //Created by Liam OToole on 12/1/18
+    // Modified by Liam and Nick on multiple occasions
     // all checks for when the user clicks in the menu
     //------------------------------------------------**
     //if the user clicks a location
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN  && state != GLUT_UP && screen == game_play) {
-        //if the user clicks over the button, change the screen state
+        //if the user clicks over the button, change the screen state to game over
         if (mouse_x >= 700 && mouse_x <= 850 && mouse_y >= 850 && mouse_y <= 900) {
             screen = game_over;
         }
@@ -590,10 +592,10 @@ void mouse(int button, int state, int x, int y) {
         //if the user clicks on a shape, make it dragable
         if(pieces.size() != 0) { //if there are pieces to click
             for(int i=0; i < pieces.size(); ++i) { //for every piece on the board
-                vector<PieceCoordinate> temporary = pieces[i].getCordinates();
+                vector<PieceCoordinate> temporary = pieces[i].getCordinates(); //vector containing the cordinates of the piece
                 double x1, x2, x3, x4, y1, y2, y3, y4;
                 for(int j =0; j < temporary.size(); ++j) {
-                    //coordinates for a single tile
+                    //each coordinates for a single tile
                     x1 = temporary[j].x1;
                     x2 = temporary[j].x2;
                     x3 = temporary[j].x3;
@@ -637,23 +639,21 @@ void mouse(int button, int state, int x, int y) {
                                     //add to appropriate player vector
                                     if (player) { //if player, then human
                                         humanOnBoard.push_back(PieceCoordinate(x1, x2, x3, x4, y1, y2, y3, y4));
+                                        //update user score
                                         board.updateUserScore(humanOnBoard.size());
                                     } else {
                                         computerOnBoard.push_back(PieceCoordinate(x1, x2, x3, x4, y1, y2, y3, y4));
+                                        //update Computer score
                                         board.updateComputerScore(computerOnBoard.size());
                                     }
 
                                     //after tile is added to onBoard vector, set value in player hand vector to 0                                }
                                 }
-                                cout << "Hand Size: " << pieces.size() << endl; // Piece is there, but not visible
-                                cout << "Human vector: " << humanOnBoard.size() << endl;
                                 }
 
                         } else {
-                            cout << "piece click: " << pieces[i].getIsClicked() << endl;
                             //if click not within board, simply make the clicked piece dragable
                             isClicked[pieces[i].getIsClicked()] = pieces[i].getIsClicked();
-
                         }
                     }
                 }

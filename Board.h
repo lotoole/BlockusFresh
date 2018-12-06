@@ -29,7 +29,9 @@ public:
     void updateUserScore(int x);
     void updateComputerScore(int x);
     void drawScore();
-    void gameOverScore();
+    int getPlayerScore();
+    int getComputerScore();
+    void gameOverScore(int playerRawScore, int computerRawScore);
     void drawEndGameButton();
 
 private:

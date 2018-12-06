@@ -125,10 +125,24 @@ void Board::updateComputerScore(int x) {
     drawScore();
 }
 //------------------------------------------------**
+//Created by Liam OToole on 12/6/18
+// Return player score
+//------------------------------------------------**
+int Board::getPlayerScore() {
+    return userScore;
+}
+//------------------------------------------------**
+//Created by Liam OToole on 12/6/18
+// Return computer score
+//------------------------------------------------**
+int Board::getComputerScore() {
+    return computerScore;
+}
+//------------------------------------------------**
 //Created by Liam OToole on 11/29/18
 // Update score when computer places piece
 //------------------------------------------------**
-void Board::gameOverScore() {
+void Board::gameOverScore(int playerRawScore, int computerRawScore) {
     //Draw Player label
     string playerLabel = "Your Score:";
     glColor3f(1, 1, 1);
@@ -137,7 +151,7 @@ void Board::gameOverScore() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, playerLabel[i]);
     }
     //Draw Player Score
-    string playerScore = to_string(userScore);
+    string playerScore = to_string(playerRawScore);
     glColor3f(1, 1, 1);
     glRasterPos2i(400, 350);
     for (int i = 0; i < playerScore.length(); ++i) {
@@ -153,7 +167,7 @@ void Board::gameOverScore() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, computerLabel[i]);
     }
     //Draw Computer Score
-    string compScore = to_string(computerScore);
+    string compScore = to_string(computerRawScore);
     glColor3f(1, 1, 1);
     glRasterPos2i(400, 450);
     for (int i = 0; i < compScore.length(); ++i) {
