@@ -8,10 +8,12 @@
 using namespace std;
 
 
-
+//vector to store if a piece is clicked or not
 vector<int> isClicked(20,-1);
+//vector storing if piece has been rotated or not
 vector<int> angles(20,0);
 int add = 1;
+//player and computer scores
 int playerScore = 0;
 int computerScore = 0;
 
@@ -23,8 +25,8 @@ vector<Coordinate> tiles; // holds every tile on board
 vector<PieceCoordinate> humanOnBoard; // holds coordinates of all the human pieces on board
 vector<PieceCoordinate> computerOnBoard; // holds coordinates of all the computer pieces on board
 bool player = true; //if player = true, then human. If player = false, then computer
+//variables to track glut information
 GLdouble width, height;
-
 int wd;
 int mouse_x, mouse_y;
 //create a vector of pieces to keep track of
