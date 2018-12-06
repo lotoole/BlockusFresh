@@ -618,6 +618,7 @@ void Piece:: create_N(float x, float y, int orientation){
     glPopMatrix();
 
     isClicked = 7;
+    isClicked = 7;
 }
 
 void Piece:: create_Z4(float x, float y, int orientation){

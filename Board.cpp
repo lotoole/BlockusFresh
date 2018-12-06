@@ -112,15 +112,17 @@ void Board::drawEndGameButton() {
 //Created by Liam OToole on 11/29/18
 // Update score when user places piece
 //------------------------------------------------**
-void Board::updateUserScore() {
-
+void Board::updateUserScore(int x) {
+    userScore = userScore + x;
+    drawScore();
 }
 //------------------------------------------------**
 //Created by Liam OToole on 11/29/18
 // Update score when computer places piece
 //------------------------------------------------**
-void Board::updateComputerScore() {
-
+void Board::updateComputerScore(int x) {
+    computerScore = computerScore + x;
+    drawScore();
 }
 //------------------------------------------------**
 //Created by Liam OToole on 11/29/18

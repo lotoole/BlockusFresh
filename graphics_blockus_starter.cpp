@@ -11,11 +11,17 @@ using namespace std;
 vector<int> isClicked(20,-1);
 vector<int> angles(20,0);
 int add = 1;
+int playerScore = 0;
+int computerScore = 0;
 
-vector<Coordinate> boardVector;
+bool pieceFits();
+bool legalMove();
 
-vector<Coordinate> tiles;
-
+vector<Coordinate> boardVector; // holds every coordinate of board
+vector<Coordinate> tiles; // holds every tile on board
+vector<PieceCoordinate> humanOnBoard; // holds coordinates of all the human pieces on board
+vector<PieceCoordinate> computerOnBoard; // holds coordinates of all the computer pieces on board
+bool player = true; //if player = true, then human. If player = false, then computer
 GLdouble width, height;
 
 int wd;
@@ -132,8 +138,8 @@ void display_game() {
     addPiece(piecel4);
     int i;
     double x1, x2, x3, x4, y1, y2, y3, y4;
-    if (!tiles.empty()) {
-        for (i = 0; i < tiles.size(); i++) {
+    if (!tiles.empty()) { // This is where the coloring happens add to computer/human vectors
+        for (i = 0; i < tiles.size(); i++) { //for tiles to be colored in
             x1 = tiles[i].x1;
             x2 = tiles[i].x2;
             x3 = tiles[i].x3;
@@ -150,7 +156,6 @@ void display_game() {
             glVertex2f(x3, y3);
             glVertex2f(x4, y4);
             glEnd();
-
         }
     }
 
@@ -524,7 +529,7 @@ void mouse(int button, int state, int x, int y) {
                     if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
                         inboard = true;
                     }
-
+                    //Find the center for each tile in a piece and see if it's in the of a tile on the board
                     if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin && centerX <= BoardXMax) {
                             tiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
                     }
@@ -577,12 +582,36 @@ void mouse(int button, int state, int x, int y) {
                                 //if can not be added, unbound from mouse location and print at original location+
                                 Piece tempPiece = pieces[i];
                                 isClicked[pieces[i].getIsClicked()] = -1;
-                            } else {
+                            } else if(pieceFits()){
                                 //if can be added, remove from display, color in board tiles
                                 isClicked[pieces[i].getIsClicked()] = 777;
-                                //Want to remove piece from vector
-                                cout << pieces.size() << endl; // Piece is there, but not visible
-                            }
+
+                                vector<PieceCoordinate> temp = pieces[i].getCordinates();
+                                for(int j =0; j < temp.size(); ++j) {
+                                    //coordinates for a single tile
+                                    x1 = temporary[j].x1;
+                                    x2 = temporary[j].x2;
+                                    x3 = temporary[j].x3;
+                                    x4 = temporary[j].x4;
+                                    y1 = temporary[j].y1;
+                                    y2 = temporary[j].y2;
+                                    y3 = temporary[j].y3;
+                                    y4 = temporary[j].y4;
+
+                                    //add to appropriate player vector
+                                    if (player) { //if player, then human
+                                        humanOnBoard.push_back(PieceCoordinate(x1, x2, x3, x4, y1, y2, y3, y4));
+                                        board.updateUserScore(humanOnBoard.size());
+                                    } else {
+                                        computerOnBoard.push_back(PieceCoordinate(x1, x2, x3, x4, y1, y2, y3, y4));
+                                        board.updateComputerScore(computerOnBoard.size());
+                                    }
+
+                                    //after tile is added to onBoard vector, set value in player hand vector to 0                                }
+                                }
+                                cout << "Hand Size: " << pieces.size() << endl; // Piece is there, but not visible
+                                cout << "Human vector: " << humanOnBoard.size() << endl;
+                                }
 
                         } else {
                             cout << "piece click: " << pieces[i].getIsClicked() << endl;

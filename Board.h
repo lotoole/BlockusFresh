@@ -26,8 +26,8 @@ public:
     //Creates Board
     vector<Coordinate> drawBoard();
     //create score variables and methods
-    void updateUserScore();
-    void updateComputerScore();
+    void updateUserScore(int x);
+    void updateComputerScore(int x);
     void drawScore();
     void gameOverScore();
     void drawEndGameButton();
