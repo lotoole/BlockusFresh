@@ -10,8 +10,11 @@ using namespace std;
 
 vector<int> isClicked(20,-1);
 vector<int> angles(20,0);
+int add = 1;
 
 vector<Coordinate> boardVector;
+
+vector<Coordinate> tiles;
 
 GLdouble width, height;
 
@@ -123,6 +126,33 @@ void display_game() {
     //draw the users first set of pieces, first row
 
     addPiece(pieceO);
+    addPiece(piece1);
+    addPiece(piece2);
+    addPiece(piecel3);
+    addPiece(piecel4);
+    int i;
+    double x1, x2, x3, x4, y1, y2, y3, y4;
+    if (!tiles.empty()) {
+        for (i = 0; i < tiles.size(); i++) {
+            x1 = tiles[i].x1;
+            x2 = tiles[i].x2;
+            x3 = tiles[i].x3;
+            x4 = tiles[i].x4;
+            y1 = tiles[i].y1;
+            y2 = tiles[i].y2;
+            y3 = tiles[i].y3;
+            y4 = tiles[i].y4;
+            glBegin(GL_QUADS);
+            glColor3f(1, 1, 0);
+
+            glVertex2f(x1, y1);
+            glVertex2f(x2, y2);
+            glVertex2f(x3, y3);
+            glVertex2f(x4, y4);
+            glEnd();
+
+        }
+    }
 
     if(isClicked[0] == 0) {
         pieceO.create_O(mouse_x, mouse_y, angles[0]);
@@ -137,7 +167,6 @@ void display_game() {
     else {
         piece1.create_1(25, 250, angles[1]);
     }
-    addPiece(piece1);
 
     if(isClicked[2] == 2) {
         piece2.create_2(mouse_x, mouse_y, angles[2]);
@@ -145,7 +174,6 @@ void display_game() {
     else {
         piece2.create_2(25, 300, angles[2]);
     }
-    addPiece(piece2);
 
     if(isClicked[3] == 3) {
         piecel3.create_l3(mouse_x, mouse_y, angles[3]);
@@ -153,7 +181,6 @@ void display_game() {
     else {
         piecel3.create_l3(25, 350, angles[3]);
     }
-    addPiece(piecel3);
 
     if(isClicked[4] == 4) {
         piecel4.create_l4(mouse_x, mouse_y, angles[4]);
@@ -161,15 +188,15 @@ void display_game() {
     else {
         piecel4.create_l4(25, 400, angles[4]);
     }
-    addPiece(piecel4);
 
+    addPiece(piecel5);
     if(isClicked[5] == 5) {
         piecel5.create_l5(mouse_x, mouse_y, angles[5]);
     } else if(isClicked[5] == 777) {}
     else {
         piecel5.create_l5(25, 450, angles[5]);
     }
-    addPiece(piecel5);
+
 
     if(isClicked[6] == 6) {
         pieceY.create_Y(mouse_x, mouse_y, angles[6]);
@@ -419,9 +446,24 @@ void cursor(int x, int y) {
     //------------------------------------------------**
 
     mouse_x = x;
-    mouse_y = y + 2;
+    int add;
+    add = 980 - glutGet(GLUT_WINDOW_HEIGHT);
+    mouse_y = y + add;
 
     glutPostRedisplay();
+}
+
+//------------------------------------------------**
+//Created by Nick on 12/1/18
+// compare two struct's of coords
+//------------------------------------------------**
+
+bool compareCoordinate(Coordinate board, Coordinate piece){
+    if(board.x1 == piece.x1 && board.x2 == piece.x2 && board.x3 == piece.x3 && board.x4 == piece.x4){
+        return false;
+    }
+    return true;
+
 }
 
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
@@ -438,71 +480,61 @@ void mouse(int button, int state, int x, int y) {
     // Checks for clicks within the bounds of the board
     //------------------------------------------------**
     int i;
+    int j;
+    int k;
     double x1, x2, x3, x4, y1, y2, y3, y4;
-    double minX,minY,maxX,maxY;
-    minX=9999;
-    minY=9999;
-    maxX=0;
-    maxY=0;
+
     inboard = false;
 
     if (boardVector.size() != 0) {
-        for (i = 0; i <= boardVector.size(); i++){
+        for(i=0; i < pieces.size(); ++i) {
+            vector<PieceCoordinate> temporary = pieces[i].getCordinates();
+            double x1, x2, x3, x4, y1, y2, y3, y4;
+            for (j = 0; j < temporary.size(); ++j) {
 
-            x1 = boardVector[i].x1;
-            x2 = boardVector[i].x2;
-            x3 = boardVector[i].x3;
-            x4 = boardVector[i].x4;
-            y1 = boardVector[i].y1;
-            y2 = boardVector[i].y2;
-            y3 = boardVector[i].y3;
-            y4 = boardVector[i].y4;
+                x1 = temporary[j].x1;
+                x2 = temporary[j].x2;
+                x3 = temporary[j].x3;
+                x4 = temporary[j].x4;
+                y1 = temporary[j].y1;
+                y2 = temporary[j].y2;
+                y3 = temporary[j].y3;
+                y4 = temporary[j].y4;
 
-            double xMax = findMax(x1, x2, x3, x4);
-            double yMax = findMax(y1, y2, y3, y4);
-            double xMin = findMin(x1, x2, x3, x4);
-            double yMin = findMin(y1, y2, y3, y4);
+                double centerX = (x1 + x2 + x4) / 3;
+                double centerY = (y1 + y2 + y4) / 3;
 
-            if(xMax > maxX){
-                maxX = xMax;
+                for (k = 0; k <= boardVector.size(); k++) {
+
+                    x1 = boardVector[k].x1;
+                    x2 = boardVector[k].x2;
+                    x3 = boardVector[k].x3;
+                    x4 = boardVector[k].x4;
+                    y1 = boardVector[k].y1;
+                    y2 = boardVector[k].y2;
+                    y3 = boardVector[k].y3;
+                    y4 = boardVector[k].y4;
+
+                    double BoardXMax = findMax(x1, x2, x3, x4);
+                    double BoardYMax = findMax(y1, y2, y3, y4);
+                    double BoardXMin = findMin(x1, x2, x3, x4);
+                    double BoardYMin = findMin(y1, y2, y3, y4);
+
+
+                    if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
+                        inboard = true;
+                    }
+
+                    if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin && centerX <= BoardXMax) {
+                            tiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+                    }
+                }
+
             }
-            if(yMax > maxY){
-                maxY = yMax;
-            }
-            if(xMin < minX){
-                minX = xMin;
-            }
-            if(yMin < minY){
-                minY = yMin;
-            }
-
-
-            if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
-
-                glBegin(GL_QUADS);
-                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-                glColor3f(1.0, 1.0, 1.0);
-
-                glVertex3f(x1, y1, 0.0);
-                glVertex3f(x2, y2, 0.0);
-                glVertex3f(x3, y3, 0.0);
-                glVertex3f(x4, y4, 0.0);
-                glEnd();
-                inboard = true;
-
-            }
-
 
         }
-
-
-       
-
         glFlush();
     }
-
-
-
     //------------------------------------------------**
     //Created by Liam OToole on 12/1/18
     // all checks for when the user clicks in the menu
@@ -545,15 +577,13 @@ void mouse(int button, int state, int x, int y) {
                                 //if can not be added, unbound from mouse location and print at original location+
                                 Piece tempPiece = pieces[i];
                                 isClicked[pieces[i].getIsClicked()] = -1;
-
-
-                                //now redraw at original location
-                            } else if(legalMove() && pieceFits()){ // if the move is legal and the piece fits in the location
+                            } else {
                                 //if can be added, remove from display, color in board tiles
                                 isClicked[pieces[i].getIsClicked()] = 777;
                                 //Want to remove piece from vector
                                 cout << pieces.size() << endl; // Piece is there, but not visible
                             }
+
                         } else {
                             cout << "piece click: " << pieces[i].getIsClicked() << endl;
                             //if click not within board, simply make the clicked piece dragable
