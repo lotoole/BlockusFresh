@@ -10,6 +10,7 @@ using namespace std;
 #ifndef GRAPHICS_STARTER_BOARD_H
 #define GRAPHICS_STARTER_BOARD_H
 
+//holds 4 coordinate pairs for each tile
 struct Coordinate
 {
     double x1, y1, x2, y2, x3, y3, x4, y4;

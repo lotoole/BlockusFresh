@@ -18,11 +18,15 @@ Board::~Board(){
 
 vector<Coordinate> Board::drawBoard() {
 
+    //create vector to hold cordinates for board
     vector<Coordinate> coords;
 
+    //set color and size for board
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glColor3f(1.0, 0.0, 0.0);
     int xsize = 0, ysize = 300;
+
+    //draw board tile by tile
     for (int j = 0; j < 20; j++) {
         xsize = 200;
         for (int i = 0; i < 20; i++) {
@@ -32,6 +36,7 @@ vector<Coordinate> Board::drawBoard() {
             glVertex3f(xsize + 80, 100 + ysize, 0.0);
             glVertex3f(xsize + 80, 80 + ysize, 0.0);
             glVertex3f(xsize + 100, 80 + ysize, 0.0);
+            //add tile coordinates to vector
             coords.push_back(Coordinate(100.0 + xsize, 100 + ysize, xsize + 80,100 + ysize,xsize + 80 ,80 + ysize,xsize + 100,80 + ysize));
 
             glEnd();
@@ -41,6 +46,7 @@ vector<Coordinate> Board::drawBoard() {
         ysize += 20.0;
     }
 
+    //return vector of cordniates
     return coords;
 
 }

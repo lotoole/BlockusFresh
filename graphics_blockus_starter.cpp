@@ -17,13 +17,13 @@ vector<Coordinate> cornerTiles;
 //vector to hold corner pieces that may be addedd
 vector<Coordinate> cornerToAdd;
 
-int add = 1;
-
 //player and computer scores
 int playerScore = 0;
 int computerScore = 0;
 //integer to track current gameplay move
 int moveNumber = 1;
+
+//checks to see if corner piece or not
 bool isCorner = false;
 
 bool pieceFits();
@@ -151,6 +151,8 @@ void display_game() {
     addPiece(piece2);
     addPiece(piecel3);
     addPiece(piecel4);
+
+
     int i;
     double x1, x2, x3, x4, y1, y2, y3, y4;
     if (!tiles.empty()) { // This is where the coloring happens add to computer/human vectors
@@ -166,6 +168,8 @@ void display_game() {
             glBegin(GL_QUADS);
             glColor3f(1, 1, 0);
 
+            //color in tiles on the board
+
             glVertex2f(x1, y1);
             glVertex2f(x2, y2);
             glVertex2f(x3, y3);
@@ -175,6 +179,7 @@ void display_game() {
         }
     }
 
+    //checks to see if piece is being dragged or not, for all pieces
     if(isClicked[0] == 0) {
         pieceO.create_O(mouse_x, mouse_y, angles[0]);
     } else if(isClicked[0] == 777) {} //do nothing
@@ -344,8 +349,8 @@ void display_game() {
     //draw the board
     Board board;
     boardVector = board.drawBoard();
-    //now draw score
 
+    //now draw score
     board.updateUserScore(playerScore);
     board.updateComputerScore(computerScore);
     board.drawScore();
@@ -505,8 +510,8 @@ void mouse(int button, int state, int x, int y) {
         screen = game_play;
     }
 
-//------------------**Begin of updateVariables
-//This section simply for updating variables to decide what actions to take
+    //------------------**Begin of updateVariables
+    //This section simply for updating variables to decide what actions to take
 
     //Created by Nick on 12/1/18
     // Checks for clicks within the bounds of the board and places pieces
@@ -517,7 +522,9 @@ void mouse(int button, int state, int x, int y) {
     int k;
     int w;
 
+    //stores coordinates
     double x1, x2, x3, x4, y1, y2, y3, y4;
+    //vector to hold tiles that may be added to board
     vector<Coordinate> toAdd;
     //boolean to check if the click was within the bounds of the board
     inboard = false;
@@ -526,20 +533,19 @@ void mouse(int button, int state, int x, int y) {
         for (k = 0; k <= boardVector.size(); k++) { // loop through cordinates of each tile of entire board
             x1 = boardVector[k].x1;
             x2 = boardVector[k].x2;
-            y1 = boardVector[k].y1;
-            y3 = boardVector[k].y3;
-            // if the click is within the bounds of board, update boolean
-            if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
-                inboard = true;
-            }
-            x1 = boardVector[k].x1;
-            x2 = boardVector[k].x2;
             x3 = boardVector[k].x3;
             x4 = boardVector[k].x4;
             y1 = boardVector[k].y1;
             y2 = boardVector[k].y2;
             y3 = boardVector[k].y3;
             y4 = boardVector[k].y4;
+
+            // if the click is within the bounds of board, update boolean
+            if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
+                inboard = true;
+            }
+
+            //adds all corner tile coordinates to vector
             if(k == 0) {
                 cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
             } else if (k == 19) {
@@ -553,8 +559,8 @@ void mouse(int button, int state, int x, int y) {
 
     }
     //integer to track adition to score
-    //*****************************************this loop confuses me
     int addToScore;
+    //checks legal placement upoun click inside board
     legalPlacement = true;
     if (boardVector.size() != 0 && inboard == true) {
         for(i=0; i < pieces.size(); ++i) { //loop through all the pieces on the board
@@ -563,7 +569,7 @@ void mouse(int button, int state, int x, int y) {
                 addToScore = 0;
                 vector<PieceCoordinate> currentPiece = pieces[i].getCordinates();
                 double x1, x2, x3, x4, y1, y2, y3, y4;
-
+                //loop through all tiles in current piece
                 for (j = 0; j < currentPiece.size(); ++j) {
 
                     x1 = currentPiece[j].x1;
@@ -635,6 +641,7 @@ void mouse(int button, int state, int x, int y) {
                         }
                     } else {
 
+                        //if not move 1 or 2 set to true
                         isCorner = true;
                     }
 
@@ -659,7 +666,7 @@ void mouse(int button, int state, int x, int y) {
                             toAdd.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
                             addToScore ++;
                         }
-
+                        //if a tile in a piece is not within the bounds of the board set legalPlacement to false
                         for(w = 0; w < tiles.size();w++){
                             x1 = tiles[w].x1;
                             x2 = tiles[w].x2;
@@ -683,7 +690,7 @@ void mouse(int button, int state, int x, int y) {
                     }
 
                 }
-                //if its the players secon turn see if the piece can be added to corner
+                //if its the players second turn see if the piece can be added to corner
                 if(moveNumber == 2 && isCorner) {
                     int i;
                     for (i = 0; i <= cornerToAdd.size(); i++) {
@@ -721,7 +728,7 @@ void mouse(int button, int state, int x, int y) {
                                 toAdd.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
                                 addToScore++;
                             }
-
+                            //if a tile in a piece is not within the bounds of the board set legalPlacement to flase
                             for (w = 0; w < tiles.size(); w++) {
                                 x1 = tiles[w].x1;
                                 x2 = tiles[w].x2;
@@ -748,14 +755,20 @@ void mouse(int button, int state, int x, int y) {
                     }
                 }
 
+                //------------------------------------------------**
+                //Created by Nick and Liam on 12/7/18
+                // only placing pieces on the edge of your piece
+                //------------------------------------------------**
                 if(legalPlacement && moveNumber != 1 && moveNumber != 2){
                     legalPlacement = false;
+                    //tracks the number of vertex matches between two tiles
                     int vertexMatches = 0;
 
                     int i;
                     int j;
                     double Tx1, Tx2, Tx3, Tx4, Ty1, Ty2, Ty3, Ty4;
 
+                    //loops through tiles that may be added
                     for(j = 0; j < toAdd.size(); j++) {
 
                         Tx1 = toAdd[j].x1;
@@ -766,9 +779,8 @@ void mouse(int button, int state, int x, int y) {
                         Ty2 = toAdd[j].y2;
                         Ty3 = toAdd[j].y3;
                         Ty4 = toAdd[j].y4;
-
+                        //loops through all the tiles on the board
                         for (i = 0; i < tiles.size(); i++) {
-                            //loops through all tiles on the board
                             x1 = tiles[i].x1;
                             x2 = tiles[i].x2;
                             x3 = tiles[i].x3;
@@ -778,6 +790,7 @@ void mouse(int button, int state, int x, int y) {
                             y3 = tiles[i].y3;
                             y4 = tiles[i].y4;
 
+                            //checks for matching vertexs
                             if((Tx1 == x1 && Ty1 == y1) || (Tx1 == x2 && Ty1 == y2) || (Tx1 == x3 && Ty1 == y3) || (Tx1 == x4 && Ty1 == y4)){
                                 legalPlacement = true;
                                 vertexMatches++;
@@ -794,7 +807,7 @@ void mouse(int button, int state, int x, int y) {
                                 legalPlacement = true;
                                 vertexMatches++;
                             }
-
+                            //if more or less then one vertx match, dont add to board
                             if(vertexMatches != 1){
                                 legalPlacement = false;
                             }
@@ -802,6 +815,8 @@ void mouse(int button, int state, int x, int y) {
                     }
                 }
 
+                //checks that all tiles in the piece passed all checks
+                //if passed update score and board accordingly
                 if(addToScore == currentPiece.size() && legalPlacement){
                     playerScore += addToScore;
                     int x;
@@ -901,21 +916,6 @@ void mouse(int button, int state, int x, int y) {
     glutPostRedisplay();
 }
 
-//------------------------------------------------**
-//Created by Monique Demers on 12/4/2018
-// determines if a piece fits within the clicked location
-//------------------------------------------------**
-bool pieceFits(){
-    return true;
-}
-
-//------------------------------------------------**
-//Created by Monique Demers
-// Determines if a move is legal
-//------------------------------------------------**
-bool legalMove(){
-    return true;
-}
 
 void timer(int extra) {
     
@@ -925,30 +925,6 @@ void timer(int extra) {
 
 /* Main function: GLUT runs as a console application starting at main()  */
 int main(int argc, char** argv) {
-    //Player testing
-    /*
-    Player human;
-    cout << "Player Test - Human" << endl;
-    cout << "Human (True/False): " << boolalpha << human.getHuman() << endl;
-    cout << "Player Name: " << human.getName() << endl;
-    cout << "Player Score: " << human.getScore() << endl;
-
-    //Computer testing
-    Computer computer;
-    cout << "\nPlayer Test - Computer" << endl;
-    cout << "Human (True/False): " << boolalpha << computer.getHuman() << endl;
-    cout << "Player Name: " << computer.getName() << endl;
-    cout << "Player Score: " << computer.getScore() << endl;
-
-    //Player Setters and addToScore Testing
-    cout << "\nPlayer Test - Setters" << endl;
-    human.setName("Monique");
-    human.setScore(100);
-    cout << "Human Name: " << human.getName() << endl;
-    cout << "Player Score: " << human.getScore() << endl;
-    human.addToScore(5);
-    cout << "Player Score: " << human.getScore() << endl;
-    */
     init();
 
     glutInit(&argc, argv);          // Initialize GLUT
