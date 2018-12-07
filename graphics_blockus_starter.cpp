@@ -12,10 +12,15 @@ using namespace std;
 vector<int> isClicked(20,-1);
 //vector storing if piece has been rotated or not
 vector<int> angles(20,0);
+//vector to hold board corner tiles
+vector<Coordinate> cornerTiles;
+
 int add = 1;
 //player and computer scores
 int playerScore = 0;
 int computerScore = 0;
+//integer to track current gameplay move
+int moveNumber = 1;
 
 bool pieceFits();
 bool legalMove();
@@ -84,6 +89,9 @@ void init() {
 void addPiece(Piece piece) {
     pieces.push_back(piece);
 
+}
+void getCornerTile(int i) {
+    
 }
 //------------------------------------------------**
 //Created by Liam OToole on 12/2/18
@@ -477,7 +485,6 @@ bool compareCoordinate(Coordinate board, Coordinate piece){
         return false;
     }
     return true;
-
 }
 
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
@@ -529,20 +536,19 @@ void mouse(int button, int state, int x, int y) {
             if (isClicked[i] == i) {
                 pieces[i].getCordinates(); //get cordinates of each tile in the sepcific piece
                 addToScore = 0;
-                vector<PieceCoordinate> temporary = pieces[i].getCordinates();
+                vector<PieceCoordinate> currentPiece = pieces[i].getCordinates();
                 double x1, x2, x3, x4, y1, y2, y3, y4;
 
-                for (j = 0; j < temporary.size(); ++j) {
+                for (j = 0; j < currentPiece.size(); ++j) {
 
-                    cout << temporary.size();
-                    x1 = temporary[j].x1;
-                    x2 = temporary[j].x2;
-                    x3 = temporary[j].x3;
-                    x4 = temporary[j].x4;
-                    y1 = temporary[j].y1;
-                    y2 = temporary[j].y2;
-                    y3 = temporary[j].y3;
-                    y4 = temporary[j].y4;
+                    x1 = currentPiece[j].x1;
+                    x2 = currentPiece[j].x2;
+                    x3 = currentPiece[j].x3;
+                    x4 = currentPiece[j].x4;
+                    y1 = currentPiece[j].y1;
+                    y2 = currentPiece[j].y2;
+                    y3 = currentPiece[j].y3;
+                    y4 = currentPiece[j].y4;
 
                     //calcuate the center location of the tile
                     double centerX = (x1 + x2 + x4) / 3;
@@ -557,6 +563,16 @@ void mouse(int button, int state, int x, int y) {
                         y2 = boardVector[k].y2;
                         y3 = boardVector[k].y3;
                         y4 = boardVector[k].y4;
+                        // Checks if the piece is a corner piece
+                        if(k == 0) {
+                            cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+                        } else if (k == 19) {
+                            cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+                        } else if (k == 380) {
+                            cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+                        } else if (k == 399) {
+                            cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+                        }
 
                         double BoardXMax = findMax(x1, x2, x3, x4);
                         double BoardYMax = findMax(y1, y2, y3, y4);
@@ -584,15 +600,19 @@ void mouse(int button, int state, int x, int y) {
                             double BoardYMin = findMin(y1, y2, y3, y4);
 
                             if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
-                                centerX <= BoardXMax) {
+                                centerX <= BoardXMax && moveNumber != 1 && moveNumber != 2) {
                                 //if all pieces are empty, illegal placement is false
                                 legalPlacement = false;
                             }
+                            else if(moveNumber == 1) {
+
+                            }
+
                         }
                     }
                 }
 
-                if(addToScore == temporary.size() && legalPlacement){
+                if(addToScore == currentPiece.size() && legalPlacement){
                     playerScore += addToScore;
                     int x;
                     for(x = 0; x < toAdd.size(); x++){
@@ -649,7 +669,6 @@ void mouse(int button, int state, int x, int y) {
                             if(legalPlacement) {
                                 //if can be added, remove from display, color in board tiles
                                 isClicked[pieces[i].getIsClicked()] = 777;
-
                                 vector<PieceCoordinate> temp = pieces[i].getCordinates();
                                 for(int j =0; j < temp.size(); ++j) {
                                     //coordinates for a single tile
@@ -672,11 +691,8 @@ void mouse(int button, int state, int x, int y) {
                                         //update Computer score
                                         board.updateComputerScore(computerOnBoard.size());
                                     }
-
-                                    //after tile is added to onBoard vector, set value in player hand vector to 0                                }
                                 }
                             }
-
                         } else {
                             //if click not within board, simply make the clicked piece dragable
                             isClicked[pieces[i].getIsClicked()] = pieces[i].getIsClicked();
