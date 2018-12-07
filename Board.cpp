@@ -117,6 +117,7 @@ void Board::drawEndGameButton() {
 //------------------------------------------------**
 //Created by Liam OToole on 11/29/18
 // Update score when user places piece
+// Modified by Monique Demers
 //------------------------------------------------**
 void Board::updateUserScore(int x) {
     userScore = userScore + x;
@@ -125,6 +126,7 @@ void Board::updateUserScore(int x) {
 //------------------------------------------------**
 //Created by Liam OToole on 11/29/18
 // Update score when computer places piece
+// Modified by Monique Demers
 //------------------------------------------------**
 void Board::updateComputerScore(int x) {
     computerScore = computerScore + x;
