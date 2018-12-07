@@ -604,10 +604,46 @@ void mouse(int button, int state, int x, int y) {
                                 //if all pieces are empty, illegal placement is false
                                 legalPlacement = false;
                             }
+                            //if first move of the game, ensure one of the tiles is filling the bottom left corner
                             else if(moveNumber == 1) {
+                                //get the cordinates of the corner tile
+                                x1 = cornerTiles[2].x1;
+                                x1 = cornerTiles[2].x1;
+                                x2 = cornerTiles[2].x2;
+                                x3 = cornerTiles[2].x3;
+                                x4 = cornerTiles[2].x4;
+                                y1 = cornerTiles[2].y1;
+                                y2 = cornerTiles[2].y2;
+                                y3 = cornerTiles[2].y3;
+                                y4 = cornerTiles[2].y4;
+                                //get the max of the vertexs
+                                double BoardXMax = findMax(x1, x2, x3, x4);
+                                double BoardYMax = findMax(y1, y2, y3, y4);
+                                double BoardXMin = findMin(x1, x2, x3, x4);
+                                double BoardYMin = findMin(y1, y2, y3, y4);
+                                //now check if a corner piece is going to be filled
+                                
+                            }
+                            //if second move of the game, ensure one of the tiles is filling the top right corner
+                            else if(moveNumber == 2) {
+                                //get the cordinates of the corner tile
+                                x1 = cornerTiles[1].x1;
+                                x1 = cornerTiles[1].x1;
+                                x2 = cornerTiles[1].x2;
+                                x3 = cornerTiles[1].x3;
+                                x4 = cornerTiles[1].x4;
+                                y1 = cornerTiles[1].y1;
+                                y2 = cornerTiles[1].y2;
+                                y3 = cornerTiles[1].y3;
+                                y4 = cornerTiles[1].y4;
+                                //get the max of the vertexs
+                                double BoardXMax = findMax(x1, x2, x3, x4);
+                                double BoardYMax = findMax(y1, y2, y3, y4);
+                                double BoardXMin = findMin(x1, x2, x3, x4);
+                                double BoardYMin = findMin(y1, y2, y3, y4);
+                                //now check if a corner piece is going to be filled
 
                             }
-
                         }
                     }
                 }
