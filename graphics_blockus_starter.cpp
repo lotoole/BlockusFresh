@@ -21,6 +21,7 @@ int playerScore = 0;
 int computerScore = 0;
 //integer to track current gameplay move
 int moveNumber = 1;
+bool isCorner = false;
 
 bool pieceFits();
 bool legalMove();
@@ -472,6 +473,7 @@ void cursor(int x, int y) {
     int screenOffset;
     screenOffset = 980 - glutGet(GLUT_WINDOW_HEIGHT);
     mouse_y = y + screenOffset;
+//    cout << mouse_x << ", " << mouse_y << endl;
 
     glutPostRedisplay();
 }
@@ -526,7 +528,26 @@ void mouse(int button, int state, int x, int y) {
             if (y1 >= mouse_y && y3 <= mouse_y && mouse_x >= x2 && mouse_x <= x1) {
                 inboard = true;
             }
-        }}
+            x1 = boardVector[k].x1;
+            x2 = boardVector[k].x2;
+            x3 = boardVector[k].x3;
+            x4 = boardVector[k].x4;
+            y1 = boardVector[k].y1;
+            y2 = boardVector[k].y2;
+            y3 = boardVector[k].y3;
+            y4 = boardVector[k].y4;
+            if(k == 0) {
+                cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+            } else if (k == 19) {
+                cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+            } else if (k == 380) {
+                cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+            } else if (k == 399) {
+                cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+            }
+        }
+
+    }
     //integer to track adition to score
     //*****************************************this loop confuses me
     int addToScore;
@@ -553,6 +574,51 @@ void mouse(int button, int state, int x, int y) {
                     //calcuate the center location of the tile
                     double centerX = (x1 + x2 + x4) / 3;
                     double centerY = (y1 + y2 + y4) / 3;
+                    //check if the center x and y is within the corner tile, if so set inCorner to true
+                    if(moveNumber == 1) {
+                        //get the cordinates of the corner tile
+                        x1 = cornerTiles[2].x1;
+                        x2 = cornerTiles[2].x2;
+                        x3 = cornerTiles[2].x3;
+                        x4 = cornerTiles[2].x4;
+                        y1 = cornerTiles[2].y1;
+                        y2 = cornerTiles[2].y2;
+                        y3 = cornerTiles[2].y3;
+                        y4 = cornerTiles[2].y4;
+                        //get the max of the vertexs
+                        double BoardXMax = findMax(x1, x2, x3, x4);
+                        double BoardYMax = findMax(y1, y2, y3, y4);
+                        double BoardXMin = findMin(x1, x2, x3, x4);
+                        double BoardYMin = findMin(y1, y2, y3, y4);
+                        //now check if a corner piece is going to be filled
+                        if(BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
+                           centerX <= BoardXMax) {
+                            isCorner = true;
+                        }
+                    } else if (moveNumber == 2) {
+                        //get the cordinates of the corner tile
+                        x1 = cornerTiles[1].x1;
+                        x2 = cornerTiles[1].x2;
+                        x3 = cornerTiles[1].x3;
+                        x4 = cornerTiles[1].x4;
+                        y1 = cornerTiles[1].y1;
+                        y2 = cornerTiles[1].y2;
+                        y3 = cornerTiles[1].y3;
+                        y4 = cornerTiles[1].y4;
+                        //get the max of the vertexs
+                        double BoardXMax = findMax(x1, x2, x3, x4);
+                        double BoardYMax = findMax(y1, y2, y3, y4);
+                        double BoardXMin = findMin(x1, x2, x3, x4);
+                        double BoardYMin = findMin(y1, y2, y3, y4);
+                        //now check if a corner piece is going to be filled
+                        if(BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
+                           centerX <= BoardXMax) {
+                            isCorner = true;
+                        }
+                    } else {
+                        isCorner = true;
+                    }
+
                     for (k = 0; k <= boardVector.size(); k++) { //loop through vector of board tile locations
 
                         x1 = boardVector[k].x1;
@@ -563,16 +629,6 @@ void mouse(int button, int state, int x, int y) {
                         y2 = boardVector[k].y2;
                         y3 = boardVector[k].y3;
                         y4 = boardVector[k].y4;
-                        // Checks if the piece is a corner piece
-                        if(k == 0) {
-                            cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
-                        } else if (k == 19) {
-                            cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
-                        } else if (k == 380) {
-                            cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
-                        } else if (k == 399) {
-                            cornerTiles.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
-                        }
 
                         double BoardXMax = findMax(x1, x2, x3, x4);
                         double BoardYMax = findMax(y1, y2, y3, y4);
@@ -580,7 +636,7 @@ void mouse(int button, int state, int x, int y) {
                         double BoardYMin = findMin(y1, y2, y3, y4);
                         //if the click is within the bounds of a board piece, update board
                         if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
-                            centerX <= BoardXMax) {
+                            centerX <= BoardXMax && isCorner) {
                             toAdd.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
                             addToScore ++;
                         }
@@ -603,46 +659,6 @@ void mouse(int button, int state, int x, int y) {
                                 centerX <= BoardXMax) {
                                 //if all pieces are empty, illegal placement is false
                                 legalPlacement = false;
-                            }
-                            //if first move of the game, ensure one of the tiles is filling the bottom left corner
-                            else if(moveNumber == 1) {
-                                //get the cordinates of the corner tile
-                                x1 = cornerTiles[2].x1;
-                                x1 = cornerTiles[2].x1;
-                                x2 = cornerTiles[2].x2;
-                                x3 = cornerTiles[2].x3;
-                                x4 = cornerTiles[2].x4;
-                                y1 = cornerTiles[2].y1;
-                                y2 = cornerTiles[2].y2;
-                                y3 = cornerTiles[2].y3;
-                                y4 = cornerTiles[2].y4;
-                                //get the max of the vertexs
-                                double BoardXMax = findMax(x1, x2, x3, x4);
-                                double BoardYMax = findMax(y1, y2, y3, y4);
-                                double BoardXMin = findMin(x1, x2, x3, x4);
-                                double BoardYMin = findMin(y1, y2, y3, y4);
-                                //now check if a corner piece is going to be filled
-                                
-                            }
-                            //if second move of the game, ensure one of the tiles is filling the top right corner
-                            else if(moveNumber == 2) {
-                                //get the cordinates of the corner tile
-                                x1 = cornerTiles[1].x1;
-                                x1 = cornerTiles[1].x1;
-                                x2 = cornerTiles[1].x2;
-                                x3 = cornerTiles[1].x3;
-                                x4 = cornerTiles[1].x4;
-                                y1 = cornerTiles[1].y1;
-                                y2 = cornerTiles[1].y2;
-                                y3 = cornerTiles[1].y3;
-                                y4 = cornerTiles[1].y4;
-                                //get the max of the vertexs
-                                double BoardXMax = findMax(x1, x2, x3, x4);
-                                double BoardYMax = findMax(y1, y2, y3, y4);
-                                double BoardXMin = findMin(x1, x2, x3, x4);
-                                double BoardYMin = findMin(y1, y2, y3, y4);
-                                //now check if a corner piece is going to be filled
-
                             }
                         }
                     }
@@ -702,7 +718,11 @@ void mouse(int button, int state, int x, int y) {
                         //check if clicking within bounds of the board,
                         if(inboard) {
                             //if the move is legal, add to board
-                            if(legalPlacement) {
+                            if(legalPlacement && isCorner) {
+                                //reset is corner
+                                isCorner = false;
+                                cout << "legal placement loop entered" << endl;
+                                moveNumber++;
                                 //if can be added, remove from display, color in board tiles
                                 isClicked[pieces[i].getIsClicked()] = 777;
                                 vector<PieceCoordinate> temp = pieces[i].getCordinates();
