@@ -20,6 +20,7 @@ int computerScore = 0;
 bool pieceFits();
 bool legalMove();
 
+bool legalPlacement = true;
 vector<Coordinate> boardVector; // holds every coordinate of board
 vector<Coordinate> tiles; // holds every tile on board
 vector<PieceCoordinate> humanOnBoard; // holds coordinates of all the human pieces on board
@@ -65,7 +66,6 @@ Piece pieceU(1,1,0);
 Piece pieceF(1,1,0);
 //bool to see if a click was within the bounds of the board
 bool inboard = false;
-bool collision = false;
 
 //------------------------------------------------**
 //Modified by Liam OToole on 11/27/18
@@ -492,7 +492,9 @@ void mouse(int button, int state, int x, int y) {
         screen = game_play;
     }
 
-//------------------------------------------------**
+//------------------**Begin of updateVariables
+//This section simply for updating variables to decide what actions to take
+
     //Created by Nick on 12/1/18
     // Checks for clicks within the bounds of the board and places pieces
     //------------------------------------------------**
@@ -501,6 +503,7 @@ void mouse(int button, int state, int x, int y) {
     int j;
     int k;
     int w;
+
     double x1, x2, x3, x4, y1, y2, y3, y4;
     vector<Coordinate> toAdd;
     //boolean to check if the click was within the bounds of the board
@@ -520,7 +523,7 @@ void mouse(int button, int state, int x, int y) {
     //integer to track adition to score
     //*****************************************this loop confuses me
     int addToScore;
-    bool check = true;
+    legalPlacement = true;
     if (boardVector.size() != 0 && inboard == true) {
         for(i=0; i < pieces.size(); ++i) { //loop through all the pieces on the board
             if (isClicked[i] == i) {
@@ -582,13 +585,14 @@ void mouse(int button, int state, int x, int y) {
 
                             if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
                                 centerX <= BoardXMax) {
-                                check = false;
+                                //if all pieces are empty, illegal placement is false
+                                legalPlacement = false;
                             }
                         }
                     }
                 }
 
-                if(addToScore == temporary.size() && check){
+                if(addToScore == temporary.size() && legalPlacement){
                     playerScore += addToScore;
                     int x;
                     for(x = 0; x < toAdd.size(); x++){
@@ -600,7 +604,8 @@ void mouse(int button, int state, int x, int y) {
         glFlush();
 
     }
-//------------------------------------------------**
+//------------------**End of updateVariables
+//------------------**Take action in response to variables
     //------------------------------------------------**
     //Created by Liam OToole on 12/1/18
     // Modified by Liam and Nick on multiple occasions
@@ -640,11 +645,8 @@ void mouse(int button, int state, int x, int y) {
                         //------------------------------------------------**
                         //check if clicking within bounds of the board,
                         if(inboard) {
-                            if(!check) {
-                                //if can not be added, unbound from mouse location and print at original location+
-                                Piece tempPiece = pieces[i];
-                                isClicked[pieces[i].getIsClicked()] = -1;
-                            } else if(pieceFits()){
+                            //if the move is legal, add to board
+                            if(legalPlacement) {
                                 //if can be added, remove from display, color in board tiles
                                 isClicked[pieces[i].getIsClicked()] = 777;
 
@@ -673,7 +675,7 @@ void mouse(int button, int state, int x, int y) {
 
                                     //after tile is added to onBoard vector, set value in player hand vector to 0                                }
                                 }
-                                }
+                            }
 
                         } else {
                             //if click not within board, simply make the clicked piece dragable
@@ -684,6 +686,7 @@ void mouse(int button, int state, int x, int y) {
             }
         }
     }
+//------------------**End of Take action in response to variables
 
     glutPostRedisplay();
 }

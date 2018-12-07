@@ -11,43 +11,61 @@ Piece::Piece(){
 Piece::~Piece(){
 
 }
-
+//------------------------------------------------**
+//Created by Will on 11/13/18
+//------------------------------------------------**
 Piece::Piece(float r, float g, float b){
     color.push_back(r);
     color.push_back(g);
     color.push_back(b);
 }
-
+//------------------------------------------------**
+//Created by Will on 11/13/18
+//------------------------------------------------**
 void Piece::setColor(float r, float g, float b) {
     color[0] = r;
     color[1] = g;
     color[2] = b;
 }
-
+//------------------------------------------------**
+//Created by Liam
+//------------------------------------------------**
 void Piece::setCordinates(double x1, double y1, double x2, double y2, double x3, double y3,double x4,double y4) {
     cordinates.push_back(PieceCoordinate(x1,y1, x2, y2, x3, y3, x4, y4));
 }
-
+//------------------------------------------------**
+//Created by Liam
+//------------------------------------------------**
 void Piece::setIsClicked(int test) {
     isClicked = test;
 }
-
+//------------------------------------------------**
+//Created by Liam
+//------------------------------------------------**
 int Piece::getIsClicked() {
     return isClicked;
 }
-
+//------------------------------------------------**
+//Created by Liam
+//------------------------------------------------**
 vector<PieceCoordinate> Piece::getCordinates() {
-
     return cordinates;
 }
-
+//------------------------------------------------**
+//Created by Will
+//------------------------------------------------**
 void Piece::create_O(float x, float y, int orientation){
+    //------------------------------------------------**
+    //All piece rotations Created by Will
+    //------------------------------------------------**
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glTranslatef(x,y,0);
     glRotatef(orientation, 0, 0, 1);
     glTranslatef(-x,-y,0);
-
+    //------------------------------------------------**
+    //All piece drawings Created by Will
+    //------------------------------------------------**
     glBegin(GL_QUADS);
     glColor3f(color[0], color[1], color[2]);
 
@@ -75,6 +93,9 @@ void Piece::create_O(float x, float y, int orientation){
     glVertex2f(x, y);
     glVertex2f(-tileSize + x, y);
 
+    //------------------------------------------------**
+    //All piece cordinate tracking created by Liam
+    //------------------------------------------------**
     //clear cordinates
     cordinates.clear();
     //add the cordinates for each tile
@@ -113,7 +134,7 @@ void Piece::create_O(float x, float y, int orientation){
     glEnd();
 
     glPopMatrix();
-
+    //set the isclicked value for each piece
     isClicked = 0;
 
 }
