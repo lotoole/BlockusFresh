@@ -492,6 +492,7 @@ bool compareCoordinate(Coordinate board, Coordinate piece){
     return true;
 }
 
+
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
@@ -746,6 +747,61 @@ void mouse(int button, int state, int x, int y) {
                         }
                     }
                 }
+
+                if(legalPlacement && moveNumber != 1 && moveNumber != 2){
+                    legalPlacement = false;
+                    int vertexMatches = 0;
+
+                    int i;
+                    int j;
+                    double Tx1, Tx2, Tx3, Tx4, Ty1, Ty2, Ty3, Ty4;
+
+                    for(j = 0; j < toAdd.size(); j++) {
+
+                        Tx1 = toAdd[j].x1;
+                        Tx2 = toAdd[j].x2;
+                        Tx3 = toAdd[j].x3;
+                        Tx4 = toAdd[j].x4;
+                        Ty1 = toAdd[j].y1;
+                        Ty2 = toAdd[j].y2;
+                        Ty3 = toAdd[j].y3;
+                        Ty4 = toAdd[j].y4;
+
+                        for (i = 0; i < tiles.size(); i++) {
+                            //loops through all tiles on the board
+                            x1 = tiles[i].x1;
+                            x2 = tiles[i].x2;
+                            x3 = tiles[i].x3;
+                            x4 = tiles[i].x4;
+                            y1 = tiles[i].y1;
+                            y2 = tiles[i].y2;
+                            y3 = tiles[i].y3;
+                            y4 = tiles[i].y4;
+
+                            if((Tx1 == x1 && Ty1 == y1) || (Tx1 == x2 && Ty1 == y2) || (Tx1 == x3 && Ty1 == y3) || (Tx1 == x4 && Ty1 == y4)){
+                                legalPlacement = true;
+                                vertexMatches++;
+                            }
+                            if((Tx2 == x1 && Ty2 == y1) || (Tx2 == x2 && Ty2 == y2) || (Tx2 == x3 && Ty2 == y3) || (Tx2 == x4 && Ty2 == y4)){
+                                legalPlacement = true;
+                                vertexMatches++;
+                            }
+                            if((Tx3 == x3 && Ty3 == y3) || (Tx3 == x2 && Ty3 == y2) || (Tx3 == x3 && Ty3 == y3) || (Tx3 == x4 && Ty3 == y4)){
+                                legalPlacement = true;
+                                vertexMatches++;
+                            }
+                            if((Tx4 == x1 && Ty4 == y1) || (Tx4 == x2 && Ty4 == y2) || (Tx4 == x3 && Ty4 == y3) || (Tx4 == x4 && Ty4 == y4)){
+                                legalPlacement = true;
+                                vertexMatches++;
+                            }
+
+                            if(vertexMatches != 1){
+                                legalPlacement = false;
+                            }
+                        }
+                    }
+                }
+
                 if(addToScore == currentPiece.size() && legalPlacement){
                     playerScore += addToScore;
                     int x;
