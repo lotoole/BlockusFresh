@@ -14,8 +14,11 @@ vector<int> isClicked(20,-1);
 vector<int> angles(20,0);
 //vector to hold board corner tiles
 vector<Coordinate> cornerTiles;
+//vector to hold corner pieces that may be addedd
+vector<Coordinate> cornerToAdd;
 
 int add = 1;
+
 //player and computer scores
 int playerScore = 0;
 int computerScore = 0;
@@ -596,6 +599,7 @@ void mouse(int button, int state, int x, int y) {
                             isCorner = true;
                         }
                     } else if (moveNumber == 2) {
+
                         //get the cordinates of the corner tile
                         x1 = cornerTiles[1].x1;
                         x2 = cornerTiles[1].x2;
@@ -611,11 +615,25 @@ void mouse(int button, int state, int x, int y) {
                         double BoardXMin = findMin(x1, x2, x3, x4);
                         double BoardYMin = findMin(y1, y2, y3, y4);
                         //now check if a corner piece is going to be filled
+
                         if(BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
                            centerX <= BoardXMax) {
+                            //add corner piece to vector cornerToAdd
+                            for (j = 0; j < currentPiece.size(); ++j) {
+                                x1 = currentPiece[j].x1;
+                                x2 = currentPiece[j].x2;
+                                x3 = currentPiece[j].x3;
+                                x4 = currentPiece[j].x4;
+                                y1 = currentPiece[j].y1;
+                                y2 = currentPiece[j].y2;
+                                y3 = currentPiece[j].y3;
+                                y4 = currentPiece[j].y4;
+                                cornerToAdd.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+                            }
                             isCorner = true;
                         }
                     } else {
+
                         isCorner = true;
                     }
 
@@ -636,7 +654,7 @@ void mouse(int button, int state, int x, int y) {
                         double BoardYMin = findMin(y1, y2, y3, y4);
                         //if the click is within the bounds of a board piece, update board
                         if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
-                            centerX <= BoardXMax && isCorner) {
+                            centerX <= BoardXMax && isCorner && moveNumber != 2) {
                             toAdd.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
                             addToScore ++;
                         }
@@ -662,8 +680,72 @@ void mouse(int button, int state, int x, int y) {
                             }
                         }
                     }
-                }
 
+                }
+                //if its the players secon turn see if the piece can be added to corner
+                if(moveNumber == 2 && isCorner) {
+                    int i;
+                    for (i = 0; i <= cornerToAdd.size(); i++) {
+                        x1 = cornerToAdd[i].x1;
+                        x2 = cornerToAdd[i].x2;
+                        x3 = cornerToAdd[i].x3;
+                        x4 = cornerToAdd[i].x4;
+                        y1 = cornerToAdd[i].y1;
+                        y2 = cornerToAdd[i].y2;
+                        y3 = cornerToAdd[i].y3;
+                        y4 = cornerToAdd[i].y4;
+
+                        //calcuate the center location of the tile
+                        double centerX = (x1 + x2 + x4) / 3;
+                        double centerY = (y1 + y2 + y4) / 3;
+
+                        for (k = 0; k <= boardVector.size(); k++) { //loop through vector of board tile locations
+
+                            x1 = boardVector[k].x1;
+                            x2 = boardVector[k].x2;
+                            x3 = boardVector[k].x3;
+                            x4 = boardVector[k].x4;
+                            y1 = boardVector[k].y1;
+                            y2 = boardVector[k].y2;
+                            y3 = boardVector[k].y3;
+                            y4 = boardVector[k].y4;
+
+                            double BoardXMax = findMax(x1, x2, x3, x4);
+                            double BoardYMax = findMax(y1, y2, y3, y4);
+                            double BoardXMin = findMin(x1, x2, x3, x4);
+                            double BoardYMin = findMin(y1, y2, y3, y4);
+                            //if the piece is within the bounds of a board piece, update board
+                            if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
+                                centerX <= BoardXMax) {
+                                toAdd.push_back(Coordinate(x1, y1, x2, y2, x3, y3, x4, y4));
+                                addToScore++;
+                            }
+
+                            for (w = 0; w < tiles.size(); w++) {
+                                x1 = tiles[w].x1;
+                                x2 = tiles[w].x2;
+                                x3 = tiles[w].x3;
+                                x4 = tiles[w].x4;
+                                y1 = tiles[w].y1;
+                                y2 = tiles[w].y2;
+                                y3 = tiles[w].y3;
+                                y4 = tiles[w].y4;
+                                double BoardXMax = findMax(x1, x2, x3, x4);
+                                double BoardYMax = findMax(y1, y2, y3, y4);
+                                double BoardXMin = findMin(x1, x2, x3, x4);
+                                double BoardYMin = findMin(y1, y2, y3, y4);
+
+                                if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
+                                    centerX <= BoardXMax) {
+                                    //if all pieces are empty, illegal placement is false
+                                    legalPlacement = false;
+                                }
+
+
+                            }
+                        }
+                    }
+                }
                 if(addToScore == currentPiece.size() && legalPlacement){
                     playerScore += addToScore;
                     int x;
