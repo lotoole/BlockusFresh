@@ -439,8 +439,20 @@ void kbd(unsigned char key, int x, int y) {
     if(key == 'r' && screen == game_play) {
         for (int i = 0; i < isClicked.size(); ++i){
             if (isClicked[i] == i){
-                int theta = (angles[i] + 90) % 360;
-                angles[i] = theta;
+                int theta = (angles[i] + 90) % 360; //rotate piece by 90 degrees and reduce mod 360 (rotating by 360 is the same as rotating by 0)
+                angles[i] = theta; //set orientation of piece
+            }
+        }
+    }
+    //------------------------------------------------**
+    //Created by Will on 11/30/18
+    // Mirror the clicked piece if the user hits m
+    //------------------------------------------------**
+    if(key == 'm' && screen == game_play) {
+        for (int i = 0; i < isClicked.size(); ++i){
+            if (isClicked[i] == i){
+                int theta = (angles[i] + 180) % 360; //rotate piece by 180 degrees and reduce mod 360 (rotating by 360 is the same as rotating by 0)
+                angles[i] = theta; //set orientation of piece
             }
         }
     }

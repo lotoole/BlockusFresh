@@ -59,15 +59,17 @@ void Piece::create_O(float x, float y, int orientation){
     //All piece rotations Created by Will
     //------------------------------------------------**
     glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glTranslatef(x,y,0);
-    glRotatef(orientation, 0, 0, 1);
-    glTranslatef(-x,-y,0);
+    glPushMatrix(); //push rotation matrix
+    glTranslatef(x,y,0); //translate to allow for rotation
+    glRotatef(orientation, 0, 0, 1); //rotates clockwise around <0,0,1> (axis of rotation determined by right hand rule)
+    glTranslatef(-x,-y,0); //reset back to original position
     //------------------------------------------------**
     //All piece drawings Created by Will
     //------------------------------------------------**
-    glBegin(GL_QUADS);
-    glColor3f(color[0], color[1], color[2]);
+    glBegin(GL_QUADS); //begin drawing quadrilateral
+    glColor3f(color[0], color[1], color[2]); //set color to fill tiles with
+
+    //TILES
 
     //top left
     glVertex2f(-tileSize + x, y);
@@ -107,7 +109,8 @@ void Piece::create_O(float x, float y, int orientation){
     glEnd();
 
     //LINES (includes border and grid lines)
-
+    //Created by Will
+    //Draws border and tile lines for the pieces
     glLineWidth(0.03);
 
     glBegin(GL_LINES);

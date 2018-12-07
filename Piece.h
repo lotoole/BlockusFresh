@@ -7,7 +7,7 @@
 
 #include <vector>
 using namespace std;
-struct PieceCoordinate
+struct PieceCoordinate      //Holds coordinates for a tile
 {
     double x1, y1, x2, y2, x3, y3, x4, y4;
 
