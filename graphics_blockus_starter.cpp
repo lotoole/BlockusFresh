@@ -600,7 +600,7 @@ void mouse(int button, int state, int x, int y) {
                             double BoardYMin = findMin(y1, y2, y3, y4);
 
                             if (BoardYMax >= centerY && BoardYMin <= centerY && centerX >= BoardXMin &&
-                                centerX <= BoardXMax && moveNumber != 1 && moveNumber != 2) {
+                                centerX <= BoardXMax) {
                                 //if all pieces are empty, illegal placement is false
                                 legalPlacement = false;
                             }
